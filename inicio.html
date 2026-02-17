@@ -5,600 +5,591 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BioPanamá | Explorando Nuestra Megadiversidad</title>
     <link rel="stylesheet" href="inicio.css">
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
     <!-- NAVEGACIÓN PRINCIPAL -->
     <nav class="main-nav">
-        <div class="container nav-container">
-            <a href="#inicio" class="logo">
+        <div class="nav-container">
+            <a href="#" class="logo" data-page="home" onclick="navigateTo('home'); return false;">
                 <div class="logo-icon">
                     <i class="fas fa-leaf"></i>
                 </div>
                 <span class="logo-text">BioPanamá</span>
             </a>
-            
-            <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú de navegación">
+
+            <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú">
                 <i class="fas fa-bars"></i>
             </button>
-            
+
             <div class="nav-menu" id="navMenu">
-                <a href="#inicio" class="nav-link">Inicio</a>
-                <a href="#biodiversidad" class="nav-link">¿Qué es?</a>
-                <a href="#especies" class="nav-link">Especies</a>
-                <a href="#panama" class="nav-link">Panamá Megadiverso</a>
-                <a href="#importancia" class="nav-link">Importancia</a>
-                <a href="#juego" class="nav-link">Juego</a>
-                <a href="#huella" class="nav-link">Tu Huella</a>
-                <a href="#amenazas" class="nav-link">Amenazas</a>
-                <a href="#conservacion" class="nav-link">Conservación</a>
-                <a href="#conservacion" class="nav-cta">Participa</a>
+                <a href="#" class="nav-link" data-page="home">Inicio</a>
+                <a href="#" class="nav-link" data-page="biodiversidad">Biodiversidad</a>
+                <a href="#" class="nav-link" data-page="especies">Especies</a>
+                <a href="#" class="nav-link" data-page="panama">Panamá</a>
+                <a href="#" class="nav-link" data-page="importancia">Importancia</a>
+                <a href="#" class="nav-link" data-page="juego">Juego</a>
+                <a href="#" class="nav-link" data-page="huella">Mi Huella</a>
+                <a href="#" class="nav-link" data-page="conservacion">Conservación</a>
             </div>
         </div>
     </nav>
 
-    <!-- HERO -->
-    <section id="inicio" class="hero-section">
-        <div class="hero-content">
-            <div class="hero-tag">Biodiversidad Panameña</div>
-            <h1 class="hero-title">
-                Panamá: Puente de<br>
-                <span class="italic">Vida</span>
-            </h1>
-            <p class="hero-subtitle">
-                Un país que conecta continentes, océanos y culturas. 
-                Descubre la asombrosa biodiversidad que hace de Panamá 
-                uno de los lugares más ricos en vida del planeta.
-            </p>
-            <div class="hero-buttons">
-                <a href="#especies" class="btn btn-primary">
-                    Ver Especies <i class="fas fa-paw"></i>
-                </a>
-                <a href="#juego" class="btn btn-secondary">
-                    Jugar Ahora <i class="fas fa-gamepad"></i>
-                </a>
+    <!-- ===================== PÁGINA: INICIO ===================== -->
+    <div class="page active" id="page-home">
+        <section class="hero-section">
+            <div class="hero-bg-overlay"></div>
+            <div class="hero-content">
+                <div class="hero-tag">Biodiversidad Panameña</div>
+                <h1 class="hero-title">
+                    Panamá: Puente de<br>
+                    <span class="italic">Vida</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Un país que conecta continentes, océanos y culturas.
+                    Descubre la asombrosa biodiversidad que hace de Panamá
+                    uno de los lugares más ricos en vida del planeta.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="navigateTo('especies')">
+                        Ver Especies <i class="fas fa-paw"></i>
+                    </button>
+                    <button class="btn btn-secondary" onclick="navigateTo('juego')">
+                        Jugar Ahora <i class="fas fa-gamepad"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="scroll-hint">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- STATS RÁPIDAS -->
+        <section class="quick-stats section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Por qué Panamá</span>
+                    <h2 class="section-title">Un país de cifras extraordinarias</h2>
+                </div>
+                <div class="home-stats-grid">
+                    <div class="home-stat-card" onclick="navigateTo('panama')">
+                        <div class="stat-icon"><i class="fas fa-feather-alt"></i></div>
+                        <span class="stat-num">978</span>
+                        <span class="stat-lbl">Especies de Aves</span>
+                        <span class="stat-link">Descubrir →</span>
+                    </div>
+                    <div class="home-stat-card" onclick="navigateTo('panama')">
+                        <div class="stat-icon"><i class="fas fa-leaf"></i></div>
+                        <span class="stat-num">10,000+</span>
+                        <span class="stat-lbl">Especies de Plantas</span>
+                        <span class="stat-link">Descubrir →</span>
+                    </div>
+                    <div class="home-stat-card" onclick="navigateTo('panama')">
+                        <div class="stat-icon"><i class="fas fa-frog"></i></div>
+                        <span class="stat-num">242</span>
+                        <span class="stat-lbl">Especies de Anfibios</span>
+                        <span class="stat-link">Descubrir →</span>
+                    </div>
+                    <div class="home-stat-card" onclick="navigateTo('panama')">
+                        <div class="stat-icon"><i class="fas fa-shield-alt"></i></div>
+                        <span class="stat-num">30%</span>
+                        <span class="stat-lbl">Territorio Protegido</span>
+                        <span class="stat-link">Descubrir →</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPLORAR SECCIONES -->
+        <section class="explore-section section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Explora</span>
+                    <h2 class="section-title">¿Qué quieres descubrir hoy?</h2>
+                </div>
+                <div class="explore-grid">
+                    <div class="explore-card" onclick="navigateTo('biodiversidad')">
+                        <div class="explore-img" style="background-image: url('https://images.unsplash.com/photo-1470058869958-2a77ade41c02?q=80&w=800')"></div>
+                        <div class="explore-body">
+                            <span class="explore-tag">Fundamentos</span>
+                            <h3>¿Qué es la biodiversidad?</h3>
+                            <p>Comprende los niveles y conceptos clave de la diversidad biológica.</p>
+                            <button class="btn-text">Aprender más <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="explore-card featured" onclick="navigateTo('especies')">
+                        <div class="explore-img" style="background-image: url('https://images.unsplash.com/photo-1551085254-e96b210db58a?q=80&w=800')"></div>
+                        <div class="explore-body">
+                            <span class="explore-tag">Tesoros Vivientes</span>
+                            <h3>Especies Emblemáticas</h3>
+                            <p>Conoce las especies más representativas e icónicas de Panamá.</p>
+                            <button class="btn-text">Explorar especies <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="explore-card" onclick="navigateTo('importancia')">
+                        <div class="explore-img" style="background-image: url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=800')"></div>
+                        <div class="explore-body">
+                            <span class="explore-tag">¿Por qué importa?</span>
+                            <h3>Importancia y Amenazas</h3>
+                            <p>Entiende el valor vital de la biodiversidad y los peligros que enfrenta.</p>
+                            <button class="btn-text">Ver más <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="explore-card" onclick="navigateTo('conservacion')">
+                        <div class="explore-img" style="background-image: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=800')"></div>
+                        <div class="explore-body">
+                            <span class="explore-tag">Acción</span>
+                            <h3>Conservación</h3>
+                            <p>Áreas protegidas y acciones que cada ciudadano puede tomar.</p>
+                            <button class="btn-text">Participar <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ===================== PÁGINA: BIODIVERSIDAD ===================== -->
+    <div class="page" id="page-biodiversidad">
+        <div class="page-hero page-hero--bio">
+            <div class="page-hero-overlay"></div>
+            <div class="page-hero-content">
+                <span class="page-hero-tag">01 / Fundamentos</span>
+                <h1>¿Qué es la<br><em>biodiversidad?</em></h1>
+                <p>La variedad de vida en todas sus formas: desde los genes hasta los ecosistemas completos.</p>
             </div>
         </div>
-        <div class="scroll-hint">
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </section>
 
-    <!-- INTRODUCCIÓN -->
-    <section id="biodiversidad" class="intro-section section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">01 / Fundamentos</span>
-                <h2 class="section-title">¿Qué es la biodiversidad?</h2>
-                <p class="section-subtitle">
-                    La biodiversidad es la variedad de vida en todas sus formas: 
-                    desde los genes hasta los ecosistemas completos.
-                </p>
-            </div>
-            
-            <div class="intro-content">
-                <div class="intro-text">
-                    <h2>La trama de la vida en la Tierra</h2>
-                    <p>
-                        La biodiversidad abarca tres niveles fundamentales: la diversidad genética 
-                        (variación dentro de cada especie), la diversidad de especies (variedad de 
-                        organismos vivos) y la diversidad de ecosistemas (diferentes hábitats y 
-                        comunidades ecológicas).
-                    </p>
-                    <p>
-                        No se trata solo de contar especies. Es comprender las complejas interacciones 
-                        entre organismos y su ambiente, los servicios ecosistémicos que nos proveen, 
-                        y el equilibrio delicado que sostiene la vida en la Tierra.
-                    </p>
-                    <p>
-                        En <strong>Panamá</strong>, esta diversidad se manifiesta en ecosistemas únicos 
-                        que van desde arrecifes de coral hasta bosques nubosos, creando un mosaico 
-                        de vida extraordinario.
-                    </p>
+        <section class="section">
+            <div class="container">
+                <div class="intro-content">
+                    <div class="intro-text">
+                        <h2>La trama de la vida en la Tierra</h2>
+                        <p>La biodiversidad abarca tres niveles fundamentales: la diversidad genética (variación dentro de cada especie), la diversidad de especies (variedad de organismos vivos) y la diversidad de ecosistemas (diferentes hábitats y comunidades ecológicas).</p>
+                        <p>No se trata solo de contar especies. Es comprender las complejas interacciones entre organismos y su ambiente, los servicios ecosistémicos que nos proveen, y el equilibrio delicado que sostiene la vida en la Tierra.</p>
+                        <p>En <strong>Panamá</strong>, esta diversidad se manifiesta en ecosistemas únicos que van desde arrecifes de coral hasta bosques nubosos, creando un mosaico de vida extraordinario.</p>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1470058869958-2a77ade41c02?q=80&w=1200&auto=format&fit=crop"
+                         alt="Biodiversidad panameña"
+                         class="intro-image">
                 </div>
-                <img src="https://images.unsplash.com/photo-1470058869958-2a77ade41c02?q=80&w=1200&auto=format&fit=crop" 
-                     alt="Biodiversidad panameña" 
-                     class="intro-image">
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ESPECIES EMBLEMÁTICAS -->
-    <section id="especies" class="species-section section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">02 / Tesoros Vivientes</span>
-                <h2 class="section-title">Especies Emblemáticas de Panamá</h2>
-                <p class="section-subtitle">
-                    Conoce algunas de las especies más importantes y representativas 
-                    de la biodiversidad panameña y cómo podemos protegerlas.
-                </p>
+        <section class="section section--alt">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Los tres pilares</span>
+                    <h2 class="section-title">Niveles de Biodiversidad</h2>
+                </div>
+                <div class="levels-cards">
+                    <div class="level-card">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-dna"></i></div>
+                            <div>
+                                <div class="card-subtitle">Nivel 1</div>
+                                <h3 class="card-title">Diversidad Genética</h3>
+                            </div>
+                        </div>
+                        <ul class="card-highlights">
+                            <li><i class="fas fa-circle"></i> Variación dentro de cada especie</li>
+                            <li><i class="fas fa-circle"></i> Base de la adaptación evolutiva</li>
+                            <li><i class="fas fa-circle"></i> Resiliencia ante enfermedades</li>
+                            <li><i class="fas fa-circle"></i> Fundamento de la selección natural</li>
+                        </ul>
+                    </div>
+                    <div class="level-card level-card--accent">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-paw"></i></div>
+                            <div>
+                                <div class="card-subtitle">Nivel 2</div>
+                                <h3 class="card-title">Diversidad de Especies</h3>
+                            </div>
+                        </div>
+                        <ul class="card-highlights">
+                            <li><i class="fas fa-circle"></i> Número total de especies</li>
+                            <li><i class="fas fa-circle"></i> Distribución entre hábitats</li>
+                            <li><i class="fas fa-circle"></i> Interacciones ecológicas</li>
+                            <li><i class="fas fa-circle"></i> Redes tróficas y cadenas alimentarias</li>
+                        </ul>
+                    </div>
+                    <div class="level-card">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-globe-americas"></i></div>
+                            <div>
+                                <div class="card-subtitle">Nivel 3</div>
+                                <h3 class="card-title">Diversidad de Ecosistemas</h3>
+                            </div>
+                        </div>
+                        <ul class="card-highlights">
+                            <li><i class="fas fa-circle"></i> Bosques tropicales y nubosos</li>
+                            <li><i class="fas fa-circle"></i> Arrecifes de coral y manglares</li>
+                            <li><i class="fas fa-circle"></i> Humedales y ríos</li>
+                            <li><i class="fas fa-circle"></i> Ecosistemas de alta montaña</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            
-            <div class="species-filters">
-                <button class="species-filter active" data-filter="all">Todas</button>
-                <button class="species-filter" data-filter="aves">Aves</button>
-                <button class="species-filter" data-filter="mamiferos">Mamíferos</button>
-                <button class="species-filter" data-filter="anfibios">Anfibios</button>
-                <button class="species-filter" data-filter="flora">Flora</button>
-            </div>
-            
-            <div class="species-grid">
-                <!-- Águila Harpía -->
-                <div class="species-card" data-category="aves">
-                    <img src="https://images.unsplash.com/photo-1551085254-e96b210db58a?q=80&w=1000&auto=format&fit=crop" 
-                         alt="Águila Harpía" 
-                         class="species-image">
-                    <div class="species-content">
-                        <div class="species-header">
-                            <h3 class="species-name">Águila Harpía</h3>
-                            <span class="species-status status-vulnerable">Vulnerable</span>
-                        </div>
-                        <span class="species-scientific">Harpia harpyja</span>
-                        <p class="species-info">
-                            Ave nacional de Panamá y el depredador aéreo más poderoso de América. 
-                            Habita en los bosques tropicales del Darién y otras áreas protegidas.
-                        </p>
-                        <button class="details-toggle" data-target="harpia">
-                            <i class="fas fa-chevron-down"></i> Cómo protegerla
-                        </button>
-                        <div id="harpia" class="species-details">
-                            <h4>Acciones de Conservación</h4>
-                            <ul>
-                                <li>Proteger y restaurar bosques tropicales</li>
-                                <li>Establecer corredores biológicos</li>
-                                <li>Monitorear nidos activos</li>
-                                <li>Educar comunidades locales</li>
-                                <li>Reportar avistamientos a autoridades</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Rana Dorada -->
-                <div class="species-card" data-category="anfibios">
-                    <img src="https://images.unsplash.com/photo-1559253664-ca249d4608c6?q=80&w=1000&auto=format&fit=crop" 
-                         alt="Rana Dorada" 
-                         class="species-image">
-                    <div class="species-content">
-                        <div class="species-header">
-                            <h3 class="species-name">Rana Dorada</h3>
-                            <span class="species-status status-endangered">En Peligro</span>
-                        </div>
-                        <span class="species-scientific">Atelopus zeteki</span>
-                        <p class="species-info">
-                            Símbolo nacional y especie endémica de Panamá. Solo habita en áreas 
-                            cercanas al Valle de Antón y Coclé. Su piel brillante advierte sobre su toxicidad.
-                        </p>
-                        <button class="details-toggle" data-target="rana">
-                            <i class="fas fa-chevron-down"></i> Cómo protegerla
-                        </button>
-                        <div id="rana" class="species-details">
-                            <h4>Acciones de Conservación</h4>
-                            <ul>
-                                <li>Proteger arroyos y quebradas limpias</li>
-                                <li>Controlar enfermedades fúngicas</li>
-                                <li>Criar en cautiverio para repoblar</li>
-                                <li>Evitar contaminación de hábitats</li>
-                                <li>Apoyar programas de reintroducción</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Manatí -->
-                <div class="species-card" data-category="mamiferos">
-                    <img src="https://images.unsplash.com/photo-1564574662336-88c9f5a6c8d8?q=80&w=1000&auto=format&fit=crop" 
-                         alt="Manatí" 
-                         class="species-image">
-                    <div class="species-content">
-                        <div class="species-header">
-                            <h3 class="species-name">Manatí Antillano</h3>
-                            <span class="species-status status-vulnerable">Vulnerable</span>
-                        </div>
-                        <span class="species-scientific">Trichechus manatus</span>
-                        <p class="species-info">
-                            Conocido como "vaca marina", habita en las costas caribeñas de Panamá. 
-                            Es un herbívoro acuático que ayuda a mantener saludables los pastos marinos.
-                        </p>
-                        <button class="details-toggle" data-target="manati">
-                            <i class="fas fa-chevron-down"></i> Cómo protegerlo
-                        </button>
-                        <div id="manati" class="species-details">
-                            <h4>Acciones de Conservación</h4>
-                            <ul>
-                                <li>Proteger praderas de pastos marinos</li>
-                                <li>Reducir velocidad de embarcaciones</li>
-                                <li>Evitar redes de pesca abandonadas</li>
-                                <li>Reportar avistamientos heridos</li>
-                                <li>Participar en limpiezas costeras</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Orquídea Espíritu Santo -->
-                <div class="species-card" data-category="flora">
-                    <img src="https://images.unsplash.com/photo-1517232115160-ff293b23292b?q=80&w=1000&auto=format&fit=crop" 
-                         alt="Orquídea Espíritu Santo" 
-                         class="species-image">
-                    <div class="species-content">
-                        <div class="species-header">
-                            <h3 class="species-name">Orquídea Espíritu Santo</h3>
-                            <span class="species-status status-vulnerable">Vulnerable</span>
-                        </div>
-                        <span class="species-scientific">Peristeria elata</span>
-                        <p class="species-info">
-                            Flor nacional de Panamá. Conocida por su forma que asemeja una paloma blanca. 
-                            Crece en bosques húmedos de tierras bajas, especialmente en la Península de Azuero.
-                        </p>
-                        <button class="details-toggle" data-target="orquidea">
-                            <i class="fas fa-chevron-down"></i> Cómo protegerla
-                        </button>
-                        <div id="orquidea" class="species-details">
-                            <h4>Acciones de Conservación</h4>
-                            <ul>
-                                <li>No extraer orquídeas de su hábitat natural</li>
-                                <li>Comprar solo de cultivadores certificados</li>
-                                <li>Proteger bosques donde crecen naturalmente</li>
-                                <li>Denunciar comercio ilegal</li>
-                                <li>Aprender a cultivarlas sosteniblemente</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+        </section>
+    </div>
+
+    <!-- ===================== PÁGINA: ESPECIES ===================== -->
+    <div class="page" id="page-especies">
+        <div class="page-hero page-hero--especies">
+            <div class="page-hero-overlay"></div>
+            <div class="page-hero-content">
+                <span class="page-hero-tag">02 / Tesoros Vivientes</span>
+                <h1>Especies<br><em>Emblemáticas</em></h1>
+                <p>Las especies más representativas e icónicas de la biodiversidad panameña.</p>
             </div>
         </div>
-    </section>
 
-    <!-- JUEGO INTERACTIVO -->
-    <section id="juego" class="game-section section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">03 / Aprendizaje Divertido</span>
-                <h2 class="section-title">Quiz: ¿Cuánto sabes de la biodiversidad panameña?</h2>
-                <p class="section-subtitle">
-                    Pon a prueba tus conocimientos sobre la increíble biodiversidad de Panamá 
-                    con este juego educativo.
-                </p>
-            </div>
-            
-            <div class="game-container">
-                <h3 class="game-title">Desafío Biodiverso</h3>
-                <p class="game-description">
-                    Responde correctamente 5 preguntas sobre especies, ecosistemas y conservación 
-                    en Panamá. ¡Demuestra que eres un experto en biodiversidad!
-                </p>
-                
-                <div class="game-area">
-                    <div class="game-question" id="game-question">
-                        ¿Cuál es el ave nacional de Panamá?
-                    </div>
-                    
-                    <div class="game-options" id="game-options">
-                        <div class="game-option" data-correct="true">Águila Harpía</div>
-                        <div class="game-option" data-correct="false">Guacamaya Roja</div>
-                        <div class="game-option" data-correct="false">Quetzal</div>
-                        <div class="game-option" data-correct="false">Tucán</div>
-                    </div>
-                    
-                    <div class="game-score" id="game-score">
-                        Puntuación: <span id="score">0</span>/5
-                    </div>
-                    
-                    <div class="game-controls">
-                        <button class="btn btn-primary" id="next-question">
-                            Siguiente Pregunta <i class="fas fa-arrow-right"></i>
-                        </button>
-                        <button class="btn btn-secondary" id="restart-game">
-                            Reiniciar Juego <i class="fas fa-redo"></i>
-                        </button>
-                    </div>
-                    
-                    <div class="game-result" id="game-result"></div>
+        <section class="section">
+            <div class="container">
+                <div class="species-filters">
+                    <button class="species-filter active" data-filter="all">Todas</button>
+                    <button class="species-filter" data-filter="aves">Aves</button>
+                    <button class="species-filter" data-filter="mamiferos">Mamíferos</button>
+                    <button class="species-filter" data-filter="anfibios">Anfibios</button>
+                    <button class="species-filter" data-filter="flora">Flora</button>
                 </div>
+
+                <div class="species-grid">
+                    <!-- Águila Harpía -->
+                    <div class="species-card" data-category="aves">
+                        <img src="https://images.unsplash.com/photo-1551085254-e96b210db58a?q=80&w=1000&auto=format&fit=crop"
+                             alt="Águila Harpía" class="species-image">
+                        <div class="species-content">
+                            <div class="species-header">
+                                <h3 class="species-name">Águila Harpía</h3>
+                                <span class="species-status status-vulnerable">Vulnerable</span>
+                            </div>
+                            <span class="species-scientific">Harpia harpyja</span>
+                            <p class="species-info">Ave nacional de Panamá y el depredador aéreo más poderoso de América. Habita en los bosques tropicales del Darién y otras áreas protegidas.</p>
+                            <button class="details-toggle" data-target="harpia">
+                                <i class="fas fa-chevron-down"></i> Cómo protegerla
+                            </button>
+                            <div id="harpia" class="species-details">
+                                <h4>Acciones de Conservación</h4>
+                                <ul>
+                                    <li>Proteger y restaurar bosques tropicales</li>
+                                    <li>Establecer corredores biológicos</li>
+                                    <li>Monitorear nidos activos</li>
+                                    <li>Educar comunidades locales</li>
+                                    <li>Reportar avistamientos a autoridades</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rana Dorada -->
+                    <div class="species-card" data-category="anfibios">
+                        <img src="https://images.unsplash.com/photo-1559253664-ca249d4608c6?q=80&w=1000&auto=format&fit=crop"
+                             alt="Rana Dorada" class="species-image">
+                        <div class="species-content">
+                            <div class="species-header">
+                                <h3 class="species-name">Rana Dorada</h3>
+                                <span class="species-status status-endangered">En Peligro</span>
+                            </div>
+                            <span class="species-scientific">Atelopus zeteki</span>
+                            <p class="species-info">Símbolo nacional y especie endémica de Panamá. Solo habita en áreas cercanas al Valle de Antón y Coclé. Su piel brillante advierte sobre su toxicidad.</p>
+                            <button class="details-toggle" data-target="rana">
+                                <i class="fas fa-chevron-down"></i> Cómo protegerla
+                            </button>
+                            <div id="rana" class="species-details">
+                                <h4>Acciones de Conservación</h4>
+                                <ul>
+                                    <li>Proteger arroyos y quebradas limpias</li>
+                                    <li>Controlar enfermedades fúngicas</li>
+                                    <li>Criar en cautiverio para repoblar</li>
+                                    <li>Evitar contaminación de hábitats</li>
+                                    <li>Apoyar programas de reintroducción</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Manatí -->
+                    <div class="species-card" data-category="mamiferos">
+                        <img src="https://images.unsplash.com/photo-1564574662336-88c9f5a6c8d8?q=80&w=1000&auto=format&fit=crop"
+                             alt="Manatí" class="species-image">
+                        <div class="species-content">
+                            <div class="species-header">
+                                <h3 class="species-name">Manatí Antillano</h3>
+                                <span class="species-status status-vulnerable">Vulnerable</span>
+                            </div>
+                            <span class="species-scientific">Trichechus manatus</span>
+                            <p class="species-info">Conocido como "vaca marina", habita en las costas caribeñas de Panamá. Es un herbívoro acuático que ayuda a mantener saludables los pastos marinos.</p>
+                            <button class="details-toggle" data-target="manati">
+                                <i class="fas fa-chevron-down"></i> Cómo protegerlo
+                            </button>
+                            <div id="manati" class="species-details">
+                                <h4>Acciones de Conservación</h4>
+                                <ul>
+                                    <li>Proteger praderas de pastos marinos</li>
+                                    <li>Reducir velocidad de embarcaciones</li>
+                                    <li>Evitar redes de pesca abandonadas</li>
+                                    <li>Reportar avistamientos heridos</li>
+                                    <li>Participar en limpiezas costeras</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Orquídea Espíritu Santo -->
+                    <div class="species-card" data-category="flora">
+                        <img src="https://images.unsplash.com/photo-1517232115160-ff293b23292b?q=80&w=1000&auto=format&fit=crop"
+                             alt="Orquídea Espíritu Santo" class="species-image">
+                        <div class="species-content">
+                            <div class="species-header">
+                                <h3 class="species-name">Orquídea Espíritu Santo</h3>
+                                <span class="species-status status-vulnerable">Vulnerable</span>
+                            </div>
+                            <span class="species-scientific">Peristeria elata</span>
+                            <p class="species-info">Flor nacional de Panamá. Conocida por su forma que asemeja una paloma blanca. Crece en bosques húmedos de tierras bajas, especialmente en la Península de Azuero.</p>
+                            <button class="details-toggle" data-target="orquidea">
+                                <i class="fas fa-chevron-down"></i> Cómo protegerla
+                            </button>
+                            <div id="orquidea" class="species-details">
+                                <h4>Acciones de Conservación</h4>
+                                <ul>
+                                    <li>No extraer orquídeas de su hábitat natural</li>
+                                    <li>Comprar solo de cultivadores certificados</li>
+                                    <li>Proteger bosques donde crecen naturalmente</li>
+                                    <li>Denunciar comercio ilegal</li>
+                                    <li>Aprender a cultivarlas sosteniblemente</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Jaguar -->
+                    <div class="species-card" data-category="mamiferos">
+                        <img src="https://images.unsplash.com/photo-1601250046999-40dbd33e87b5?q=80&w=1000&auto=format&fit=crop"
+                             alt="Jaguar" class="species-image">
+                        <div class="species-content">
+                            <div class="species-header">
+                                <h3 class="species-name">Jaguar</h3>
+                                <span class="species-status status-endangered">En Peligro</span>
+                            </div>
+                            <span class="species-scientific">Panthera onca</span>
+                            <p class="species-info">El felino más grande de América. En Panamá habita principalmente en el Darién y áreas cercanas a la frontera con Colombia. Depredador clave para el equilibrio ecológico.</p>
+                            <button class="details-toggle" data-target="jaguar">
+                                <i class="fas fa-chevron-down"></i> Cómo protegerlo
+                            </button>
+                            <div id="jaguar" class="species-details">
+                                <h4>Acciones de Conservación</h4>
+                                <ul>
+                                    <li>Proteger corredores biológicos</li>
+                                    <li>Reducir conflictos con ganaderos</li>
+                                    <li>Apoyar monitoreo con cámaras trampa</li>
+                                    <li>Promover coexistencia pacífica</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quetzal -->
+                    <div class="species-card" data-category="aves">
+                        <img src="https://images.unsplash.com/photo-1611861148890-b7d7b9a01e73?q=80&w=1000&auto=format&fit=crop"
+                             alt="Quetzal Resplandeciente" class="species-image">
+                        <div class="species-content">
+                            <div class="species-header">
+                                <h3 class="species-name">Quetzal Resplandeciente</h3>
+                                <span class="species-status status-vulnerable">Vulnerable</span>
+                            </div>
+                            <span class="species-scientific">Pharomachrus mocinno</span>
+                            <p class="species-info">Considerado una de las aves más hermosas del mundo. Habita en los bosques nubosos del Parque Internacional La Amistad y el Volcán Barú.</p>
+                            <button class="details-toggle" data-target="quetzal">
+                                <i class="fas fa-chevron-down"></i> Cómo protegerlo
+                            </button>
+                            <div id="quetzal" class="species-details">
+                                <h4>Acciones de Conservación</h4>
+                                <ul>
+                                    <li>Proteger bosques nubosos</li>
+                                    <li>Regular el turismo de avistamiento</li>
+                                    <li>Preservar árboles de aguacatillo</li>
+                                    <li>Apoyar áreas de amortiguamiento</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ===================== PÁGINA: PANAMÁ MEGADIVERSO ===================== -->
+    <div class="page" id="page-panama">
+        <div class="page-hero page-hero--panama">
+            <div class="page-hero-overlay"></div>
+            <div class="page-hero-content">
+                <span class="page-hero-tag">03 / Riqueza Nacional</span>
+                <h1>Panamá:<br><em>Megadiverso</em></h1>
+                <p>Con apenas 75,517 km², alberga más biodiversidad que Estados Unidos y Canadá juntos.</p>
             </div>
         </div>
-    </section>
 
-    <!-- PANAMÁ MEGADIVERSO -->
-    <section id="panama" class="megadiverse-section section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">04 / Riqueza Nacional</span>
-                <h2 class="section-title">Panamá: Un país megadiverso</h2>
-                <p class="section-subtitle">
-                    Con apenas 75,517 km², Panamá alberga más biodiversidad que Estados Unidos 
-                    y Canadá juntos. Somos uno de los 25 países megadiversos del planeta.
-                </p>
-            </div>
-            
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <span class="stat-number">10,000+</span>
-                    <span class="stat-label">Especies de Plantas</span>
-                </div>
-
-                <div class="stat-card">
-                    <span class="stat-number">978</span>
-                    <span class="stat-label">Especies de Aves</span>
-                </div>
-
-                <div class="stat-card">
-                    <span class="stat-number">229</span>
-                    <span class="stat-label">Especies de Mamíferos</span>
-                </div>
-
-                <div class="stat-card">
-                    <span class="stat-number">242</span>
-                    <span class="stat-label">Especies de Anfibios</span>
-                </div>
-                
-                <div class="stat-card">
-                    <span class="stat-number">1,500+</span>
-                    <span class="stat-label">Especies de Mariposas</span>
-                </div>
-                
-                <div class="stat-card">
-                    <span class="stat-number">30%</span>
-                    <span class="stat-label">Territorio Protegido</span>
-                </div>
-                
-                <div class="stat-card">
-                    <span class="stat-number">1,200+</span>
-                    <span class="stat-label">Especies de Peces Marinos</span>
-                </div>
-                
-                <div class="stat-card">
-                    <span class="stat-number">2</span>
-                    <span class="stat-label">Patrimonios Mundiales UNESCO</span>
+        <section class="section">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-card"><span class="stat-number">10,000+</span><span class="stat-label">Especies de Plantas</span></div>
+                    <div class="stat-card"><span class="stat-number">978</span><span class="stat-label">Especies de Aves</span></div>
+                    <div class="stat-card"><span class="stat-number">229</span><span class="stat-label">Especies de Mamíferos</span></div>
+                    <div class="stat-card"><span class="stat-number">242</span><span class="stat-label">Especies de Anfibios</span></div>
+                    <div class="stat-card"><span class="stat-number">1,500+</span><span class="stat-label">Especies de Mariposas</span></div>
+                    <div class="stat-card"><span class="stat-number">30%</span><span class="stat-label">Territorio Protegido</span></div>
+                    <div class="stat-card"><span class="stat-number">1,200+</span><span class="stat-label">Especies de Peces Marinos</span></div>
+                    <div class="stat-card"><span class="stat-number">2</span><span class="stat-label">Patrimonios Mundiales UNESCO</span></div>
                 </div>
             </div>
-            
-            <div class="panama-features">
-                <div class="panama-feature">
-                    <h3><i class="fas fa-bridge"></i> Puente Biológico</h3>
-                    <p>Panamá conecta América del Norte y del Sur, permitiendo el intercambio de especies entre ambos continentes durante millones de años, creando una mezcla única de biodiversidad.</p>
+        </section>
+
+        <section class="section section--alt">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">¿Por qué tanta diversidad?</span>
+                    <h2 class="section-title">El secreto del istmo</h2>
                 </div>
-                
-                <div class="panama-feature">
-                    <h3><i class="fas fa-water"></i> Dos Océanos</h3>
-                    <p>Con costas en el Caribe y el Pacífico, Panamá posee ecosistemas marinos únicos en cada lado, incluyendo arrecifes coralinos, manglares y praderas de pastos marinos.</p>
+                <div class="panama-features">
+                    <div class="panama-feature">
+                        <div class="feature-icon"><i class="fas fa-bridge"></i></div>
+                        <div>
+                            <h3>Puente Biológico</h3>
+                            <p>Panamá conecta América del Norte y del Sur, permitiendo el intercambio de especies entre ambos continentes durante millones de años, creando una mezcla única de biodiversidad.</p>
+                        </div>
+                    </div>
+                    <div class="panama-feature">
+                        <div class="feature-icon"><i class="fas fa-water"></i></div>
+                        <div>
+                            <h3>Dos Océanos</h3>
+                            <p>Con costas en el Caribe y el Pacífico, Panamá posee ecosistemas marinos únicos en cada lado, incluyendo arrecifes coralinos, manglares y praderas de pastos marinos.</p>
+                        </div>
+                    </div>
+                    <div class="panama-feature">
+                        <div class="feature-icon"><i class="fas fa-mountain"></i></div>
+                        <div>
+                            <h3>Diversidad de Altitudes</h3>
+                            <p>Desde costas al nivel del mar hasta cimas de más de 3,000 metros, Panamá concentra ecosistemas radicalmente diferentes en distancias cortas.</p>
+                        </div>
+                    </div>
+                    <div class="panama-feature">
+                        <div class="feature-icon"><i class="fas fa-cloud-rain"></i></div>
+                        <div>
+                            <h3>Clima Tropical</h3>
+                            <p>Las condiciones de temperatura y precipitación estables durante millones de años han permitido la acumulación y especialización de miles de especies.</p>
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ===================== PÁGINA: IMPORTANCIA & AMENAZAS ===================== -->
+    <div class="page" id="page-importancia">
+        <div class="page-hero page-hero--importancia">
+            <div class="page-hero-overlay"></div>
+            <div class="page-hero-content">
+                <span class="page-hero-tag">04 / Valor y Desafíos</span>
+                <h1>Importancia y<br><em>Amenazas</em></h1>
+                <p>La biodiversidad: su valor vital para nuestra vida y los peligros que la acechan.</p>
             </div>
         </div>
-    </section>
 
-    <!-- CALCULADORA DE HUELLA ECOLÓGICA -->
-    <section id="huella" class="footprint-section section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">05 / Tu Impacto</span>
-                <h2 class="section-title">Calcula tu huella ecológica</h2>
-                <p class="section-subtitle">
-                    Descubre cómo tus acciones diarias afectan la biodiversidad panameña 
-                    y qué puedes hacer para reducir tu impacto.
-                </p>
-            </div>
-            
-            <div class="footprint-calculator">
-                <div class="footprint-step">
-                    <h3>1. Transporte</h3>
-                    <p>¿Cómo te transportas habitualmente?</p>
-                    <div class="footprint-options">
-                        <div class="footprint-option" data-value="3">
-                            <i class="fas fa-car"></i>
-                            <span>Automóvil</span>
-                        </div>
-                        <div class="footprint-option" data-value="2">
-                            <i class="fas fa-bus"></i>
-                            <span>Transporte público</span>
-                        </div>
-                        <div class="footprint-option" data-value="1">
-                            <i class="fas fa-bicycle"></i>
-                            <span>Bicicleta o caminar</span>
-                        </div>
-                    </div>
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">¿Por qué nos importa?</span>
+                    <h2 class="section-title">La biodiversidad sostiene nuestra vida</h2>
                 </div>
-                
-                <div class="footprint-step">
-                    <h3>2. Alimentación</h3>
-                    <p>¿Cuál es tu consumo principal de proteína?</p>
-                    <div class="footprint-options">
-                        <div class="footprint-option" data-value="3">
-                            <i class="fas fa-drumstick-bite"></i>
-                            <span>Carne diaria</span>
-                        </div>
-                        <div class="footprint-option" data-value="2">
-                            <i class="fas fa-fish"></i>
-                            <span>Pescado frecuente</span>
-                        </div>
-                        <div class="footprint-option" data-value="1">
-                            <i class="fas fa-seedling"></i>
-                            <span>Basada en plantas</span>
-                        </div>
+                <div class="importance-cards">
+                    <div class="importance-card">
+                        <div class="importance-icon"><i class="fas fa-tint"></i></div>
+                        <h3>Servicios Ecosistémicos</h3>
+                        <p>Los bosques panameños regulan el clima, purifican el agua y previenen inundaciones. El Canal de Panamá depende crucialmente de los bosques que mantienen su flujo de agua.</p>
                     </div>
-                </div>
-                
-                <div class="footprint-step">
-                    <h3>3. Residuos</h3>
-                    <p>¿Cómo manejas tus desechos?</p>
-                    <div class="footprint-options">
-                        <div class="footprint-option" data-value="3">
-                            <i class="fas fa-trash"></i>
-                            <span>Sin separación</span>
-                        </div>
-                        <div class="footprint-option" data-value="2">
-                            <i class="fas fa-recycle"></i>
-                            <span>Reciclo a veces</span>
-                        </div>
-                        <div class="footprint-option" data-value="1">
-                            <i class="fas fa-recycle"></i>
-                            <span>Reciclo siempre</span>
-                        </div>
+                    <div class="importance-card">
+                        <div class="importance-icon"><i class="fas fa-pills"></i></div>
+                        <h3>Medicina y Salud</h3>
+                        <p>Muchas plantas panameñas tienen propiedades medicinales. La biodiversidad es una fuente potencial de nuevos medicamentos y tratamientos para enfermedades globales.</p>
                     </div>
-                </div>
-                
-                <button class="btn btn-primary" id="calculate-footprint" style="width: 100%; margin-top: 30px;">
-                    Calcular mi huella <i class="fas fa-calculator"></i>
-                </button>
-                
-                <div class="footprint-result" id="footprint-result">
-                    <div class="footprint-value" id="footprint-value">7.5</div>
-                    <p class="footprint-message" id="footprint-message">
-                        Tu huella ecológica es moderada. Pequeños cambios pueden reducir significativamente 
-                        tu impacto en la biodiversidad panameña.
-                    </p>
-                    <div style="margin-top: 30px;">
-                        <button class="btn btn-secondary" id="reduce-footprint">
-                            <i class="fas fa-lightbulb"></i> Ver consejos para reducir
-                        </button>
+                    <div class="importance-card">
+                        <div class="importance-icon"><i class="fas fa-utensils"></i></div>
+                        <h3>Seguridad Alimentaria</h3>
+                        <p>La diversidad genética de cultivos y especies silvestres es clave para adaptar la agricultura al cambio climático y garantizar nuestra alimentación futura.</p>
+                    </div>
+                    <div class="importance-card">
+                        <div class="importance-icon"><i class="fas fa-dollar-sign"></i></div>
+                        <h3>Economía y Turismo</h3>
+                        <p>El ecoturismo genera empleo y divisas. Panamá atrae a visitantes de todo el mundo por su naturaleza, especialmente observadores de aves.</p>
+                    </div>
+                    <div class="importance-card">
+                        <div class="importance-icon"><i class="fas fa-monument"></i></div>
+                        <h3>Cultura e Identidad</h3>
+                        <p>La biodiversidad está intrínsecamente ligada a las culturas indígenas panameñas y a nuestra identidad nacional. Es parte de nuestro patrimonio cultural.</p>
+                    </div>
+                    <div class="importance-card">
+                        <div class="importance-icon"><i class="fas fa-balance-scale"></i></div>
+                        <h3>Estabilidad Climática</h3>
+                        <p>Los ecosistemas panameños, especialmente los bosques, capturan carbono y mitigan el cambio climático, beneficiando a todo el planeta.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- IMPORTANCIA -->
-    <section id="importancia" class="importance-section section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">06 / Valor Vital</span>
-                <h2 class="section-title">Importancia de la biodiversidad</h2>
-                <p class="section-subtitle">
-                    La biodiversidad no es un lujo: es la base de nuestra economía, 
-                    salud y calidad de vida en Panamá.
-                </p>
-            </div>
-            
-            <div class="importance-cards">
-                <div class="importance-card">
-                    <div class="importance-icon">
-                        <i class="fas fa-tint"></i>
-                    </div>
-                    <h3>Servicios Ecosistémicos</h3>
-                    <p>Los bosques panameños regulan el clima, purifican el agua y previenen inundaciones. El Canal de Panamá depende crucialmente de los bosques que mantienen su flujo de agua.</p>
+        <section class="section section--dark">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag" style="color: var(--mustard-green)">Desafíos Actuales</span>
+                    <h2 class="section-title" style="color: #fff">Amenazas a la biodiversidad</h2>
+                    <p class="section-subtitle" style="color: rgba(255,255,255,0.8)">A pesar de su riqueza natural, la biodiversidad panameña enfrenta múltiples amenazas que requieren atención urgente.</p>
                 </div>
-                
-                <div class="importance-card">
-                    <div class="importance-icon">
-                        <i class="fas fa-pills"></i>
-                    </div>
-                    <h3>Medicina y Salud</h3>
-                    <p>Muchas plantas panameñas tienen propiedades medicinales. La biodiversidad es una fuente potencial de nuevos medicamentos y tratamientos para enfermedades globales.</p>
-                </div>
-                
-                <div class="importance-card">
-                    <div class="importance-icon">
-                        <i class="fas fa-utensils"></i>
-                    </div>
-                    <h3>Seguridad Alimentaria</h3>
-                    <p>La diversidad genética de cultivos y especies silvestres es clave para adaptar la agricultura al cambio climático y garantizar nuestra alimentación futura.</p>
-                </div>
-                
-                <div class="importance-card">
-                    <div class="importance-icon">
-                        <i class="fas fa-dollar-sign"></i>
-                    </div>
-                    <h3>Economía y Turismo</h3>
-                    <p>El ecoturismo genera empleo y divisas. Panamá atrae a visitantes de todo el mundo por su naturaleza, especialmente observadores de aves.</p>
-                </div>
-                
-                <div class="importance-card">
-                    <div class="importance-icon">
-                        <i class="fas fa-monument"></i>
-                    </div>
-                    <h3>Cultura e Identidad</h3>
-                    <p>La biodiversidad está intrínsecamente ligada a las culturas indígenas panameñas y a nuestra identidad nacional. Es parte de nuestro patrimonio cultural.</p>
-                </div>
-                
-                <div class="importance-card">
-                    <div class="importance-icon">
-                        <i class="fas fa-balance-scale"></i>
-                    </div>
-                    <h3>Estabilidad Climática</h3>
-                    <p>Los ecosistemas panameños, especialmente los bosques, capturan carbono y mitigan el cambio climático, beneficiando a todo el planeta.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- AMENAZAS -->
-    <section id="amenazas" class="threats-section section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">07 / Desafíos Actuales</span>
-                <h2 class="section-title">Amenazas a la biodiversidad en Panamá</h2>
-                <p class="section-subtitle">
-                    A pesar de su riqueza natural, la biodiversidad panameña enfrenta múltiples 
-                    amenazas que requieren atención urgente.
-                </p>
-            </div>
-            
-            <div class="threats-container">
-                <div class="threat-card">
-                    <div class="threat-header">
-                        <div class="threat-icon">
-                            <i class="fas fa-tree"></i>
+                <div class="threats-container">
+                    <div class="threat-card">
+                        <div class="threat-header">
+                            <div class="threat-icon"><i class="fas fa-tree"></i></div>
+                            <h3 class="threat-title">Deforestación</h3>
                         </div>
-                        <h3 class="threat-title">Deforestación</h3>
-                    </div>
-                    <div class="threat-content">
                         <p>La expansión agrícola, ganadera y urbana ha eliminado aproximadamente el 50% de la cobertura forestal original de Panamá. Perdemos cerca de 20,000 hectáreas de bosque cada año.</p>
-                        <ul>
+                        <ul class="threat-list">
                             <li>Fragmentación de hábitats naturales</li>
                             <li>Pérdida de corredores biológicos</li>
                             <li>Erosión del suelo y sedimentación de ríos</li>
                         </ul>
                     </div>
-                </div>
-                
-                <div class="threat-card">
-                    <div class="threat-header">
-                        <div class="threat-icon">
-                            <i class="fas fa-industry"></i>
+                    <div class="threat-card">
+                        <div class="threat-header">
+                            <div class="threat-icon"><i class="fas fa-industry"></i></div>
+                            <h3 class="threat-title">Contaminación</h3>
                         </div>
-                        <h3 class="threat-title">Contaminación</h3>
-                    </div>
-                    <div class="threat-content">
-                        <p>Vertidos industriales, plásticos en los océanos, agroquímicos y minería afectan la calidad del agua, suelo y aire, dañando ecosistemas terrestres y marinos.</p>
-                        <ul>
+                        <p>Vertidos industriales, plásticos en los océanos y agroquímicos afectan la calidad del agua, suelo y aire, dañando ecosistemas terrestres y marinos.</p>
+                        <ul class="threat-list">
                             <li>Contaminación de ríos y quebradas</li>
                             <li>Acumulación de plásticos en costas</li>
                             <li>Bioacumulación de metales pesados</li>
                         </ul>
                     </div>
-                </div>
-                
-                <div class="threat-card">
-                    <div class="threat-header">
-                        <div class="threat-icon">
-                            <i class="fas fa-fire"></i>
+                    <div class="threat-card">
+                        <div class="threat-header">
+                            <div class="threat-icon"><i class="fas fa-fire"></i></div>
+                            <h3 class="threat-title">Cambio Climático</h3>
                         </div>
-                        <h3 class="threat-title">Cambio Climático</h3>
-                    </div>
-                    <div class="threat-content">
-                        <p>Aumento del nivel del mar, acidificación de océanos, cambios en patrones de lluvia y eventos climáticos extremos afectan ecosistemas y especies.</p>
-                        <ul>
+                        <p>Aumento del nivel del mar, acidificación de océanos y eventos climáticos extremos afectan ecosistemas y especies de manera irreversible.</p>
+                        <ul class="threat-list">
                             <li>Blanqueamiento de corales</li>
                             <li>Alteración de migraciones animales</li>
                             <li>Cambios en distribución de especies</li>
                         </ul>
                     </div>
-                </div>
-                
-                <div class="threat-card">
-                    <div class="threat-header">
-                        <div class="threat-icon">
-                            <i class="fas fa-paw"></i>
+                    <div class="threat-card">
+                        <div class="threat-header">
+                            <div class="threat-icon"><i class="fas fa-paw"></i></div>
+                            <h3 class="threat-title">Tráfico Ilegal</h3>
                         </div>
-                        <h3 class="threat-title">Tráfico Ilegal de Especies</h3>
-                    </div>
-                    <div class="threat-content">
                         <p>Panamá es ruta de tráfico de especies protegidas como loros, monos, reptiles y orquídeas, lo que disminuye sus poblaciones silvestres.</p>
-                        <ul>
+                        <ul class="threat-list">
                             <li>Comercio ilegal de fauna silvestre</li>
                             <li>Extracción de plantas ornamentales</li>
                             <li>Mortalidad durante captura y transporte</li>
@@ -606,117 +597,238 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <!-- CONSERVACIÓN -->
-    <section id="conservacion" class="conservation-section section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">08 / Protección y Futuro</span>
-                <h2 class="section-title">Conservación: áreas protegidas y acciones ciudadanas</h2>
-                <p class="section-subtitle">
-                    La conservación de nuestra biodiversidad es responsabilidad de todos. 
-                    Conoce las áreas protegidas y cómo puedes contribuir.
-                </p>
-            </div>
-            
-            <div class="conservation-content">
-                <div>
-                    <h3 style="font-size: 2.5rem; color: var(--phthalo-green); margin-bottom: 40px;">
-                        Principales Áreas Protegidas
-                    </h3>
-                    
-                    <ul class="protected-areas">
-                        <li class="area-item">
-                            <div class="area-number">1</div>
-                            <div class="area-content">
-                                <h3>Parque Nacional Darién</h3>
-                                <p>Patrimonio Mundial de la UNESCO. Protege la selva tropical más grande de Centroamérica y es hogar de numerosas comunidades indígenas.</p>
-                            </div>
-                        </li>
-                        
-                        <li class="area-item">
-                            <div class="area-number">2</div>
-                            <div class="area-content">
-                                <h3>Parque Nacional Coiba</h3>
-                                <p>Patrimonio Mundial de la UNESCO. Reserva marina con arrecifes prístinos y especies endémicas únicas, como el colaespina de Coiba.</p>
-                            </div>
-                        </li>
-                        
-                        <li class="area-item">
-                            <div class="area-number">3</div>
-                            <div class="area-content">
-                                <h3>Parque Internacional La Amistad</h3>
-                                <p>Compartido con Costa Rica. Bosque nuboso que alberga al quetzal resplandeciente y otras especies amenazadas.</p>
-                            </div>
-                        </li>
-                        
-                        <li class="area-item">
-                            <div class="area-number">4</div>
-                            <div class="area-content">
-                                <h3>Parque Nacional Volcán Barú</h3>
-                                <p>Punto más alto del país. Ecosistema de alta montaña con especies únicas adaptadas a condiciones extremas.</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="action-container">
-                    <h3 class="action-title">Acciones Ciudadanas</h3>
-                    <p style="color: var(--space-sparkle); margin-bottom: 30px;">
-                        Cada panameño puede contribuir a proteger nuestra biodiversidad. 
-                        Aquí hay formas concretas de participar:
-                    </p>
-                    
-                    <ul class="action-list">
-                        <li>
-                            <i class="fas fa-recycle"></i>
-                            <span><strong>Consumo responsable:</strong> Reduce, reutiliza, recicla. Evita plásticos de un solo uso.</span>
-                        </li>
-                        
-                        <li>
-                            <i class="fas fa-leaf"></i>
-                            <span><strong>Turismo sostenible:</strong> Visita áreas protegidas con operadores certificados y respeta las normas.</span>
-                        </li>
-                        
-                        <li>
-                            <i class="fas fa-seedling"></i>
-                            <span><strong>Reforestación:</strong> Participa en jornadas de siembra de árboles nativos en tu comunidad.</span>
-                        </li>
-                        
-                        <li>
-                            <i class="fas fa-graduation-cap"></i>
-                            <span><strong>Educación ambiental:</strong> Aprende sobre especies locales y comparte ese conocimiento.</span>
-                        </li>
-                        
-                        <li>
-                            <i class="fas fa-hands-helping"></i>
-                            <span><strong>Participación ciudadana:</strong> Apoya políticas de conservación y denuncia actividades ilegales.</span>
-                        </li>
-                    </ul>
-                    
-                    <p class="action-call">
-                        "La biodiversidad de Panamá es un patrimonio nacional y global. 
-                        Conservarla no es solo responsabilidad del gobierno o científicos: 
-                        es un compromiso de cada ciudadano con las generaciones futuras."
-                    </p>
-                </div>
+    <!-- ===================== PÁGINA: JUEGO ===================== -->
+    <div class="page" id="page-juego">
+        <div class="page-hero page-hero--juego">
+            <div class="page-hero-overlay"></div>
+            <div class="page-hero-content">
+                <span class="page-hero-tag">05 / Aprendizaje Divertido</span>
+                <h1>Quiz<br><em>Biodiverso</em></h1>
+                <p>Pon a prueba tus conocimientos sobre la increíble biodiversidad de Panamá.</p>
             </div>
         </div>
-    </section>
 
-    <!-- FOOTER -->
+        <section class="section">
+            <div class="container">
+                <div class="game-wrapper">
+                    <div class="game-container">
+                        <h3 class="game-title">Desafío Biodiverso</h3>
+                        <p class="game-description">Responde correctamente 5 preguntas sobre especies, ecosistemas y conservación en Panamá.</p>
+
+                        <div class="game-area">
+                            <div class="game-question" id="game-question">¿Cuál es el ave nacional de Panamá?</div>
+
+                            <div class="game-options" id="game-options">
+                                <div class="game-option" data-correct="true">Águila Harpía</div>
+                                <div class="game-option" data-correct="false">Guacamaya Roja</div>
+                                <div class="game-option" data-correct="false">Quetzal</div>
+                                <div class="game-option" data-correct="false">Tucán</div>
+                            </div>
+
+                            <div class="game-score">Puntuación: <span id="score">0</span>/5</div>
+
+                            <div class="game-controls">
+                                <button class="btn btn-primary" id="next-question">
+                                    Siguiente Pregunta <i class="fas fa-arrow-right"></i>
+                                </button>
+                                <button class="btn btn-outline" id="restart-game">
+                                    Reiniciar <i class="fas fa-redo"></i>
+                                </button>
+                            </div>
+
+                            <div class="game-result" id="game-result"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ===================== PÁGINA: MI HUELLA ===================== -->
+    <div class="page" id="page-huella">
+        <div class="page-hero page-hero--huella">
+            <div class="page-hero-overlay"></div>
+            <div class="page-hero-content">
+                <span class="page-hero-tag">06 / Tu Impacto</span>
+                <h1>Tu Huella<br><em>Ecológica</em></h1>
+                <p>Descubre cómo tus acciones diarias afectan la biodiversidad panameña.</p>
+            </div>
+        </div>
+
+        <section class="section">
+            <div class="container">
+                <div class="footprint-wrapper">
+                    <div class="footprint-calculator">
+                        <div class="footprint-step">
+                            <h3><span class="step-num">1</span> Transporte</h3>
+                            <p>¿Cómo te transportas habitualmente?</p>
+                            <div class="footprint-options">
+                                <div class="footprint-option" data-value="3">
+                                    <i class="fas fa-car"></i>
+                                    <span>Automóvil</span>
+                                </div>
+                                <div class="footprint-option" data-value="2">
+                                    <i class="fas fa-bus"></i>
+                                    <span>Transporte público</span>
+                                </div>
+                                <div class="footprint-option" data-value="1">
+                                    <i class="fas fa-bicycle"></i>
+                                    <span>Bicicleta o caminar</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="footprint-step">
+                            <h3><span class="step-num">2</span> Alimentación</h3>
+                            <p>¿Cuál es tu consumo principal de proteína?</p>
+                            <div class="footprint-options">
+                                <div class="footprint-option" data-value="3">
+                                    <i class="fas fa-drumstick-bite"></i>
+                                    <span>Carne diaria</span>
+                                </div>
+                                <div class="footprint-option" data-value="2">
+                                    <i class="fas fa-fish"></i>
+                                    <span>Pescado frecuente</span>
+                                </div>
+                                <div class="footprint-option" data-value="1">
+                                    <i class="fas fa-seedling"></i>
+                                    <span>Basada en plantas</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="footprint-step">
+                            <h3><span class="step-num">3</span> Residuos</h3>
+                            <p>¿Cómo manejas tus desechos?</p>
+                            <div class="footprint-options">
+                                <div class="footprint-option" data-value="3">
+                                    <i class="fas fa-trash"></i>
+                                    <span>Sin separación</span>
+                                </div>
+                                <div class="footprint-option" data-value="2">
+                                    <i class="fas fa-recycle"></i>
+                                    <span>Reciclo a veces</span>
+                                </div>
+                                <div class="footprint-option" data-value="1">
+                                    <i class="fas fa-recycle"></i>
+                                    <span>Reciclo siempre</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary btn-full" id="calculate-footprint">
+                            Calcular mi huella <i class="fas fa-calculator"></i>
+                        </button>
+
+                        <div class="footprint-result" id="footprint-result">
+                            <div class="footprint-value-wrap">
+                                <div class="footprint-value" id="footprint-value">0</div>
+                                <div class="footprint-label">/ 3 puntos</div>
+                            </div>
+                            <p class="footprint-message" id="footprint-message"></p>
+                            <button class="btn btn-outline-light" id="reduce-footprint">
+                                <i class="fas fa-lightbulb"></i> Ver consejos para reducir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ===================== PÁGINA: CONSERVACIÓN ===================== -->
+    <div class="page" id="page-conservacion">
+        <div class="page-hero page-hero--conservacion">
+            <div class="page-hero-overlay"></div>
+            <div class="page-hero-content">
+                <span class="page-hero-tag">07 / Protección y Futuro</span>
+                <h1>Conservación<br><em>y Acción</em></h1>
+                <p>Áreas protegidas y lo que cada ciudadano puede hacer para proteger nuestra biodiversidad.</p>
+            </div>
+        </div>
+
+        <section class="section">
+            <div class="container">
+                <div class="conservation-content">
+                    <div>
+                        <div class="section-header" style="text-align:left; margin-bottom:40px;">
+                            <span class="section-tag">Patrimonio Natural</span>
+                            <h2 class="section-title">Principales Áreas Protegidas</h2>
+                        </div>
+                        <ul class="protected-areas">
+                            <li class="area-item">
+                                <div class="area-number">1</div>
+                                <div class="area-content">
+                                    <h3>Parque Nacional Darién</h3>
+                                    <p>Patrimonio Mundial de la UNESCO. Protege la selva tropical más grande de Centroamérica y es hogar de numerosas comunidades indígenas.</p>
+                                </div>
+                            </li>
+                            <li class="area-item">
+                                <div class="area-number">2</div>
+                                <div class="area-content">
+                                    <h3>Parque Nacional Coiba</h3>
+                                    <p>Patrimonio Mundial de la UNESCO. Reserva marina con arrecifes prístinos y especies endémicas únicas, como el colaespina de Coiba.</p>
+                                </div>
+                            </li>
+                            <li class="area-item">
+                                <div class="area-number">3</div>
+                                <div class="area-content">
+                                    <h3>Parque Internacional La Amistad</h3>
+                                    <p>Compartido con Costa Rica. Bosque nuboso que alberga al quetzal resplandeciente y otras especies amenazadas.</p>
+                                </div>
+                            </li>
+                            <li class="area-item">
+                                <div class="area-number">4</div>
+                                <div class="area-content">
+                                    <h3>Parque Nacional Volcán Barú</h3>
+                                    <p>Punto más alto del país. Ecosistema de alta montaña con especies únicas adaptadas a condiciones extremas.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="action-container">
+                        <h3 class="action-title">Acciones Ciudadanas</h3>
+                        <p style="color: var(--space-sparkle); margin-bottom: 30px;">Cada panameño puede contribuir a proteger nuestra biodiversidad.</p>
+                        <ul class="action-list">
+                            <li>
+                                <i class="fas fa-recycle"></i>
+                                <span><strong>Consumo responsable:</strong> Reduce, reutiliza, recicla. Evita plásticos de un solo uso.</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-leaf"></i>
+                                <span><strong>Turismo sostenible:</strong> Visita áreas protegidas con operadores certificados y respeta las normas.</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-seedling"></i>
+                                <span><strong>Reforestación:</strong> Participa en jornadas de siembra de árboles nativos en tu comunidad.</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-graduation-cap"></i>
+                                <span><strong>Educación ambiental:</strong> Aprende sobre especies locales y comparte ese conocimiento.</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-hands-helping"></i>
+                                <span><strong>Participación ciudadana:</strong> Apoya políticas de conservación y denuncia actividades ilegales.</span>
+                            </li>
+                        </ul>
+                        <p class="action-call">"La biodiversidad de Panamá es un patrimonio nacional y global. Conservarla es un compromiso de cada ciudadano con las generaciones futuras."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- FOOTER (siempre visible) -->
     <footer class="main-footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>BioPanamá</h3>
-                    <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 20px; line-height: 1.8;">
-                        Proyecto Final de Ecología 2026<br>
-                        Una plataforma educativa sobre la biodiversidad panameña<br>
-                        Desarrollado por estudiantes para crear conciencia ambiental
-                    </p>
+                    <p>Proyecto Final de Ecología 2026<br>Una plataforma educativa sobre la biodiversidad panameña<br>Desarrollado por estudiantes para crear conciencia ambiental</p>
                     <div class="footer-social">
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                         <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
@@ -724,49 +836,30 @@
                         <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
-                
                 <div class="footer-column">
                     <h3>Navegación</h3>
                     <ul class="footer-links">
-                        <li><a href="#inicio">Inicio</a></li>
-                        <li><a href="#biodiversidad">¿Qué es la biodiversidad?</a></li>
-                        <li><a href="#especies">Especies Emblemáticas</a></li>
-                        <li><a href="#panama">Panamá Megadiverso</a></li>
-                        <li><a href="#juego">Quiz Interactivo</a></li>
-                        <li><a href="#huella">Calculadora de Huella</a></li>
-                        <li><a href="#importancia">Importancia</a></li>
-                        <li><a href="#amenazas">Amenazas</a></li>
-                        <li><a href="#conservacion">Conservación</a></li>
+                        <li><a href="#" onclick="navigateTo('home'); return false;">Inicio</a></li>
+                        <li><a href="#" onclick="navigateTo('biodiversidad'); return false;">Biodiversidad</a></li>
+                        <li><a href="#" onclick="navigateTo('especies'); return false;">Especies Emblemáticas</a></li>
+                        <li><a href="#" onclick="navigateTo('panama'); return false;">Panamá Megadiverso</a></li>
+                        <li><a href="#" onclick="navigateTo('juego'); return false;">Quiz Interactivo</a></li>
+                        <li><a href="#" onclick="navigateTo('huella'); return false;">Mi Huella Ecológica</a></li>
+                        <li><a href="#" onclick="navigateTo('importancia'); return false;">Importancia y Amenazas</a></li>
+                        <li><a href="#" onclick="navigateTo('conservacion'); return false;">Conservación</a></li>
                     </ul>
                 </div>
-                
-                <div class="footer-column">
-                    <h3>Recursos</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Guías de Campo</a></li>
-                        <li><a href="#">Galería de Especies</a></li>
-                        <li><a href="#">Documentales</a></li>
-                        <li><a href="#">Bibliografía</a></li>
-                        <li><a href="#">Organizaciones Ambientales</a></li>
-                    </ul>
-                </div>
-                
                 <div class="footer-column">
                     <h3>Contacto Académico</h3>
-                    <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 20px; line-height: 1.8;">
+                    <p>
                         <i class="fas fa-envelope"></i> biopanamaproject@edu.pa<br>
                         <i class="fas fa-calendar-alt"></i> Presentación: Febrero 2026<br>
                         <i class="fas fa-users"></i> Grupo de Ecología UTP
                     </p>
                 </div>
             </div>
-            
             <div class="footer-bottom">
                 <p>© 2026 BioPanamá. Proyecto Universitario de Ecología. Todos los contenidos tienen fines educativos.</p>
-                <p style="margin-top: 10px; font-size: 13px; color: rgba(255, 255, 255, 0.5);">
-                    Diseño inspirado en estética botánica moderna. Imágenes cortesía de Unsplash. 
-                    Fuentes: MiAMBIENTE Panamá, STRI, SOMASPA, IPBES, literatura científica revisada por pares.
-                </p>
             </div>
         </div>
     </footer>
