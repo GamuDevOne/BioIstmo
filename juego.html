@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bio Istmo | Quiz Biodiverso</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css.css">
+    <style>
+        body { background: var(--cream); }
+
+        
+        .quiz-hero {
+            background: linear-gradient(135deg, var(--phthalo-green) 0%, var(--space-sparkle) 100%);
+            padding: 140px 40px 70px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .quiz-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?q=80&w=1600&auto=format&fit=crop') center/cover;
+            opacity: 0.1;
+        }
+        .quiz-hero-content { position: relative; z-index: 2; max-width: 700px; margin: 0 auto; }
+        .quiz-hero-tag { display: inline-block; color: var(--mustard-green); font-size: 12px; letter-spacing: 4px; text-transform: uppercase; font-weight: 700; margin-bottom: 18px; }
+        .quiz-hero h1 { font-family: 'Libre Baskerville', serif; font-size: clamp(2.2rem, 4vw, 3.5rem); color: white; margin-bottom: 15px; line-height: 1.2; }
+        .quiz-hero h1 em { font-style: italic; color: var(--mustard-green); }
+        .quiz-hero p { color: rgba(255,255,255,0.85); font-size: 1.1rem; line-height: 1.7; }
+
+         .quiz-section { padding: 70px 0 100px; }
+
+        .quiz-wrapper {
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+         .quiz-start {
+            background: white;
+            border-radius: 28px;
+            padding: 60px;
+            text-align: center;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+        }
+        .quiz-start i.big-icon {
+            font-size: 5rem;
+            color: var(--mustard-green);
+            margin-bottom: 25px;
+            display: block;
+        }
+        .quiz-start h2 { font-family: 'Libre Baskerville', serif; font-size: 2.2rem; color: var(--phthalo-green); margin-bottom: 15px; }
+        .quiz-start p { color: var(--space-sparkle); line-height: 1.8; margin-bottom: 30px; font-size: 1.05rem; }
+        .quiz-rules {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 35px 0;
+        }
+        .quiz-rule {
+            background: var(--cream);
+            border-radius: 16px;
+            padding: 22px 15px;
+            text-align: center;
+        }
+        .quiz-rule i { font-size: 1.8rem; color: var(--mustard-green); margin-bottom: 10px; display: block; }
+        .quiz-rule span { font-size: 0.88rem; color: var(--space-sparkle); line-height: 1.5; }
+        .quiz-rule strong { display: block; font-size: 1.1rem; color: var(--phthalo-green); margin-bottom: 4px; }
+
+        .quiz-progress {
+            margin-bottom: 25px;
+        }
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 0.88rem;
+            color: var(--space-sparkle);
+            font-weight: 600;
+        }
+        .progress-bar-track {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 50px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--mustard-green), var(--phthalo-green));
+            border-radius: 50px;
+            transition: width 0.5s ease;
+        }
+
+        .quiz-card {
+            background: white;
+            border-radius: 28px;
+            padding: 50px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+            display: none;
+        }
+        .quiz-card.active { display: block; animation: fadeInUp 0.4s ease; }
+
+        .question-category {
+            display: inline-block;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--mustard-green);
+            margin-bottom: 15px;
+        }
+        .question-text {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.55rem;
+            color: var(--phthalo-green);
+            line-height: 1.5;
+            margin-bottom: 35px;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 30px;
+        }
+        .option-btn {
+            background: var(--cream);
+            border: 2px solid transparent;
+            border-radius: 14px;
+            padding: 18px 20px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-size: 0.98rem;
+            color: var(--phthalo-green);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            line-height: 1.4;
+        }
+        .option-btn .option-letter {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.82rem;
+            flex-shrink: 0;
+            transition: all 0.25s;
+        }
+        .option-btn:hover:not(:disabled) {
+            border-color: var(--mustard-green);
+            background: #f0f4e8;
+            transform: translateY(-2px);
+        }
+        .option-btn:hover:not(:disabled) .option-letter {
+            background: var(--mustard-green);
+            border-color: var(--mustard-green);
+            color: white;
+        }
+        .option-btn.correct {
+            background: #e8f5e9;
+            border-color: #4caf50;
+            color: #1b5e20;
+        }
+        .option-btn.correct .option-letter {
+            background: #4caf50;
+            border-color: #4caf50;
+            color: white;
+        }
+        .option-btn.incorrect {
+            background: #ffebee;
+            border-color: #ef5350;
+            color: #b71c1c;
+        }
+        .option-btn.incorrect .option-letter {
+            background: #ef5350;
+            border-color: #ef5350;
+            color: white;
+        }
+        .option-btn.reveal-correct {
+            background: #e8f5e9;
+            border-color: #4caf50;
+            opacity: 0.7;
+        }
+        .option-btn:disabled { cursor: not-allowed; transform: none; }
+
+          .feedback-box {
+            border-radius: 14px;
+            padding: 18px 22px;
+            margin-bottom: 25px;
+            display: none;
+            align-items: flex-start;
+            gap: 14px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .feedback-box.show { display: flex; animation: fadeIn 0.3s ease; }
+        .feedback-box.correct-fb { background: #e8f5e9; border-left: 4px solid #4caf50; color: #1b5e20; }
+        .feedback-box.incorrect-fb { background: #ffebee; border-left: 4px solid #ef5350; color: #7f0000; }
+        .feedback-box i { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+        .feedback-box p { margin: 0; }
+        .feedback-box strong { display: block; margin-bottom: 4px; }
+
+        
+        .quiz-controls { display: flex; justify-content: flex-end; }
+        .btn-next {
+            background: var(--mustard-green);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+        .btn-next:hover { background: var(--phthalo-green); transform: translateY(-2px); }
+        .btn-next:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+          .score-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--cream);
+            border-radius: 50px;
+            padding: 8px 18px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--phthalo-green);
+        }
+        .score-badge i { color: var(--mustard-green); }
+
+         .quiz-result {
+            background: white;
+            border-radius: 28px;
+            padding: 60px;
+            text-align: center;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+            display: none;
+        }
+        .quiz-result.show { display: block; animation: fadeInUp 0.5s ease; }
+        .result-icon {
+            font-size: 5rem;
+            color: var(--mustard-green);
+            display: block;
+            margin-bottom: 20px;
+        }
+        .result-score-display {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 5rem;
+            color: var(--mustard-green);
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+        .result-score-display span { font-size: 2rem; color: var(--space-sparkle); }
+        .result-label { font-size: 1.5rem; font-family: 'Libre Baskerville', serif; color: var(--phthalo-green); margin-bottom: 10px; }
+        .result-message { color: var(--space-sparkle); line-height: 1.8; max-width: 500px; margin: 0 auto 35px; font-size: 1rem; }
+        .result-breakdown {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            max-width: 500px;
+            margin: 0 auto 40px;
+        }
+        .breakdown-item {
+            background: var(--cream);
+            border-radius: 14px;
+            padding: 18px 12px;
+            text-align: center;
+        }
+        .breakdown-item .num { font-size: 1.8rem; font-weight: 700; display: block; }
+        .breakdown-item span:last-child { font-size: 0.8rem; color: var(--space-sparkle); }
+        .breakdown-item.correct-bd .num { color: #4caf50; }
+        .breakdown-item.incorrect-bd .num { color: #ef5350; }
+        .breakdown-item.pct-bd .num { color: var(--mustard-green); }
+        .result-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .btn-restart {
+            background: var(--mustard-green);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+        .btn-restart:hover { background: var(--phthalo-green); transform: translateY(-2px); }
+
+        @keyframes fadeInUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+        @media (max-width: 600px) {
+            .quiz-card { padding: 30px 25px; }
+            .options-grid { grid-template-columns: 1fr; }
+            .quiz-rules { grid-template-columns: 1fr; }
+            .result-breakdown { grid-template-columns: 1fr; }
+            .quiz-start { padding: 35px 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-leaf"></i></div>
+                <span class="logo-text">Bio Istmo</span>
+            </a>
+            <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú de navegación" title="Abrir menú de navegación"><i class="fas fa-bars"></i></button>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="biodiversidad.html" class="nav-link">¿Qué es?</a>
+                <a href="especies.html" class="nav-link">Especies</a>
+                <a href="panama.html" class="nav-link">Panamá</a>
+                <a href="juego.html" class="nav-link active">Juego</a>
+                <a href="huella.html" class="nav-link">Huella</a>
+                <a href="importancia.html" class="nav-link">Importancia</a>
+                <a href="amenazas.html" class="nav-link">Amenazas</a>
+                <a href="conservacion.html" class="nav-link">Conservación</a>
+                <a href="conservacion.html" class="nav-cta">Participa</a>
+            </div>
+        </div>
+    </nav>
+
+        <div class="quiz-hero">
+        <div class="quiz-hero-content">
+            <span class="quiz-hero-tag">03 · Aprendizaje Interactivo</span>
+            <h1>Quiz <em>Biodiverso</em></h1>
+            <p>15 preguntas sobre especies, ecosistemas y conservación en Panamá. Cada vez que juegas, el orden es aleatorio.</p>
+        </div>
+    </div>
+
+        <section class="quiz-section">
+        <div class="container">
+            <div class="quiz-wrapper">
+
+                                <div class="quiz-start" id="quizStart">
+                    <i class="fas fa-leaf big-icon"></i>
+                    <h2>¿Listo para el desafío?</h2>
+                    <p>Responde 10 preguntas seleccionadas aleatoriamente de nuestro banco de 15. Cada respuesta viene con una explicación educativa para que aprendas más allá del juego.</p>
+                    <div class="quiz-rules">
+                        <div class="quiz-rule">
+                            <i class="fas fa-question-circle"></i>
+                            <strong>10 preguntas</strong>
+                            <span>seleccionadas al azar cada vez</span>
+                        </div>
+                        <div class="quiz-rule">
+                            <i class="fas fa-graduation-cap"></i>
+                            <strong>Feedback educativo</strong>
+                            <span>aprende con cada respuesta</span>
+                        </div>
+                        <div class="quiz-rule">
+                            <i class="fas fa-redo"></i>
+                            <strong>Rejugable</strong>
+                            <span>diferente cada vez que juegas</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" id="startBtn" style="font-size:1rem; padding: 16px 40px;">
+                        Comenzar quiz <i class="fas fa-play"></i>
+                    </button>
+                </div>
+
+                                <div class="quiz-progress" id="quizProgress" style="display:none;">
+                    <div class="progress-info">
+                        <span id="progressText">Pregunta 1 de 10</span>
+                        <span class="score-badge"><i class="fas fa-star"></i> <span id="scoreLive">0</span> correctas</span>
+                    </div>
+                    <div class="progress-bar-track">
+                        <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>
+                    </div>
+                </div>
+
+                                <div class="quiz-card" id="quizCard">
+                    <div class="question-category" id="questionCategory">Especies</div>
+                    <p class="question-text" id="questionText">Cargando...</p>
+                    <div class="options-grid" id="optionsGrid"></div>
+                    <div class="feedback-box" id="feedbackBox">
+                        <i id="feedbackIcon"></i>
+                        <p id="feedbackText"></p>
+                    </div>
+                    <div class="quiz-controls">
+                        <button class="btn-next" id="nextBtn" disabled>
+                            Siguiente <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                                <div class="quiz-result" id="quizResult">
+                    <div class="result-icon" id="resultIcon"><i class="fas fa-leaf"></i></div>
+                    <div class="result-score-display" id="resultScore">0<span>/10</span></div>
+                    <h3 class="result-label" id="resultLabel">¡Buen intento!</h3>
+                    <p class="result-message" id="resultMessage"></p>
+                    <div class="result-breakdown">
+                        <div class="breakdown-item correct-bd">
+                            <span class="num" id="bdCorrect">0</span>
+                            <span>Correctas</span>
+                        </div>
+                        <div class="breakdown-item incorrect-bd">
+                            <span class="num" id="bdIncorrect">0</span>
+                            <span>Incorrectas</span>
+                        </div>
+                        <div class="breakdown-item pct-bd">
+                            <span class="num" id="bdPct">0%</span>
+                            <span>Acierto</span>
+                        </div>
+                    </div>
+                    <div class="result-buttons">
+                        <button class="btn-restart" id="restartBtn">
+                            <i class="fas fa-redo"></i> Jugar de nuevo
+                        </button>
+                        <a href="conservacion.html" class="btn btn-secondary" style="color: var(--phthalo-green); border-color: var(--space-sparkle);">
+                            Aprende más <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+        <footer style="background: #1a2e1a; color: #f0f0f0; padding: 60px 0 30px; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 20px; right: 20px; opacity: 0.1; font-size: 4rem; pointer-events: none;">
+            <i class="fas fa-paw"></i><i class="fas fa-leaf"></i><i class="fas fa-tree"></i><i class="fas fa-dove"></i>
+        </div>
+        <div style="position: absolute; bottom: 20px; left: 20px; opacity: 0.1; font-size: 4rem; pointer-events: none;">
+            <i class="fas fa-fish"></i><i class="fas fa-feather-alt"></i><i class="fas fa-seedling"></i>
+        </div>
+        <div class="container" style="position: relative; z-index: 2;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 40px;">
+                <div>
+                    <h3 style="color: var(--mustard-green); font-size: 2rem; margin-bottom: 10px; font-family: var(--font-serif);">
+                        <i class="fas fa-leaf" style="margin-right: 10px;"></i>Bio Istmo
+                    </h3>
+                    <p style="line-height: 1.6; margin-bottom: 25px; max-width: 400px; font-style: italic;">
+                        “Conectando continentes, protegiendo la vida”
+                    </p>
+                    <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; margin-bottom: 25px;">
+                        <h4 style="color: var(--mustard-green); margin-bottom: 15px; font-size: 1.2rem;">Equipo de investigación</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div><p style="margin: 0;"><strong>Hernández, Ceilyn</strong></p><p style="margin: 0; font-size: 0.9rem; opacity: 0.8;">Diseño e investigación</p></div>
+                            <div><p style="margin: 0;"><strong>Martínez, Yomayri</strong></p><p style="margin: 0; font-size: 0.9rem; opacity: 0.8;">Diseño e investigación</p></div>
+                            <div><p style="margin: 0;"><strong>Pimentel, Naim</strong></p><p style="margin: 0; font-size: 0.9rem; opacity: 0.8;">Diseño e investigación</p></div>
+                        </div>
+                        <p style="margin-top: 15px; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 15px;">
+                            <i class="fas fa-university"></i> Facultad de Sistemas · UTP · 2026
+                        </p>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 30px;">
+                        <a href="index.html" style="color: white; text-decoration: none;">Inicio</a>
+                        <a href="biodiversidad.html" style="color: white; text-decoration: none;">¿Qué es?</a>
+                        <a href="especies.html" style="color: white; text-decoration: none;">Especies</a>
+                        <a href="panama.html" style="color: white; text-decoration: none;">Panamá</a>
+                        <a href="juego.html" style="color: white; text-decoration: none;">Juego</a>
+                        <a href="huella.html" style="color: white; text-decoration: none;">Huella</a>
+                        <a href="importancia.html" style="color: white; text-decoration: none;">Importancia</a>
+                        <a href="amenazas.html" style="color: white; text-decoration: none;">Amenazas</a>
+                        <a href="conservacion.html" style="color: white; text-decoration: none;">Conservación</a>
+                        <a href="conservacion.html" style="background: var(--mustard-green); color: white; padding: 5px 15px; border-radius: 50px; text-decoration: none; font-weight: bold;">Participa</a>
+                    </div>
+                    <p style="font-size: 0.88rem; color: rgba(255,255,255,0.5); margin-top: 5px;">Proyecto académico · UTP 2026</p>
+                </div>
+                <div>
+                    <h3 style="color: var(--mustard-green); font-size: 1.5rem; margin-bottom: 20px;">
+                        <i class="fas fa-pagelines" style="margin-right: 10px;"></i>Conéctate con la naturaleza
+                    </h3>
+                    <p style="margin-bottom: 20px;">Recibe nuestras guías de campo y novedades.</p>
+                    <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 12px; backdrop-filter: blur(5px);">
+                        <div style="margin-bottom: 20px;">
+                            <input type="email" placeholder="Tu email" style="width: 100%; padding: 12px; background: transparent; border: 1px solid rgba(255,255,255,0.3); border-radius: 6px; color: white; margin-bottom: 15px;">
+                            <input type="text" placeholder="Tu nombre" style="width: 100%; padding: 12px; background: transparent; border: 1px solid rgba(255,255,255,0.3); border-radius: 6px; color: white;">
+                        </div>
+                        <button style="background: var(--mustard-green); color: white; border: none; padding: 12px 25px; border-radius: 6px; font-weight: bold; cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                            <i class="fas fa-feather-alt"></i> SUSCRIBIRME
+                        </button>
+                        <p style="font-size: 0.8rem; margin-top: 15px; opacity: 0.6;">Sin spam, solo naturaleza.</p>
+                    </div>
+                    <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 10px;">
+                        <p><i class="fas fa-university" style="color: var(--mustard-green); width: 25px;"></i> Universidad Tecnológica de Panamá</p>
+                        <p><i class="fas fa-map-pin" style="color: var(--mustard-green); width: 25px;"></i> Panamá Oeste · 2026</p>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2);">
+                <div style="color: rgba(255,255,255,0.4); font-size: 0.9rem;">
+                    Fuentes: MiAmbiente · STRI · UICN · UNESCO
+                </div>
+                <div style="color: rgba(255,255,255,0.5); font-size: 0.9rem;">
+                    <i class="fas fa-copyright"></i> 2026 Bio Istmo · CC BY-NC
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 25px; font-size: 0.8rem; color: rgba(255,255,255,0.3); display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+                <span><i class="fas fa-paw"></i> Ilustraciones: FontAwesome</span>
+                <span><i class="fas fa-leaf"></i> Contenido: investigación original</span>
+                <span><i class="fas fa-tree"></i> Diseño: Grupo de Ecología UTP</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js.js"></script>
+    <script>
+    // ============================================================
+    //  BANCO DE PREGUNTAS — 15 en total, se eligen 10 al azar
+    // ============================================================
+    const ALL_QUESTIONS = [
+        {
+            category: "Especies emblemáticas",
+            question: "¿Cuál es el ave nacional de Panamá?",
+            options: ["Quetzal resplandeciente", "Águila Harpía", "Guacamaya Roja", "Tucán del Chocó"],
+            correct: 1,
+            explanation: "El <strong>Águila Harpía</strong> (<em>Harpia harpyja</em>) es el ave nacional de Panamá. Es el águila más grande y poderosa del mundo, con garras tan grandes como las de un oso. Habita los bosques del Darién y está en peligro por la deforestación."
+        },
+        {
+            category: "Especies en peligro",
+            question: "La Rana Dorada (<em>Atelopus zeteki</em>) es endémica de Panamá. ¿Cuál es su estado de conservación según la UICN?",
+            options: ["Vulnerable", "En peligro", "En peligro crítico", "Extinta en estado silvestre"],
+            correct: 2,
+            explanation: "La Rana Dorada está clasificada como <strong>En peligro crítico (CR)</strong> por la UICN. El hongo quitridio (<em>Batrachochytrium dendrobatidis</em>) la eliminó prácticamente de su hábitat silvestre. Actualmente sobrevive solo en cautiverio en centros como el EVACC en El Valle de Antón."
+        },
+        {
+            category: "Cifras de biodiversidad",
+            question: "¿Cuántas especies de aves han sido registradas en Panamá?",
+            options: ["Alrededor de 550", "Alrededor de 750", "Alrededor de 978", "Más de 1,200"],
+            correct: 2,
+            explanation: "Panamá tiene registradas <strong>978 especies de aves</strong>, más que Estados Unidos y Canadá juntos, a pesar de ser un país mucho más pequeño. Esto lo convierte en uno de los destinos de aviturismo más importantes del mundo."
+        },
+        {
+            category: "Áreas protegidas",
+            question: "¿Cuál de estos parques nacionales panameños es Patrimonio Mundial de la UNESCO?",
+            options: ["Parque Nacional Soberanía", "Parque Nacional Darién", "Parque Nacional Chagres", "Parque Nacional Camino de Cruces"],
+            correct: 1,
+            explanation: "El <strong>Parque Nacional Darién</strong> fue declarado Patrimonio de la Humanidad por la UNESCO en 1981. Es el parque nacional más grande de Centroamérica (576,000 ha) y alberga una biodiversidad extraordinaria, además de comunidades indígenas Emberá y Wounaan."
+        },
+        {
+            category: "Geografía y biodiversidad",
+            question: "¿Qué porcentaje aproximado del territorio panameño está bajo algún tipo de protección ambiental?",
+            options: ["15%", "30%", "45%", "60%"],
+            correct: 1,
+            explanation: "Panamá protege aproximadamente el <strong>30% de su territorio</strong>, uno de los porcentajes más altos de América Latina. Esto incluye parques nacionales, reservas de biosfera, áreas marinas protegidas y sitios RAMSAR."
+        },
+        {
+            category: "Ecosistemas",
+            question: "¿Qué evento geológico explica principalmente la extraordinaria biodiversidad de Panamá?",
+            options: ["La formación del Canal de Panamá", "El Gran Intercambio Americano", "La deriva continental africana", "La glaciación del Pleistoceno"],
+            correct: 1,
+            explanation: "El <strong>Gran Intercambio Americano</strong>, ocurrido hace ~3 millones de años cuando el istmo conectó Norte y Sudamérica, permitió la migración masiva de fauna entre los dos continentes. Panamá heredó especies de ambos, lo que explica su excepcional diversidad."
+        },
+        {
+            category: "Amenazas",
+            question: "¿Cuál es el principal factor de pérdida de biodiversidad en Panamá?",
+            options: ["Caza furtiva", "Contaminación del agua", "Pérdida y fragmentación de hábitat", "Especies invasoras"],
+            correct: 2,
+            explanation: "La <strong>pérdida y fragmentación de hábitat</strong>, principalmente por deforestación para ganadería y agricultura, es la mayor amenaza para la biodiversidad en Panamá. Se estima que el país ha perdido el 50% de su cobertura forestal original. La fragmentación aísla poblaciones y reduce la viabilidad genética de las especies."
+        },
+        {
+            category: "Ecosistemas marinos",
+            question: "El Parque Nacional Coiba posee el segundo sistema arrecifal más grande del Pacífico americano. ¿En qué provincia está ubicado?",
+            options: ["Chiriquí", "Bocas del Toro", "Veraguas", "Los Santos"],
+            correct: 2,
+            explanation: "El Parque Nacional Coiba está en la provincia de <strong>Veraguas</strong>, en el Pacífico panameño. Declarado Patrimonio Mundial UNESCO en 2005, sus aguas protegen más de 760 especies de peces, tiburones ballena y tortugas marinas. El aislamiento histórico de la isla permitió la evolución de especies endémicas."
+        },
+        {
+            category: "Instituciones",
+            question: "¿Qué institución científica, con sede en Panamá desde 1923, es referencia mundial en investigación de biodiversidad tropical?",
+            options: ["Universidad de Panamá", "IDIAP", "STRI (Smithsonian)", "MiAmbiente"],
+            correct: 2,
+            explanation: "El <strong>STRI (Smithsonian Tropical Research Institute)</strong> tiene su sede principal en Ciudad de Panamá. Con estaciones en Barro Colorado Island, Bocas del Toro y otros sitios, es uno de los institutos de investigación biológica más importantes del planeta y ha producido miles de publicaciones científicas sobre biodiversidad panameña."
+        },
+        {
+            category: "Pueblos indígenas",
+            question: "¿Cuál es el pueblo indígena más numeroso de Panamá, con territorio que abarca áreas de alta biodiversidad?",
+            options: ["Pueblo Guna", "Pueblo Ngäbe-Buglé", "Pueblo Emberá", "Pueblo Naso"],
+            correct: 1,
+            explanation: "El pueblo <strong>Ngäbe-Buglé</strong> es el más numeroso de Panamá. Su comarca abarca zonas de Chiriquí, Bocas del Toro y Veraguas, con bosques, ríos y costas de altísima biodiversidad. Los estudios científicos confirman que las tierras bajo gestión indígena tienen menores tasas de deforestación que muchas áreas protegidas formales."
+        },
+        {
+            category: "Anfibios",
+            question: "¿Qué hongo patógeno ha causado la extinción de más de 60 especies de anfibios en Panamá?",
+            options: ["Aspergillus fumigatus", "Batrachochytrium dendrobatidis", "Fusarium oxysporum", "Candida auris"],
+            correct: 1,
+            explanation: "<em><strong>Batrachochytrium dendrobatidis</strong></em>, el hongo quitridio, es responsable de la mayor pérdida de biodiversidad de vertebrados en la historia documentada. En Panamá eliminó más de 60 especies de anfibios desde los años 80. Investigadores del STRI estudian las pocas poblaciones con resistencia genética al hongo como clave para la recuperación."
+        },
+        {
+            category: "Servicios ecosistémicos",
+            question: "El funcionamiento del Canal de Panamá depende directamente de la conservación de los bosques de su cuenca hidrográfica. ¿Por qué?",
+            options: ["Porque los árboles producen el oxígeno necesario para los trabajadores", "Porque los bosques regulan el agua que alimenta el lago Gatún y las esclusas", "Porque las raíces evitan que el canal se llene de tierra", "Porque los bosques reducen los huracanes que dañarían las esclusas"],
+            correct: 1,
+            explanation: "Los bosques de la Cuenca del Canal actúan como esponjas: absorben la lluvia y la liberan gradualmente, manteniendo el caudal del Lago Gatún, que es el reservorio de agua que mueve las esclusas. Sin esos bosques, el canal no tendría suficiente agua para operar en verano. La Autoridad del Canal de Panamá (ACP) invierte millones en conservar esos bosques."
+        },
+        {
+            category: "Mamíferos",
+            question: "¿Cuál de estos mamíferos es endémico de la Isla de Coiba?",
+            options: ["Tapir centroamericano", "Mono tití de Geoffroy", "Coatí de Coiba", "Venado de cola blanca"],
+            correct: 2,
+            explanation: "El <strong>Coatí de Coiba</strong> (<em>Nasua narica coibensis</em>) es una subespecie endémica de la Isla de Coiba. El aislamiento histórico de la isla, que fue prisión hasta 2004, permitió la evolución de distintas subespecies de fauna. También existe el colaespina de Coiba, un ave endémica de la misma isla."
+        },
+        {
+            category: "Cifras de biodiversidad",
+            question: "Con apenas el 0.008% de la superficie terrestre, ¿qué porcentaje de todas las especies conocidas del planeta alberga Panamá?",
+            options: ["Menos del 0.5%", "Alrededor del 1%", "Alrededor del 3%", "Más del 5%"],
+            correct: 2,
+            explanation: "Panamá alberga aproximadamente el <strong>3% de todas las especies conocidas</strong> del planeta en menos del 0.008% de la superficie terrestre. Esta densidad extraordinaria de biodiversidad se explica por su posición geográfica como puente entre continentes, la presencia de dos océanos y la variedad de ecosistemas en un espacio muy reducido."
+        },
+        {
+            category: "Conservación",
+            question: "¿Qué es el 'Pago por Servicios Ambientales' (PSA) en Panamá?",
+            options: ["Un impuesto que pagan las empresas contaminantes", "Una compensación económica a propietarios que conservan bosques en sus tierras", "Un subsidio del Estado para comprar productos orgánicos", "Una multa por talar árboles sin permiso"],
+            correct: 1,
+            explanation: "El <strong>Programa de Pago por Servicios Ambientales (PSA)</strong> compensa económicamente a propietarios privados que mantienen bosques en sus tierras o reforestan áreas degradadas. Reconoce que los bosques proveen servicios (agua limpia, carbono capturado, biodiversidad) que benefician a toda la sociedad, no solo al dueño del terreno. Es una herramienta clave de conservación en Panamá."
+        }
+    ];
+
+    const QUESTIONS_PER_GAME = 10;
+    const letters = ['A', 'B', 'C', 'D'];
+
+    let gameQuestions = [];
+    let currentIndex = 0;
+    let score = 0;
+    let answered = false;
+
+    // Elementos del DOM
+    const startScreen  = document.getElementById('quizStart');
+    const progressEl   = document.getElementById('quizProgress');
+    const cardEl       = document.getElementById('quizCard');
+    const resultEl     = document.getElementById('quizResult');
+    const progressText = document.getElementById('progressText');
+    const progressBar  = document.getElementById('progressBar');
+    const scoreLive    = document.getElementById('scoreLive');
+    const catEl        = document.getElementById('questionCategory');
+    const questionEl   = document.getElementById('questionText');
+    const optionsEl    = document.getElementById('optionsGrid');
+    const feedbackEl   = document.getElementById('feedbackBox');
+    const feedbackIcon = document.getElementById('feedbackIcon');
+    const feedbackText = document.getElementById('feedbackText');
+    const nextBtn      = document.getElementById('nextBtn');
+
+    function shuffle(arr) {
+        return [...arr].sort(() => Math.random() - 0.5);
+    }
+
+    function startGame() {
+        gameQuestions = shuffle(ALL_QUESTIONS).slice(0, QUESTIONS_PER_GAME);
+        currentIndex = 0;
+        score = 0;
+        scoreLive.textContent = '0';
+        startScreen.style.display = 'none';
+        resultEl.classList.remove('show');
+        progressEl.style.display = 'block';
+        cardEl.classList.add('active');
+        loadQuestion();
+    }
+
+    function loadQuestion() {
+        answered = false;
+        nextBtn.disabled = true;
+        feedbackEl.className = 'feedback-box';
+
+        const q = gameQuestions[currentIndex];
+        const total = QUESTIONS_PER_GAME;
+        const pct = (currentIndex / total) * 100;
+
+        progressText.textContent = `Pregunta ${currentIndex + 1} de ${total}`;
+        progressBar.style.width = pct + '%';
+
+        catEl.textContent = q.category;
+        questionEl.innerHTML = q.question;
+        optionsEl.innerHTML = '';
+
+        const indices = shuffle([0, 1, 2, 3]);
+        indices.forEach((origIdx, newIdx) => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.dataset.orig = origIdx;
+            btn.innerHTML = `<span class="option-letter">${letters[newIdx]}</span>${q.options[origIdx]}`;
+            btn.addEventListener('click', () => selectOption(btn, origIdx, q));
+            optionsEl.appendChild(btn);
+        });
+    }
+
+    function selectOption(clickedBtn, origIdx, q) {
+        if (answered) return;
+        answered = true;
+
+        const allBtns = optionsEl.querySelectorAll('.option-btn');
+        allBtns.forEach(btn => {
+            btn.disabled = true;
+            const o = parseInt(btn.dataset.orig);
+            if (o === q.correct) btn.classList.add(o === origIdx ? 'correct' : 'reveal-correct');
+        });
+
+        const isCorrect = origIdx === q.correct;
+        if (isCorrect) {
+            clickedBtn.classList.add('correct');
+            score++;
+            scoreLive.textContent = score;
+        } else {
+            clickedBtn.classList.add('incorrect');
+        }
+
+        feedbackEl.className = 'feedback-box show ' + (isCorrect ? 'correct-fb' : 'incorrect-fb');
+        feedbackIcon.className = isCorrect ? 'fas fa-check-circle' : 'fas fa-times-circle';
+        feedbackText.innerHTML = `<strong>${isCorrect ? '¡Correcto!' : 'Incorrecto'}</strong> ${q.explanation}`;
+
+        nextBtn.disabled = false;
+    }
+
+    function nextQuestion() {
+        currentIndex++;
+        if (currentIndex >= QUESTIONS_PER_GAME) {
+            showResult();
+        } else {
+            loadQuestion();
+        }
+    }
+
+    function showResult() {
+        progressBar.style.width = '100%';
+        cardEl.classList.remove('active');
+
+        const pct = Math.round((score / QUESTIONS_PER_GAME) * 100);
+        document.getElementById('resultScore').innerHTML = `${score}<span>/${QUESTIONS_PER_GAME}</span>`;
+        document.getElementById('bdCorrect').textContent = score;
+        document.getElementById('bdIncorrect').textContent = QUESTIONS_PER_GAME - score;
+        document.getElementById('bdPct').textContent = pct + '%';
+
+        let iconClass, label, msg;
+        if (pct === 100) {
+            iconClass = 'fas fa-trophy';
+            label = '¡Perfecto! Eres un experto';
+            msg = 'Dominas la biodiversidad panameña. Comparte tu conocimiento con otros y ayuda a crear conciencia ambiental.';
+        } else if (pct >= 80) {
+            iconClass = 'fas fa-leaf';
+            label = '¡Excelente resultado!';
+            msg = 'Tienes un conocimiento sólido sobre la biodiversidad de Panamá. Sigue explorando la web para completar lo que te faltó.';
+        } else if (pct >= 60) {
+            iconClass = 'fas fa-dove';
+            label = 'Buen intento';
+            msg = 'Vas bien encaminado. Te recomendamos explorar las secciones de Especies y Panamá Megadiverso para reforzar lo que aprendiste hoy.';
+        } else {
+            iconClass = 'fas fa-seedling';
+            label = 'Sigue aprendiendo';
+            msg = 'Cada juego es una oportunidad de aprender. Explora el sitio y vuelve a intentarlo — la biodiversidad panameña tiene mucho que contarte.';
+        }
+
+        document.getElementById('resultIcon').innerHTML = `<i class="${iconClass}"></i>`;
+        document.getElementById('resultLabel').textContent = label;
+        document.getElementById('resultMessage').textContent = msg;
+        resultEl.classList.add('show');
+    }
+
+    document.getElementById('startBtn').addEventListener('click', startGame);
+    nextBtn.addEventListener('click', nextQuestion);
+    document.getElementById('restartBtn').addEventListener('click', () => {
+        resultEl.classList.remove('show');
+        progressEl.style.display = 'none';
+        startScreen.style.display = 'block';
+    });
+    </script>
+</body>
+</html>

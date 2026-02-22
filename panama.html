@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bio Istmo | Panamá Megadiverso</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css.css">
+    <style>
+        /* ===== STATS PRINCIPALES ===== */
+        .mega-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+        .mega-stat {
+            text-align: center;
+            background: white;
+            border-radius: 18px;
+            padding: 35px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            border-bottom: 4px solid var(--mustard-green);
+            transition: transform 0.3s;
+        }
+        .mega-stat:hover { transform: translateY(-5px); }
+        .mega-stat .stat-number { font-family: var(--font-serif); font-size: 2.8rem; color: var(--mustard-green); display: block; line-height: 1; margin-bottom: 10px; }
+        .mega-stat .stat-label { font-size: 0.88rem; color: var(--space-sparkle); line-height: 1.4; display: block; }
+        .stat-context { font-size: 0.75rem; color: #aaa; margin-top: 6px; font-style: italic; display: block; }
+
+        /* ===== PUENTE BIOLÓGICO ===== */
+        .bridge-section {
+            background: linear-gradient(135deg, var(--phthalo-green), #0a2a1a);
+            color: white;
+            padding: 90px 0;
+        }
+        .bridge-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .bridge-text h2 { font-family: var(--font-serif); font-size: 2.5rem; color: white; margin-bottom: 20px; line-height: 1.3; }
+        .bridge-text h2 em { font-style: italic; color: var(--mustard-green); }
+        .bridge-text p { color: rgba(255,255,255,0.85); line-height: 1.8; margin-bottom: 15px; font-size: 0.98rem; }
+        .bridge-facts { display: flex; flex-direction: column; gap: 18px; }
+        .bridge-fact {
+            background: rgba(255,255,255,0.08);
+            border-radius: 14px;
+            padding: 22px 25px;
+            border-left: 4px solid var(--mustard-green);
+        }
+        .bridge-fact h4 { color: var(--mustard-green); margin-bottom: 8px; font-size: 1rem; display: flex; align-items: center; gap: 10px; }
+        .bridge-fact p { color: rgba(255,255,255,0.8); font-size: 0.9rem; line-height: 1.6; margin: 0; }
+
+        /* ===== ECOSISTEMAS ===== */
+        .ecosystems-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .ecosystem-card {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            background: white;
+        }
+        .ecosystem-card:hover { transform: translateY(-7px); box-shadow: 0 16px 40px rgba(0,0,0,0.15); }
+        .ecosystem-img { height: 200px; object-fit: cover; width: 100%; }
+        .ecosystem-body { padding: 28px; }
+        .ecosystem-tag { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--mustard-green); font-weight: 700; margin-bottom: 8px; display: block; }
+        .ecosystem-name { font-family: var(--font-serif); font-size: 1.4rem; color: var(--phthalo-green); margin-bottom: 12px; }
+        .ecosystem-desc { color: var(--space-sparkle); font-size: 0.92rem; line-height: 1.7; margin-bottom: 15px; }
+        .ecosystem-details { display: flex; flex-direction: column; gap: 7px; }
+        .ecosystem-detail { font-size: 0.85rem; color: var(--phthalo-green); display: flex; gap: 8px; align-items: flex-start; }
+        .ecosystem-detail i { color: var(--mustard-green); flex-shrink: 0; margin-top: 3px; }
+        .ecosystem-source { margin-top: 15px; font-size: 0.76rem; color: #bbb; }
+
+        /* ===== DOS OCÉANOS ===== */
+        .oceans-section { background: #e8f4f8; padding: 90px 0; }
+        .oceans-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 50px; }
+        .ocean-card { background: white; border-radius: 20px; padding: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .ocean-card.pacifico { border-top: 6px solid #2a6a8a; }
+        .ocean-card.caribe { border-top: 6px solid #1a8a6a; }
+        .ocean-title { font-family: var(--font-serif); font-size: 1.8rem; color: var(--phthalo-green); margin-bottom: 8px; display: flex; align-items: center; gap: 15px; }
+        .ocean-title i.pac { color: #2a6a8a; }
+        .ocean-title i.car { color: #1a8a6a; }
+        .ocean-subtitle { color: var(--space-sparkle); font-size: 0.9rem; margin-bottom: 20px; }
+        .ocean-desc { color: var(--space-sparkle); line-height: 1.8; margin-bottom: 20px; font-size: 0.95rem; }
+        .ocean-highlights { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+        .ocean-highlights li { display: flex; gap: 10px; font-size: 0.9rem; color: var(--phthalo-green); }
+        .ocean-highlights li i { color: var(--mustard-green); flex-shrink: 0; margin-top: 2px; }
+
+        /* ===== PUEBLOS INDÍGENAS ===== */
+        .indigenous-section { background: var(--cream); padding: 90px 0; }
+        .indigenous-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-top: 50px; }
+        .indigenous-card {
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            border-left: 5px solid var(--space-sparkle);
+            box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+        }
+        .indigenous-card h4 { font-family: var(--font-serif); font-size: 1.2rem; color: var(--phthalo-green); margin-bottom: 5px; }
+        .indigenous-card .region { font-size: 0.82rem; color: var(--mustard-green); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+        .indigenous-card p { font-size: 0.9rem; color: var(--space-sparkle); line-height: 1.7; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .mega-stats { grid-template-columns: repeat(2, 1fr); }
+            .ecosystems-grid { grid-template-columns: 1fr 1fr; }
+            .indigenous-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .mega-stats { grid-template-columns: repeat(2, 1fr); }
+            .bridge-content { grid-template-columns: 1fr; }
+            .ecosystems-grid { grid-template-columns: 1fr; }
+            .oceans-grid { grid-template-columns: 1fr; }
+            .indigenous-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-leaf"></i></div>
+                <span class="logo-text">Bio Istmo</span>
+            </a>
+            <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú de navegación" title="Abrir menú de navegación"><i class="fas fa-bars"></i></button>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="biodiversidad.html" class="nav-link">¿Qué es?</a>
+                <a href="especies.html" class="nav-link">Especies</a>
+                <a href="panama.html" class="nav-link active">Panamá</a>
+                <a href="juego.html" class="nav-link">Juego</a>
+                <a href="huella.html" class="nav-link">Huella</a>
+                <a href="importancia.html" class="nav-link">Importancia</a>
+                <a href="amenazas.html" class="nav-link">Amenazas</a>
+                <a href="conservacion.html" class="nav-link">Conservación</a>
+                <a href="conservacion.html" class="nav-cta">Participa</a>
+            </div>
+        </div>
+    </nav>
+
+        <section class="page-hero" style="background: linear-gradient(135deg, rgba(10,42,10,0.92) 0%, rgba(25,53,12,0.85) 50%, rgba(64,103,104,0.75) 100%), url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1600&auto=format&fit=crop') center/cover;">
+        <div class="page-hero-content">
+            <span class="page-hero-tag">04 · Riqueza Nacional</span>
+            <h1>Panamá: el istmo<br><em>megadiverso</em></h1>
+            <p>Con apenas 75,517 km² — menos del 0.05% de la superficie terrestre — Panamá alberga más del 3% de todas las especies conocidas del planeta.</p>
+        </div>
+        <div class="hero-scroll"><i class="fas fa-chevron-down"></i></div>
+    </section>
+
+        <section class="section" style="background: var(--cream);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Panamá en números</span>
+                <h2 class="section-title">Un país pequeño, gigante en vida</h2>
+                <p class="section-subtitle">Los datos que respaldan por qué Panamá figura entre los países con mayor densidad de biodiversidad por kilómetro cuadrado del mundo.</p>
+            </div>
+            <div class="mega-stats">
+                <div class="mega-stat">
+                    <span class="stat-number">978</span>
+                    <span class="stat-label">Especies de aves</span>
+                    <span class="stat-context">Más que EE.UU. y Canadá juntos</span>
+                </div>
+                <div class="mega-stat">
+                    <span class="stat-number">229</span>
+                    <span class="stat-label">Especies de mamíferos</span>
+                    <span class="stat-context">Incluyendo 5 endémicas</span>
+                </div>
+                <div class="mega-stat">
+                    <span class="stat-number">242</span>
+                    <span class="stat-label">Especies de anfibios</span>
+                    <span class="stat-context">Alta tasa de endemismo en Chiriquí</span>
+                </div>
+                <div class="mega-stat">
+                    <span class="stat-number">10,000+</span>
+                    <span class="stat-label">Plantas vasculares</span>
+                    <span class="stat-context">~1,500 endémicas</span>
+                </div>
+                <div class="mega-stat">
+                    <span class="stat-number">1,200+</span>
+                    <span class="stat-label">Especies de peces marinos</span>
+                    <span class="stat-context">En ambos océanos</span>
+                </div>
+                <div class="mega-stat">
+                    <span class="stat-number">1,500+</span>
+                    <span class="stat-label">Especies de mariposas</span>
+                    <span class="stat-context">De las ~17,500 del mundo</span>
+                </div>
+                <div class="mega-stat">
+                    <span class="stat-number">30%</span>
+                    <span class="stat-label">Territorio protegido</span>
+                    <span class="stat-context">Uno de los % más altos del mundo</span>
+                </div>
+                <div class="mega-stat">
+                    <span class="stat-number">2</span>
+                    <span class="stat-label">Patrimonios UNESCO</span>
+                    <span class="stat-context">Darién y Parque La Amistad</span>
+                </div>
+            </div>
+            <p style="text-align:center; font-size:0.82rem; color:#aaa;">
+                <i class="fas fa-book-open" style="color: var(--mustard-green);"></i> Fuentes: MiAmbiente Panamá 2023; STRI Checklist of Panama Biodiversity; UICN Lista Roja 2024
+            </p>
+        </div>
+    </section>
+
+        <section class="bridge-section">
+        <div class="container">
+            <div class="bridge-content">
+                <div class="bridge-text">
+                    <span class="section-tag" style="color: var(--mustard-green);">La razón geológica</span>
+                    <h2>El <em>Gran Intercambio</em><br>Americano</h2>
+                    <p>Hace aproximadamente 3 millones de años, el istmo de Panamá emergió del mar, conectando por primera vez América del Norte y del Sur. Este evento — llamado el <strong>Gran Intercambio Americano</strong> — fue uno de los mayores eventos biogeográficos del último período geológico.</p>
+                    <p>Animales del norte (mamuts, caballos, perezosos gigantes) cruzaron al sur. Armadillos, zarigüeyas y perezosos actuales vinieron del sur hacia el norte. Panamá fue el corredor por donde toda esa vida migró — y muchas especies se quedaron.</p>
+                    <p>Hoy, el país es heredero de esa historia: alberga fauna de origen norteamericano y sudamericano en el mismo territorio, lo que explica su biodiversidad excepcional.</p>
+                </div>
+                <div class="bridge-facts">
+                    <div class="bridge-fact">
+                        <h4><i class="fas fa-clock"></i> ¿Cuándo ocurrió?</h4>
+                        <p>El istmo se formó entre 3.5 y 3 millones de años atrás. Los primeros intercambios ocurrieron incluso antes, cuando islas formaban un archipiélago discontinuo.</p>
+                    </div>
+                    <div class="bridge-fact">
+                        <h4><i class="fas fa-dna"></i> ¿Qué pasó con los océanos?</h4>
+                        <p>La separación del Caribe y el Pacífico por el istmo provocó la evolución independiente de especies marinas a ambos lados — creando pares de especies "gemelas" en cada océano.</p>
+                    </div>
+                    <div class="bridge-fact">
+                        <h4><i class="fas fa-map"></i> ¿Por qué importa hoy?</h4>
+                        <p>Panamá sigue siendo un corredor biológico crítico. Los corredores como el Mesoamericano conectan las áreas protegidas desde México hasta Colombia, permitiendo el movimiento de jaguares, tapires y aves migratorias.</p>
+                    </div>
+                    <div class="bridge-fact">
+                        <h4><i class="fas fa-book-open"></i> Fuente</h4>
+                        <p>O'Dea et al. (2016), "Formation of the Isthmus of Panama", Science Advances. STRI Panama Geology Program.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <section class="section" style="background: white;">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Los grandes ecosistemas</span>
+                <h2 class="section-title">Panamá en seis paisajes</h2>
+                <p class="section-subtitle">Desde la cima del Volcán Barú hasta las profundidades del Pacífico, Panamá concentra ecosistemas radicalmente distintos en un espacio extraordinariamente pequeño.</p>
+            </div>
+            <div class="ecosystems-grid">
+                <div class="ecosystem-card">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=800&auto=format&fit=crop" alt="Bosque tropical húmedo" class="ecosystem-img">
+                    <div class="ecosystem-body">
+                        <span class="ecosystem-tag">Terrestre</span>
+                        <h3 class="ecosystem-name">Bosque Tropical Húmedo</h3>
+                        <p class="ecosystem-desc">El ecosistema más biodiverso del planeta. El Darién alberga el bloque de bosque primario continuo más grande de Centroamérica.</p>
+                        <div class="ecosystem-details">
+                            <div class="ecosystem-detail"><i class="fas fa-map-marker-alt"></i> Darién, Colón, Bocas del Toro</div>
+                            <div class="ecosystem-detail"><i class="fas fa-tree"></i> Hasta 300 especies de árboles por hectárea</div>
+                            <div class="ecosystem-detail"><i class="fas fa-shield-alt"></i> Reserva de Biosfera UNESCO (Darién)</div>
+                        </div>
+                        <p class="ecosystem-source"><i class="fas fa-book-open"></i> MiAmbiente / UNESCO MAB Programme</p>
+                    </div>
+                </div>
+
+                <div class="ecosystem-card">
+                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=800&auto=format&fit=crop" alt="Bosque nuboso" class="ecosystem-img">
+                    <div class="ecosystem-body">
+                        <span class="ecosystem-tag">Montano</span>
+                        <h3 class="ecosystem-name">Bosque Nuboso</h3>
+                        <p class="ecosystem-desc">Envuelto permanentemente en niebla, este ecosistema de alta montaña alberga especies únicas que solo existen a más de 1,500 metros de altitud.</p>
+                        <div class="ecosystem-details">
+                            <div class="ecosystem-detail"><i class="fas fa-map-marker-alt"></i> Volcán Barú, La Amistad, El Valle</div>
+                            <div class="ecosystem-detail"><i class="fas fa-feather"></i> Hogar del quetzal resplandeciente</div>
+                            <div class="ecosystem-detail"><i class="fas fa-thermometer-half"></i> Temperaturas de 8–18°C todo el año</div>
+                        </div>
+                        <p class="ecosystem-source"><i class="fas fa-book-open"></i> STRI / Parque Internacional La Amistad</p>
+                    </div>
+                </div>
+
+                <div class="ecosystem-card">
+                    <img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?q=80&w=800&auto=format&fit=crop" alt="Arrecife de coral" class="ecosystem-img">
+                    <div class="ecosystem-body">
+                        <span class="ecosystem-tag">Marino</span>
+                        <h3 class="ecosystem-name">Arrecifes de Coral</h3>
+                        <p class="ecosystem-desc">Panamá tiene arrecifes en ambos océanos. Los de Coiba son el segundo sistema arrecifal más grande del Pacífico americano, con especies endémicas únicas.</p>
+                        <div class="ecosystem-details">
+                            <div class="ecosystem-detail"><i class="fas fa-map-marker-alt"></i> Coiba (Pac.), Bocas del Toro (Car.)</div>
+                            <div class="ecosystem-detail"><i class="fas fa-fish"></i> Más de 760 especies de peces en Coiba</div>
+                            <div class="ecosystem-detail"><i class="fas fa-shield-alt"></i> Patrimonio Mundial UNESCO (Coiba)</div>
+                        </div>
+                        <p class="ecosystem-source"><i class="fas fa-book-open"></i> STRI Coral Reef Program; UNESCO WHC</p>
+                    </div>
+                </div>
+
+                <div class="ecosystem-card">
+                    <img src="https://images.unsplash.com/photo-1574482620826-ab56a706e4cb?q=80&w=800&auto=format&fit=crop" alt="Manglar" class="ecosystem-img">
+                    <div class="ecosystem-body">
+                        <span class="ecosystem-tag">Costero</span>
+                        <h3 class="ecosystem-name">Manglares</h3>
+                        <p class="ecosystem-desc">Los manglares son criaderos naturales de peces y mariscos, filtros de contaminación y barreras protectoras contra huracanes e inundaciones costeras.</p>
+                        <div class="ecosystem-details">
+                            <div class="ecosystem-detail"><i class="fas fa-map-marker-alt"></i> Costas del Pacífico y el Caribe</div>
+                            <div class="ecosystem-detail"><i class="fas fa-ruler-combined"></i> 1,742 km² de cobertura en Panamá</div>
+                            <div class="ecosystem-detail"><i class="fas fa-fish"></i> Zona de reproducción de 40+ especies marinas</div>
+                        </div>
+                        <p class="ecosystem-source"><i class="fas fa-book-open"></i> FAO Global Mangrove Watch; MiAmbiente 2022</p>
+                    </div>
+                </div>
+
+                <div class="ecosystem-card">
+                    <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=800&auto=format&fit=crop" alt="Humedales" class="ecosystem-img">
+                    <div class="ecosystem-body">
+                        <span class="ecosystem-tag">Acuático</span>
+                        <h3 class="ecosystem-name">Humedales y Ríos</h3>
+                        <p class="ecosystem-desc">Panamá tiene más de 500 ríos. Sus humedales son paradas clave para aves migratorias y hábitat de especies únicas de agua dulce, muchas aún sin describir por la ciencia.</p>
+                        <div class="ecosystem-details">
+                            <div class="ecosystem-detail"><i class="fas fa-map-marker-alt"></i> Lago Gatún, Golfo de Montijo, Delta del San Juan</div>
+                            <div class="ecosystem-detail"><i class="fas fa-dove"></i> Sitio RAMSAR: Golfo de Montijo</div>
+                            <div class="ecosystem-detail"><i class="fas fa-tint"></i> Más de 500 cuencas hidrográficas</div>
+                        </div>
+                        <p class="ecosystem-source"><i class="fas fa-book-open"></i> Convención RAMSAR; ACP Informe Hídrico 2023</p>
+                    </div>
+                </div>
+
+                <div class="ecosystem-card">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=800&auto=format&fit=crop" alt="Volcán Barú" class="ecosystem-img">
+                    <div class="ecosystem-body">
+                        <span class="ecosystem-tag">Altoandino</span>
+                        <h3 class="ecosystem-name">Páramo del Volcán Barú</h3>
+                        <p class="ecosystem-desc">El único páramo de Centroamérica. A 3,474 msnm, el Volcán Barú es el punto más alto de Panamá y alberga un ecosistema que normalmente solo existe en los Andes.</p>
+                        <div class="ecosystem-details">
+                            <div class="ecosystem-detail"><i class="fas fa-map-marker-alt"></i> Chiriquí, frontera con Costa Rica</div>
+                            <div class="ecosystem-detail"><i class="fas fa-mountain"></i> 3,474 msnm — punto más alto de Panamá</div>
+                            <div class="ecosystem-detail"><i class="fas fa-eye"></i> Único lugar donde se ven ambos océanos a la vez</div>
+                        </div>
+                        <p class="ecosystem-source"><i class="fas fa-book-open"></i> Parque Nacional Volcán Barú; STRI Altitudinal Surveys</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <section class="oceans-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Una ventaja única</span>
+                <h2 class="section-title">Dos océanos, dos mundos</h2>
+                <p class="section-subtitle">Ningún otro país tiene costas en el Caribe y el Pacífico en un istmo tan estrecho. Esta geografía duplica el acceso a ecosistemas marinos radicalmente distintos.</p>
+            </div>
+            <div class="oceans-grid">
+                <div class="ocean-card pacifico">
+                    <h3 class="ocean-title"><i class="fas fa-water pac"></i> Pacífico panameño</h3>
+                    <p class="ocean-subtitle">Aguas frías y productivas con alta diversidad pelágica</p>
+                    <p class="ocean-desc">El Pacífico panameño recibe corrientes frías que enriquecen sus aguas de nutrientes. El Parque Nacional Coiba — Patrimonio Mundial — es considerado una de las reservas marinas más importantes del planeta, con ecosistemas prácticamente prístinos.</p>
+                    <ul class="ocean-highlights">
+                        <li><i class="fas fa-check"></i> Parque Nacional Coiba: 270,000 ha marinas protegidas</li>
+                        <li><i class="fas fa-check"></i> Ballenas jorobadas que llegan a parir cada año (jul–oct)</li>
+                        <li><i class="fas fa-check"></i> Tiburones ballena, mantarrayas y tortugas marinas</li>
+                        <li><i class="fas fa-check"></i> Colaespina de Coiba: ave endémica de la isla</li>
+                    </ul>
+                </div>
+                <div class="ocean-card caribe">
+                    <h3 class="ocean-title"><i class="fas fa-water car"></i> Caribe panameño</h3>
+                    <p class="ocean-subtitle">Aguas cálidas con arrecifes coralinos y alta diversidad costera</p>
+                    <p class="ocean-desc">El Caribe panameño tiene arrecifes de coral, manglares, playas de anidación de tortugas y la mayor concentración de caimanes de Centroamérica. Bocas del Toro es un hotspot de biodiversidad marina reconocido internacionalmente.</p>
+                    <ul class="ocean-highlights">
+                        <li><i class="fas fa-check"></i> Archipiélago de Bocas del Toro con corales únicos</li>
+                        <li><i class="fas fa-check"></i> Sitio de anidación de tortugas baula y carey</li>
+                        <li><i class="fas fa-check"></i> Manatí antillano en la Laguna de Chiriquí</li>
+                        <li><i class="fas fa-check"></i> Guna Yala: archipiélago con arrecifes bajo gestión indígena</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <section class="indigenous-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Biodiversidad y cultura</span>
+                <h2 class="section-title">Los guardianes del istmo</h2>
+                <p class="section-subtitle">Panamá tiene 7 pueblos indígenas reconocidos oficialmente, con comarcas que coinciden en gran parte con las áreas de mayor biodiversidad del país. No es casualidad.</p>
+            </div>
+            <div class="indigenous-grid">
+                <div class="indigenous-card">
+                    <h4>Pueblo Guna (Kuna)</h4>
+                    <div class="region">Guna Yala · San Blas</div>
+                    <p>Administran el archipiélago de San Blas bajo su propio sistema de gobernanza. Los arrecifes de coral bajo gestión Guna están entre los mejor conservados del Caribe.</p>
+                </div>
+                <div class="indigenous-card">
+                    <h4>Pueblo Ngäbe-Buglé</h4>
+                    <div class="region">Chiriquí · Bocas del Toro · Veraguas</div>
+                    <p>El pueblo indígena más numeroso de Panamá. Su comarca abarca bosques, ríos y costas con altísima biodiversidad, incluyendo zonas del Parque La Amistad.</p>
+                </div>
+                <div class="indigenous-card">
+                    <h4>Pueblo Emberá y Wounaan</h4>
+                    <div class="region">Darién · Panamá</div>
+                    <p>Custodios del bosque del Darién. Su conocimiento botánico documenta usos medicinales de cientos de plantas. Muchas especies fueron descritas por la ciencia gracias a su guía.</p>
+                </div>
+                <div class="indigenous-card">
+                    <h4>Pueblo Naso Teribe</h4>
+                    <div class="region">Bocas del Toro</div>
+                    <p>Habitan la cuenca del río Teribe. Su territorio incluye bosques primarios en la Reserva Internacional La Amistad, compartida con Costa Rica.</p>
+                </div>
+                <div class="indigenous-card">
+                    <h4>Pueblo Bribri</h4>
+                    <div class="region">Bocas del Toro</div>
+                    <p>Su presencia en las montañas de La Amistad ha contribuido a preservar el bosque nuboso de la región, compartiendo conocimiento con el pueblo Naso.</p>
+                </div>
+                <div class="indigenous-card">
+                    <h4>Pueblo Bokota y Buglé</h4>
+                    <div class="region">Veraguas · Chiriquí</div>
+                    <p>Pueblos de las tierras altas del occidente, con profundo conocimiento de plantas medicinales y sistemas agroforestales adaptados a los microclimas locales.</p>
+                </div>
+            </div>
+            <div style="max-width: 800px; margin: 50px auto 0; background: white; border-radius: 18px; padding: 30px 35px; border-left: 5px solid var(--mustard-green); box-shadow: 0 4px 15px rgba(0,0,0,0.07);">
+                <p style="color: var(--space-sparkle); line-height: 1.8; margin: 0; font-size: 0.95rem;">
+                    <strong style="color: var(--phthalo-green);">El vínculo entre pueblos indígenas y biodiversidad no es accidental.</strong> Los estudios demuestran que las tierras bajo gobernanza indígena tienen tasas de deforestación significativamente menores que otras áreas, incluso que áreas protegidas formales. La conservación de la biodiversidad y la protección de los derechos indígenas son objetivos que se refuerzan mutuamente.
+                </p>
+                <p style="margin-top: 12px; font-size: 0.78rem; color: #aaa; margin-bottom: 0;">
+                    <i class="fas fa-book-open" style="color: var(--mustard-green);"></i> Fa et al. (2020), "Importance of Indigenous Peoples' lands for the conservation of terrestrial vertebrates", PNAS
+                </p>
+            </div>
+        </div>
+    </section>
+
+        <section class="cta-section">
+        <div class="container">
+            <span class="section-tag">Sigue explorando</span>
+            <h2 class="section-title">Ahora que conoces Panamá, ¿qué sigue?</h2>
+            <p>Conoce las especies que hacen este país único, entiende por qué su biodiversidad importa y cómo está siendo amenazada.</p>
+            <div class="cta-buttons">
+                <a href="especies.html" class="btn btn-primary">Ver especies emblemáticas <i class="fas fa-paw"></i></a>
+                <a href="importancia.html" class="btn btn-secondary">¿Por qué importa? <i class="fas fa-heart"></i></a>
+            </div>
+        </div>
+    </section>
+
+      <script src="js.js"></script>
+    
+    <footer style="background: #1a2e1a; color: #f0f0f0; padding: 60px 0 30px; position: relative; overflow: hidden;">
+    <div style="position: absolute; top: 20px; right: 20px; opacity: 0.1; font-size: 4rem; pointer-events: none;">
+        <i class="fas fa-paw"></i><i class="fas fa-leaf"></i><i class="fas fa-tree"></i><i class="fas fa-dove"></i>
+    </div>
+    <div style="position: absolute; bottom: 20px; left: 20px; opacity: 0.1; font-size: 4rem; pointer-events: none;">
+        <i class="fas fa-fish"></i><i class="fas fa-feather-alt"></i><i class="fas fa-seedling"></i>
+    </div>
+
+    <div class="container" style="position: relative; z-index: 2;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 40px;">
+            
+            <div>
+                <h3 style="color: var(--mustard-green); font-size: 2rem; margin-bottom: 10px; font-family: var(--font-serif);">
+                    <i class="fas fa-leaf" style="margin-right: 10px;"></i>Bio Istmo
+                </h3>
+                <p style="line-height: 1.6; margin-bottom: 25px; max-width: 400px; font-style: italic;">
+                    “Conectando continentes, protegiendo la vida”
+                </p>
+
+                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; margin-bottom: 25px;">
+                    <h4 style="color: var(--mustard-green); margin-bottom: 15px; font-size: 1.2rem;">Equipo de investigación</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div>
+                            <p style="margin: 0;"><strong>Hernández, Ceilyn</strong></p>
+                            <p style="margin: 0; font-size: 0.9rem; opacity: 0.8;">Diseño e investigación</p>
+                        </div>
+                        <div>
+                            <p style="margin: 0;"><strong>Martínez, Yomayri</strong></p>
+                            <p style="margin: 0; font-size: 0.9rem; opacity: 0.8;">Diseño e investigación</p>
+                        </div>
+                        <div>
+                            <p style="margin: 0;"><strong>Pimentel, Naim</strong></p>
+                            <p style="margin: 0; font-size: 0.9rem; opacity: 0.8;">Diseño e investigación</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 15px; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 15px;">
+                        <i class="fas fa-university"></i> Facultad de Sistemas · UTP · 2026
+                    </p>
+                </div>
+
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 30px;">
+                    <a href="index.html" style="color: white; text-decoration: none;">Inicio</a>
+                    <a href="biodiversidad.html" style="color: white; text-decoration: none;">¿Qué es?</a>
+                    <a href="especies.html" style="color: white; text-decoration: none;">Especies</a>
+                    <a href="panama.html" style="color: white; text-decoration: none;">Panamá</a>
+                    <a href="juego.html" style="color: white; text-decoration: none;">Juego</a>
+                    <a href="huella.html" style="color: white; text-decoration: none;">Huella</a>
+                    <a href="importancia.html" style="color: white; text-decoration: none;">Importancia</a>
+                    <a href="amenazas.html" style="color: white; text-decoration: none;">Amenazas</a>
+                    <a href="conservacion.html" style="color: white; text-decoration: none;">Conservación</a>
+                    <a href="conservacion.html" style="background: var(--mustard-green); color: white; padding: 5px 15px; border-radius: 50px; text-decoration: none; font-weight: bold;">Participa</a>
+                </div>
+
+                <p style="font-size: 0.88rem; color: rgba(255,255,255,0.5); margin-top: 5px;">Proyecto académico · UTP 2026</p>
+            </div>
+
+            
+            <div>
+                <h3 style="color: var(--mustard-green); font-size: 1.5rem; margin-bottom: 20px;">
+                    <i class="fas fa-pagelines" style="margin-right: 10px;"></i>Conéctate con la naturaleza
+                </h3>
+                <p style="margin-bottom: 20px;">Recibe nuestras guías de campo y novedades.</p>
+
+                <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 12px; backdrop-filter: blur(5px);">
+                    <div style="margin-bottom: 20px;">
+                        <input type="email" placeholder="Tu email" style="width: 100%; padding: 12px; background: transparent; border: 1px solid rgba(255,255,255,0.3); border-radius: 6px; color: white; margin-bottom: 15px;">
+                        <input type="text" placeholder="Tu nombre" style="width: 100%; padding: 12px; background: transparent; border: 1px solid rgba(255,255,255,0.3); border-radius: 6px; color: white;">
+                    </div>
+                    <button style="background: var(--mustard-green); color: white; border: none; padding: 12px 25px; border-radius: 6px; font-weight: bold; cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                        <i class="fas fa-feather-alt"></i> SUSCRIBIRME
+                    </button>
+                    <p style="font-size: 0.8rem; margin-top: 15px; opacity: 0.6;">Sin spam, solo naturaleza.</p>
+                </div>
+
+                <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 10px;">
+                    <p><i class="fas fa-university" style="color: var(--mustard-green); width: 25px;"></i> Universidad Tecnológica de Panamá</p>
+                    <p><i class="fas fa-map-pin" style="color: var(--mustard-green); width: 25px;"></i> Panamá Oeste · 2026</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2);">
+            <div style="color: rgba(255,255,255,0.4); font-size: 0.9rem;">
+                Fuentes: MiAmbiente · STRI · UICN · UNESCO
+            </div>
+            <div style="color: rgba(255,255,255,0.5); font-size: 0.9rem;">
+                <i class="fas fa-copyright"></i> 2026 Bio Istmo · CC BY-NC
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 25px; font-size: 0.8rem; color: rgba(255,255,255,0.3); display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+            <span><i class="fas fa-paw"></i> Ilustraciones: FontAwesome</span>
+            <span><i class="fas fa-leaf"></i> Contenido: investigación original</span>
+            <span><i class="fas fa-tree"></i> Diseño: Grupo de Ecología UTP</span>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

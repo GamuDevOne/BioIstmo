@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bio Istmo | Inicio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css.css">
+    <style>
+    
+         .preview-section { padding: 90px 0; }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .preview-card {
+            background: white;
+            border-radius: 22px;
+            overflow: hidden;
+            border: 1px solid rgba(25,53,12,0.08);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .preview-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.1);
+            border-color: var(--mustard-green);
+        }
+
+        .preview-card-img {
+            height: 180px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .preview-card-body {
+            padding: 28px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .preview-card-tag {
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--mustard-green);
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .preview-card-body h3 {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            color: var(--phthalo-green);
+            margin-bottom: 10px;
+        }
+
+        .preview-card-body p {
+            color: var(--space-sparkle);
+            font-size: 0.92rem;
+            line-height: 1.7;
+            flex: 1;
+            margin-bottom: 20px;
+        }
+
+        .preview-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--mustard-green);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: gap 0.2s;
+        }
+
+        .preview-link:hover { gap: 14px; }
+
+        
+        .quote-section { background: var(--cream); padding: 80px 0; }
+
+          .topics-band {
+            background: var(--phthalo-green);
+            padding: 60px 0;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .topic-item {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.1);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .topic-item:hover {
+            background: rgba(255,255,255,0.14);
+            transform: translateY(-5px);
+            border-color: var(--mustard-green);
+        }
+
+        .topic-item i {
+            font-size: 2rem;
+            color: var(--mustard-green);
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .topic-item span {
+            color: white;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 1024px) {
+            .preview-grid { grid-template-columns: 1fr 1fr; }
+            .topics-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .preview-grid { grid-template-columns: 1fr; }
+            .topics-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-leaf"></i></div>
+                <span class="logo-text">Bio Istmo</span>
+            </a>
+            <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú de navegación" title="Abrir menú de navegación"><i class="fas fa-bars"></i></button>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link active">Inicio</a>
+                <a href="biodiversidad.html" class="nav-link">¿Qué es?</a>
+                <a href="especies.html" class="nav-link">Especies</a>
+                <a href="panama.html" class="nav-link">Panamá</a>
+                <a href="juego.html" class="nav-link">Juego</a>
+                <a href="huella.html" class="nav-link">Huella</a>
+                <a href="importancia.html" class="nav-link">Importancia</a>
+                <a href="amenazas.html" class="nav-link">Amenazas</a>
+                <a href="conservacion.html" class="nav-link">Conservación</a>
+                <a href="conservacion.html" class="nav-cta">Participa</a>
+            </div>
+        </div>
+    </nav>
+
+        <section class="hero-section">
+        <div class="hero-content">
+            <div class="hero-tag">Biodiversidad Panameña</div>
+            <h1 class="hero-title">Panamá: Puente de<br><span class="italic">Vida</span></h1>
+            <p class="hero-subtitle">Un país que conecta continentes, océanos y culturas. Descubre la asombrosa biodiversidad que hace de Panamá uno de los lugares más ricos en vida del planeta.</p>
+            <div class="hero-buttons">
+                <a href="biodiversidad.html" class="btn btn-primary">Explorar <i class="fas fa-leaf"></i></a>
+                <a href="juego.html" class="btn btn-secondary">Jugar Ahora <i class="fas fa-gamepad"></i></a>
+            </div>
+        </div>
+        <div class="scroll-hint"><i class="fas fa-chevron-down"></i></div>
+    </section>
+
+        <section class="section" style="background: linear-gradient(135deg, var(--phthalo-green) 0%, var(--space-sparkle) 100%); padding: 80px 0;">
+        <div class="container">
+            <div class="section-header" style="margin-bottom: 50px;">
+                <span class="section-tag" style="color: var(--mustard-green);">Panamá en cifras</span>
+                <h2 class="section-title" style="color: white;">Un país pequeño, gigante en vida</h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">978</span>
+                    <span class="stat-label">Especies de aves</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">30%</span>
+                    <span class="stat-label">Territorio protegido</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">2</span>
+                    <span class="stat-label">Océanos</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">10K+</span>
+                    <span class="stat-label">Plantas vasculares</span>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="panama.html" class="btn btn-white btn-primary">Ver todos los datos <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+        <section class="preview-section section" style="background: white;">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Explora el sitio</span>
+                <h2 class="section-title">Todo sobre la biodiversidad panameña</h2>
+                <p class="section-subtitle">Cada sección profundiza en un aspecto distinto. Elige por dónde empezar.</p>
+            </div>
+            <div class="preview-grid">
+
+                <div class="preview-card">
+                    <img src="https://images.unsplash.com/photo-1446329813274-7c9036bd9a1f?q=80&w=800&auto=format&fit=crop" alt="Qué es la biodiversidad" class="preview-card-img">
+                    <div class="preview-card-body">
+                        <span class="preview-card-tag">Fundamentos</span>
+                        <h3>¿Qué es la biodiversidad?</h3>
+                        <p>La definición oficial del CDB, los tres niveles (genética, especies, ecosistemas) y por qué el trópico es tan diverso — el gradiente latitudinal explicado.</p>
+                        <a href="biodiversidad.html" class="preview-link">Leer más <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="preview-card">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=800&auto=format&fit=crop" alt="Panamá megadiverso" class="preview-card-img">
+                    <div class="preview-card-body">
+                        <span class="preview-card-tag">Riqueza nacional</span>
+                        <h3>Panamá megadiverso</h3>
+                        <p>978 aves, 6 ecosistemas únicos, dos océanos, el Gran Intercambio Americano y los pueblos indígenas guardianes del istmo.</p>
+                        <a href="panama.html" class="preview-link">Descubrir <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="preview-card">
+                    <img src="https://images.unsplash.com/photo-1551085254-e96b210db58a?q=80&w=800&auto=format&fit=crop" alt="Especies emblemáticas" class="preview-card-img">
+                    <div class="preview-card-body">
+                        <span class="preview-card-tag">Fauna y flora</span>
+                        <h3>Especies emblemáticas</h3>
+                        <p>Águila Harpía, Rana Dorada, Jaguar, Orquídea Espíritu Santo y más — con estado de conservación, datos y curiosidades.</p>
+                        <a href="especies.html" class="preview-link">Ver especies <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="preview-card">
+                    <img src="https://images.unsplash.com/photo-1532094349884-543559be31e5?q=80&w=800&auto=format&fit=crop" alt="Importancia biodiversidad" class="preview-card-img">
+                    <div class="preview-card-body">
+                        <span class="preview-card-tag">¿Por qué importa?</span>
+                        <h3>Importancia de la biodiversidad</h3>
+                        <p>Servicios ecosistémicos, medicina, seguridad alimentaria, economía y el vínculo entre biodiversidad y el Canal de Panamá.</p>
+                        <a href="importancia.html" class="preview-link">Leer más <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="preview-card">
+                    <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=80&w=800&auto=format&fit=crop" alt="Amenazas" class="preview-card-img">
+                    <div class="preview-card-body">
+                        <span class="preview-card-tag">Desafíos actuales</span>
+                        <h3>Amenazas a la biodiversidad</h3>
+                        <p>Deforestación, cambio climático, contaminación, tráfico ilegal y el caso de Cobre Panamá — con datos y fuentes reales.</p>
+                        <a href="amenazas.html" class="preview-link">Ver amenazas <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="preview-card">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=800&auto=format&fit=crop" alt="Conservación" class="preview-card-img">
+                    <div class="preview-card-body">
+                        <span class="preview-card-tag">Acción</span>
+                        <h3>Conservación</h3>
+                        <p>Áreas protegidas, Darién, Coiba, La Amistad — y qué puedes hacer tú para contribuir desde tu vida cotidiana.</p>
+                        <a href="conservacion.html" class="preview-link">Actuar ahora <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+        <section class="topics-band">
+        <div class="container">
+            <div class="section-header" style="margin-bottom: 40px;">
+                <span class="section-tag" style="color: var(--mustard-green);">Aprende haciendo</span>
+                <h2 class="section-title" style="color: white;">Pon a prueba tu conocimiento</h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.85);">Juega, calcula tu huella y conviértete en defensor de la biodiversidad.</p>
+            </div>
+            <div class="topics-grid">
+                <a href="juego.html" class="topic-item">
+                    <i class="fas fa-gamepad"></i>
+                    <span>Quiz Biodiverso</span>
+                </a>
+                <a href="huella.html" class="topic-item">
+                    <i class="fas fa-calculator"></i>
+                    <span>Huella Ecológica</span>
+                </a>
+                <a href="especies.html" class="topic-item">
+                    <i class="fas fa-paw"></i>
+                    <span>Explorar Especies</span>
+                </a>
+                <a href="conservacion.html" class="topic-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Cómo Participar</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+        <section class="quote-section">
+        <div class="container">
+            <div style="max-width: 900px; margin: 0 auto; text-align: center; font-family: var(--font-serif);">
+                <i class="fas fa-quote-left" style="font-size: 3rem; color: var(--mustard-green); opacity: 0.3; margin-bottom: 20px;"></i>
+                <blockquote style="font-size: 1.8rem; line-height: 1.5; color: var(--phthalo-green);">
+                    "La destrucción de la biodiversidad es la locura más grande que el ser humano puede cometer. Es como quemar una biblioteca antes de leer sus libros."
+                </blockquote>
+                <p style="margin-top: 30px; font-weight: 600; color: var(--space-sparkle);">— E.O. Wilson, biólogo, Universidad de Harvard</p>
+                <p style="font-size: 0.9rem; color: var(--mustard-green); margin-bottom: 0;">The Diversity of Life, Harvard University Press, 1992</p>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: #1a2e1a; color: #f0f0f0; padding: 60px 0 30px; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 20px; right: 20px; opacity: 0.1; font-size: 4rem; pointer-events: none;">
+            <i class="fas fa-paw"></i><i class="fas fa-leaf"></i><i class="fas fa-tree"></i><i class="fas fa-dove"></i>
+        </div>
+        <div style="position: absolute; bottom: 20px; left: 20px; opacity: 0.1; font-size: 4rem; pointer-events: none;">
+            <i class="fas fa-fish"></i><i class="fas fa-feather-alt"></i><i class="fas fa-seedling"></i>
+        </div>
+        <div class="container" style="position: relative; z-index: 2;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 40px;">
+                <div>
+                    <h3 style="color: var(--mustard-green); font-size: 2rem; margin-bottom: 10px; font-family: var(--font-serif);">
+                        <i class="fas fa-leaf" style="margin-right: 10px;"></i>Bio Istmo
+                    </h3>
+                    <p style="line-height: 1.6; margin-bottom: 25px; max-width: 400px; font-style: italic;">"Conectando continentes, protegiendo la vida"</p>
+                    <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; margin-bottom: 25px;">
+                        <h4 style="color: var(--mustard-green); margin-bottom: 15px; font-size: 1.2rem;">Equipo de investigación</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div><p style="margin: 0;"><strong>Hernández, Ceilyn</strong></p><p style="margin: 0; font-size: 0.9rem; opacity: 0.8;">Diseño e investigación</p></div>
+                            <div><p style="margin: 0;"><strong>Martínez, Yomayri</strong></p><p style="margin: 0; font-size: 0.9rem; opacity: 0.8;">Diseño e investigación</p></div>
+                            <div><p style="margin: 0;"><strong>Pimentel, Naim</strong></p><p style="margin: 0; font-size: 0.9rem; opacity: 0.8;">Diseño e investigación</p></div>
+                        </div>
+                        <p style="margin-top: 15px; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 15px;">
+                            <i class="fas fa-university"></i> Facultad de Sistemas · UTP · 2026
+                        </p>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 30px;">
+                        <a href="index.html" style="color: white; text-decoration: none;">Inicio</a>
+                        <a href="biodiversidad.html" style="color: white; text-decoration: none;">¿Qué es?</a>
+                        <a href="especies.html" style="color: white; text-decoration: none;">Especies</a>
+                        <a href="panama.html" style="color: white; text-decoration: none;">Panamá</a>
+                        <a href="juego.html" style="color: white; text-decoration: none;">Juego</a>
+                        <a href="huella.html" style="color: white; text-decoration: none;">Huella</a>
+                        <a href="importancia.html" style="color: white; text-decoration: none;">Importancia</a>
+                        <a href="amenazas.html" style="color: white; text-decoration: none;">Amenazas</a>
+                        <a href="conservacion.html" style="color: white; text-decoration: none;">Conservación</a>
+                        <a href="conservacion.html" style="background: var(--mustard-green); color: white; padding: 5px 15px; border-radius: 50px; text-decoration: none; font-weight: bold;">Participa</a>
+                    </div>
+                    <p style="font-size: 0.88rem; color: rgba(255,255,255,0.5);">Proyecto académico · UTP 2026</p>
+                </div>
+                <div>
+                    <h3 style="color: var(--mustard-green); font-size: 1.5rem; margin-bottom: 20px;">
+                        <i class="fas fa-pagelines" style="margin-right: 10px;"></i>Conéctate con la naturaleza
+                    </h3>
+                    <p style="margin-bottom: 20px;">Recibe nuestras guías de campo y novedades.</p>
+                    <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 12px; backdrop-filter: blur(5px);">
+                        <div style="margin-bottom: 20px;">
+                            <input type="email" placeholder="Tu email" style="width: 100%; padding: 12px; background: transparent; border: 1px solid rgba(255,255,255,0.3); border-radius: 6px; color: white; margin-bottom: 15px;">
+                            <input type="text" placeholder="Tu nombre" style="width: 100%; padding: 12px; background: transparent; border: 1px solid rgba(255,255,255,0.3); border-radius: 6px; color: white;">
+                        </div>
+                        <button style="background: var(--mustard-green); color: white; border: none; padding: 12px 25px; border-radius: 6px; font-weight: bold; cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                            <i class="fas fa-feather-alt"></i> SUSCRIBIRME
+                        </button>
+                        <p style="font-size: 0.8rem; margin-top: 15px; opacity: 0.6;">Sin spam, solo naturaleza.</p>
+                    </div>
+                    <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 10px;">
+                        <p><i class="fas fa-university" style="color: var(--mustard-green); width: 25px;"></i> Universidad Tecnológica de Panamá</p>
+                        <p><i class="fas fa-map-pin" style="color: var(--mustard-green); width: 25px;"></i> Panamá Oeste · 2026</p>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2);">
+                <div style="color: rgba(255,255,255,0.4); font-size: 0.9rem;">Fuentes: MiAmbiente · STRI · UICN · UNESCO</div>
+                <div style="color: rgba(255,255,255,0.5); font-size: 0.9rem;"><i class="fas fa-copyright"></i> 2026 Bio Istmo · CC BY-NC</div>
+            </div>
+            <div style="text-align: center; margin-top: 25px; font-size: 0.8rem; color: rgba(255,255,255,0.3); display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+                <span><i class="fas fa-paw"></i> Ilustraciones: FontAwesome</span>
+                <span><i class="fas fa-leaf"></i> Contenido: investigación original</span>
+                <span><i class="fas fa-tree"></i> Diseño: Grupo de Ecología UTP</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js.js"></script>
+</body>
+</html>

@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bio Istmo | Conservación</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css.css">
+    <style>
+         .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 35px;
+        }
+        .area-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .area-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.14); }
+        .area-img { width: 100%; height: 220px; object-fit: cover; }
+        .area-body { padding: 30px; }
+        .area-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; }
+        .badge {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 50px;
+        }
+        .badge-unesco { background: #e8f4d4; color: var(--phthalo-green); }
+        .badge-ramsar { background: #d4e8f4; color: var(--space-sparkle); }
+        .badge-corredor { background: #f4e8d4; color: #7a4a10; }
+        .area-name { font-family: 'Libre Baskerville', serif; font-size: 1.5rem; color: var(--phthalo-green); margin-bottom: 10px; }
+        .area-location { font-size: 0.85rem; color: var(--mustard-green); font-weight: 600; margin-bottom: 15px; }
+        .area-desc { color: var(--space-sparkle); line-height: 1.8; font-size: 0.94rem; margin-bottom: 18px; }
+        .area-stats-row { display: flex; gap: 25px; flex-wrap: wrap; }
+        .area-mini-stat { text-align: center; }
+        .area-mini-stat .num { font-family: 'Libre Baskerville', serif; font-size: 1.5rem; color: var(--mustard-green); display: block; }
+        .area-mini-stat span:last-child { font-size: 0.78rem; color: var(--space-sparkle); }
+        .area-source { margin-top: 18px; font-size: 0.76rem; color: #bbb; border-top: 1px dashed #eee; padding-top: 12px; }
+        .area-source i { color: var(--mustard-green); }
+
+        .network-section {
+            background: var(--phthalo-green);
+            color: white;
+            padding: 80px 0;
+        }
+        .network-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 50px;
+        }
+        .network-item {
+            background: rgba(255,255,255,0.08);
+            border-radius: 18px;
+            padding: 30px;
+            border-bottom: 4px solid var(--mustard-green);
+            text-align: center;
+        }
+        .network-item i { font-size: 2.5rem; color: var(--mustard-green); margin-bottom: 15px; display: block; }
+        .network-item h4 { color: white; margin-bottom: 10px; font-size: 1.1rem; }
+        .network-item p { color: rgba(255,255,255,0.75); font-size: 0.88rem; line-height: 1.6; }
+
+         .actions-section { background: var(--cream); padding: 90px 0; }
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 50px;
+        }
+        .action-card {
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            border-top: 5px solid var(--mustard-green);
+            transition: transform 0.3s;
+        }
+        .action-card:hover { transform: translateY(-5px); }
+        .action-icon {
+            width: 54px; height: 54px;
+            background: linear-gradient(135deg, var(--mustard-green), var(--phthalo-green));
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 20px;
+        }
+        .action-icon i { color: white; font-size: 1.3rem; }
+        .action-title { font-family: 'Libre Baskerville', serif; font-size: 1.2rem; color: var(--phthalo-green); margin-bottom: 12px; }
+        .action-desc { color: var(--space-sparkle); font-size: 0.9rem; line-height: 1.7; margin-bottom: 14px; }
+        .action-tip {
+            background: #f0f4e8;
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 0.83rem;
+            color: var(--phthalo-green);
+            border-left: 3px solid var(--mustard-green);
+        }
+        .action-tip strong { color: var(--mustard-green); }
+
+          .orgs-section { background: white; padding: 80px 0; }
+        .orgs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 50px;
+        }
+        .org-card {
+            border-radius: 18px;
+            padding: 28px;
+            border: 2px solid var(--light-gray);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .org-card:hover { border-color: var(--mustard-green); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+        .org-type { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--mustard-green); font-weight: 700; margin-bottom: 8px; }
+        .org-name { font-family: 'Libre Baskerville', serif; font-size: 1.15rem; color: var(--phthalo-green); margin-bottom: 10px; }
+        .org-desc { color: var(--space-sparkle); font-size: 0.88rem; line-height: 1.6; }
+
+        .participate-section {
+            background: linear-gradient(135deg, var(--mustard-green) 0%, var(--phthalo-green) 100%);
+            padding: 90px 0;
+            text-align: center;
+            color: white;
+        }
+        .participate-section .section-tag { color: #c8e6a0; }
+        .participate-section h2 { color: white; font-family: 'Libre Baskerville', serif; font-size: 3rem; margin-bottom: 20px; }
+        .participate-section p { color: rgba(255,255,255,0.9); font-size: 1.1rem; margin-bottom: 50px; max-width: 650px; margin-left: auto; margin-right: auto; }
+        .participate-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 1000px;
+            margin: 0 auto 50px;
+        }
+        .participate-option {
+            background: rgba(255,255,255,0.12);
+            border-radius: 18px;
+            padding: 30px 25px;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.2);
+            transition: background 0.3s;
+        }
+        .participate-option:hover { background: rgba(255,255,255,0.2); }
+        .participate-option i { font-size: 2.5rem; color: #c8e6a0; margin-bottom: 15px; display: block; }
+        .participate-option h4 { color: white; margin-bottom: 10px; font-size: 1.1rem; }
+        .participate-option p { color: rgba(255,255,255,0.8); font-size: 0.88rem; line-height: 1.6; margin: 0; }
+        .final-cta-row { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+
+        @media (max-width: 768px) {
+            .areas-grid { grid-template-columns: 1fr; }
+            .network-grid, .actions-grid, .orgs-grid, .participate-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-leaf"></i></div>
+                <span class="logo-text">Bio Istmo</span>
+            </a>
+            <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú de navegación" title="Abrir menú de navegación"><i class="fas fa-bars"></i></button>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="biodiversidad.html" class="nav-link">¿Qué es?</a>
+                <a href="especies.html" class="nav-link">Especies</a>
+                <a href="panama.html" class="nav-link">Panamá</a>
+                <a href="juego.html" class="nav-link">Juego</a>
+                <a href="huella.html" class="nav-link">Huella</a>
+                <a href="importancia.html" class="nav-link">Importancia</a>
+                <a href="amenazas.html" class="nav-link">Amenazas</a>
+                <a href="conservacion.html" class="nav-link active">Conservación</a>
+                <a href="conservacion.html" class="nav-cta">Participa</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="page-hero" style="background: linear-gradient(135deg, rgba(10,40,10,0.88) 0%, rgba(25,53,12,0.85) 60%, rgba(64,103,104,0.75) 100%), url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1600&auto=format&fit=crop') center/cover;">
+        <div class="page-hero-content">
+            <span class="page-hero-tag">08 · Protección y Futuro</span>
+            <h1>Conservar es<br><em>responsabilidad de todos</em></h1>
+            <p>Panamá ha construido uno de los sistemas de áreas protegidas más completos de América Latina. Pero las leyes no bastan — la conservación real ocurre cuando cada ciudadano decide actuar.</p>
+        </div>
+        <div class="hero-scroll"><i class="fas fa-chevron-down"></i></div>
+    </section>
+
+    <!-- ÁREAS PROTEGIDAS -->
+    <section class="section" style="background: white;">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">01 / El sistema de áreas protegidas</span>
+                <h2 class="section-title">Los guardianes del territorio</h2>
+                <p class="section-subtitle">Panamá protege el 30% de su territorio — uno de los porcentajes más altos del mundo. Estas son las áreas que forman el corazón de esa red de conservación.</p>
+            </div>
+            <div class="areas-grid">
+
+                <!-- DARIÉN -->
+                <div class="area-card">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=900&auto=format&fit=crop" alt="Parque Nacional Darién" class="area-img">
+                    <div class="area-body">
+                        <div class="area-badges">
+                            <span class="badge badge-unesco">Patrimonio UNESCO</span>
+                            <span class="badge badge-corredor">Reserva Biosfera</span>
+                        </div>
+                        <h3 class="area-name">Parque Nacional Darién</h3>
+                        <p class="area-location"><i class="fas fa-map-marker-alt"></i> Darién, frontera con Colombia</p>
+                        <p class="area-desc">El mayor parque nacional de Centroamérica y una de las áreas protegidas más importantes del hemisferio. Declarado Patrimonio de la Humanidad por la UNESCO en 1981, es hogar de comunidades Emberá, Wounaan y Guna, y refugio de especies como el águila harpía y el tapir centroamericano.</p>
+                        <div class="area-stats-row">
+                            <div class="area-mini-stat">
+                                <span class="num">576K</span>
+                                <span>hectáreas</span>
+                            </div>
+                            <div class="area-mini-stat">
+                                <span class="num">450+</span>
+                                <span>especies de aves</span>
+                            </div>
+                            <div class="area-mini-stat">
+                                <span class="num">1981</span>
+                                <span>año de creación</span>
+                            </div>
+                        </div>
+                        <p class="area-source"><i class="fas fa-book-open"></i> UNESCO World Heritage List; MiAmbiente, SINAP</p>
+                    </div>
+                </div>
+
+                <!-- COIBA -->
+                <div class="area-card">
+                    <img src="https://images.unsplash.com/photo-1559253664-ca249d4608c6?q=80&w=900&auto=format&fit=crop" alt="Parque Nacional Coiba" class="area-img">
+                    <div class="area-body">
+                        <div class="area-badges">
+                            <span class="badge badge-unesco">Patrimonio UNESCO</span>
+                        </div>
+                        <h3 class="area-name">Parque Nacional Coiba</h3>
+                        <p class="area-location"><i class="fas fa-map-marker-alt"></i> Veraguas, Océano Pacífico</p>
+                        <p class="area-desc">La mayor reserva marina de Centroamérica y una de las más importantes del mundo. Sus aguas poco perturbadas albergan tiburones ballena, ballenas jorobadas y el 2° arrecife de coral más grande del Pacífico americano. El relativo aislamiento de la isla preservó ecosistemas únicos con especies endémicas.</p>
+                        <div class="area-stats-row">
+                            <div class="area-mini-stat">
+                                <span class="num">270K</span>
+                                <span>ha marinas</span>
+                            </div>
+                            <div class="area-mini-stat">
+                                <span class="num">760+</span>
+                                <span>especies de peces</span>
+                            </div>
+                            <div class="area-mini-stat">
+                                <span class="num">2005</span>
+                                <span>declarado UNESCO</span>
+                            </div>
+                        </div>
+                        <p class="area-source"><i class="fas fa-book-open"></i> UNESCO WHC; STRI Marine Biology Program; ATP</p>
+                    </div>
+                </div>
+
+                <!-- LA AMISTAD -->
+                <div class="area-card">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=900&auto=format&fit=crop" alt="Parque Internacional La Amistad" class="area-img">
+                    <div class="area-body">
+                        <div class="area-badges">
+                            <span class="badge badge-unesco">Patrimonio UNESCO</span>
+                            <span class="badge badge-corredor">Internacional</span>
+                        </div>
+                        <h3 class="area-name">Parque Internacional La Amistad</h3>
+                        <p class="area-location"><i class="fas fa-map-marker-alt"></i> Chiriquí y Bocas del Toro, frontera con Costa Rica</p>
+                        <p class="area-desc">Único parque internacional de Centroamérica, compartido con Costa Rica. Su bosque nuboso es el más grande de la región y alberga al quetzal resplandeciente, el puma, el jaguar y el tapir de Baird. Región de alta biodiversidad con numerosas especies endémicas.</p>
+                        <div class="area-stats-row">
+                            <div class="area-mini-stat">
+                                <span class="num">207K</span>
+                                <span>ha (lado panameño)</span>
+                            </div>
+                            <div class="area-mini-stat">
+                                <span class="num">400+</span>
+                                <span>especies de aves</span>
+                            </div>
+                            <div class="area-mini-stat">
+                                <span class="num">1983</span>
+                                <span>declarado UNESCO</span>
+                            </div>
+                        </div>
+                        <p class="area-source"><i class="fas fa-book-open"></i> UNESCO MAB; MiAmbiente; SINAC Costa Rica</p>
+                    </div>
+                </div>
+
+                <!-- VOLCÁN BARÚ -->
+                <div class="area-card">
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=900&auto=format&fit=crop" alt="Parque Nacional Volcán Barú" class="area-img">
+                    <div class="area-body">
+                        <div class="area-badges">
+                            <span class="badge badge-corredor">Hotspot altitudinal</span>
+                        </div>
+                        <h3 class="area-name">Parque Nacional Volcán Barú</h3>
+                        <p class="area-location"><i class="fas fa-map-marker-alt"></i> Chiriquí</p>
+                        <p class="area-desc">El volcán más alto de Panamá (3,474 msnm) alberga el único páramo de Centroamérica. Es uno de los pocos lugares del mundo donde, en días despejados, se pueden ver simultáneamente el Océano Pacífico y el Mar Caribe. Clave para las aves migratorias como ruta de paso.</p>
+                        <div class="area-stats-row">
+                            <div class="area-mini-stat">
+                                <span class="num">14,322</span>
+                                <span>hectáreas</span>
+                            </div>
+                            <div class="area-mini-stat">
+                                <span class="num">3,474</span>
+                                <span>msnm de altura</span>
+                            </div>
+                            <div class="area-mini-stat">
+                                <span class="num">250+</span>
+                                <span>especies de aves</span>
+                            </div>
+                        </div>
+                        <p class="area-source"><i class="fas fa-book-open"></i> MiAmbiente; SINAP Panamá; Cornell Lab of Ornithology</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- RED DE CORREDORES -->
+    <section class="network-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" style="color: var(--mustard-green);">02 / Más que islas</span>
+                <h2 class="section-title" style="color:white; font-family:'Libre Baskerville',serif; font-size:2.8rem; margin-bottom:15px;">El sistema no son parques aislados</h2>
+                <p class="section-subtitle">Proteger parques sin conectarlos es como proteger nados individuales sin dejarlos llegar al mar. Los corredores biológicos son la clave.</p>
+            </div>
+            <div class="network-grid">
+                <div class="network-item">
+                    <i class="fas fa-route"></i>
+                    <h4>Corredor Mesoamericano</h4>
+                    <p>Red de áreas naturales que conecta desde México hasta Colombia, permitiendo el movimiento de jaguares, tapires y aves migratorias. Panamá es el eslabón más estrecho y crítico de este corredor.</p>
+                </div>
+                <div class="network-item">
+                    <i class="fas fa-handshake"></i>
+                    <h4>Gestión compartida</h4>
+                    <p>Varios parques panameños son administrados en coordinación con comunidades indígenas. La gestión compartida ha demostrado mayores tasas de conservación que la administración estatal exclusiva.</p>
+                </div>
+                <div class="network-item">
+                    <i class="fas fa-globe"></i>
+                    <h4>Reconocimiento internacional</h4>
+                    <p>Panamá tiene 3 sitios Patrimonio Mundial UNESCO (Darién, Coiba, La Amistad) y varios sitios RAMSAR de importancia internacional por sus humedales. Una de las redes más completas per cápita del mundo.</p>
+                </div>
+                <div class="network-item">
+                    <i class="fas fa-users"></i>
+                    <h4>Área Marina Protegida</h4>
+                    <p>Las Áreas Marinas Protegidas (AMP) de Panamá cubren ecosistemas en ambos océanos. El manejo efectivo requiere coordinación con comunidades pesqueras, clave para su sostenibilidad a largo plazo.</p>
+                </div>
+                <div class="network-item">
+                    <i class="fas fa-leaf"></i>
+                    <h4>Pago por Servicios Ambientales</h4>
+                    <p>Panamá implementa el Programa Nacional de Pago por Servicios Ambientales (PSA), que compensa económicamente a propietarios privados que conservan bosques en sus tierras.</p>
+                </div>
+                <div class="network-item">
+                    <i class="fas fa-balance-scale"></i>
+                    <h4>Marco legal sólido</h4>
+                    <p>Ley General de Ambiente (Ley 41 de 1998), Ley de Biodiversidad (Ley 24 de 1995) y la Estrategia Nacional de Biodiversidad 2017–2022 son la base jurídica de la conservación en Panamá.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACCIONES CIUDADANAS -->
+    <section class="actions-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">03 / Tu rol</span>
+                <h2 class="section-title">Lo que tú puedes hacer</h2>
+                <p class="section-subtitle">La conservación no solo ocurre en los parques nacionales. Cada decisión cotidiana tiene un impacto real en la biodiversidad panameña.</p>
+            </div>
+            <div class="actions-grid">
+                <div class="action-card">
+                    <div class="action-icon"><i class="fas fa-shopping-bag"></i></div>
+                    <h3 class="action-title">Consumo responsable</h3>
+                    <p class="action-desc">Lo que compramos determina qué se produce. Elegir productos locales, de temporada y con certificaciones ambientales reduce la presión sobre los ecosistemas.</p>
+                    <div class="action-tip"><strong>Tip:</strong> Busca el sello de "Producto Panameño" y evita productos de madera sin certificación FSC.</div>
+                </div>
+                <div class="action-card">
+                    <div class="action-icon"><i class="fas fa-binoculars"></i></div>
+                    <h3 class="action-title">Turismo sostenible</h3>
+                    <p class="action-desc">Visitar áreas protegidas con operadores certificados genera ingresos directos para la conservación y las comunidades locales, creando un argumento económico para proteger la naturaleza.</p>
+                    <div class="action-tip"><strong>Tip:</strong> Busca operadores de ecoturismo certificados por la Autoridad de Turismo de Panamá (ATP).</div>
+                </div>
+                <div class="action-card">
+                    <div class="action-icon"><i class="fas fa-seedling"></i></div>
+                    <h3 class="action-title">Reforestación</h3>
+                    <p class="action-desc">Plantar árboles nativos es una de las acciones más directas que puedes tomar. Pero importa qué especie y dónde: siempre prioriza especies nativas adaptadas a tu región.</p>
+                    <div class="action-tip"><strong>Tip:</strong> Organizaciones como ANCON y SOMASPA organizan jornadas regulares de reforestación abiertas al público.</div>
+                </div>
+                <div class="action-card">
+                    <div class="action-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h3 class="action-title">Ciencia ciudadana</h3>
+                    <p class="action-desc">Aplicaciones como iNaturalist permiten que cualquier persona contribuya datos de biodiversidad al inventario científico global. Cada avistamiento que registras ayuda a los investigadores.</p>
+                    <div class="action-tip"><strong>Tip:</strong> Descarga iNaturalist y registra las especies que observes en tu barrio o en el campo. ¡Cada dato cuenta!</div>
+                </div>
+                <div class="action-card">
+                    <div class="action-icon"><i class="fas fa-recycle"></i></div>
+                    <h3 class="action-title">Reducir residuos</h3>
+                    <p class="action-desc">Los plásticos, en especial los de un solo uso, terminan en ríos y costas panameñas dañando ecosistemas marinos. Reducir en la fuente es más efectivo que reciclar.</p>
+                    <div class="action-tip"><strong>Tip:</strong> Únete a jornadas de limpieza de playas y ríos organizadas por grupos locales de conservación.</div>
+                </div>
+                <div class="action-card">
+                    <div class="action-icon"><i class="fas fa-bullhorn"></i></div>
+                    <h3 class="action-title">Participación ciudadana</h3>
+                    <p class="action-desc">La movilización ciudadana que cerró la mina de Cobre Panamá en 2023 demostró que la participación organizada puede detener proyectos que amenazan la biodiversidad.</p>
+                    <div class="action-tip"><strong>Tip:</strong> Infórmate sobre las consultas públicas de proyectos de impacto ambiental en tu región y participa en ellas.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ORGANIZACIONES -->
+    <section class="orgs-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">04 / Con quién trabajar</span>
+                <h2 class="section-title">Organizaciones de conservación en Panamá</h2>
+                <p class="section-subtitle">Estas instituciones y organizaciones lideran el trabajo de conservación en el país. Puedes apoyarlas, unirte como voluntario o colaborar con ellas.</p>
+            </div>
+            <div class="orgs-grid">
+                <div class="org-card">
+                    <div class="org-type">Gobierno</div>
+                    <h4 class="org-name">MiAmbiente</h4>
+                    <p class="org-desc">Ministerio de Ambiente de Panamá. Rector de las políticas ambientales nacionales, administra el Sistema Nacional de Áreas Protegidas (SINAP) y emite permisos ambientales.</p>
+                </div>
+                <div class="org-card">
+                    <div class="org-type">Investigación científica</div>
+                    <h4 class="org-name">STRI – Smithsonian</h4>
+                    <p class="org-desc">El Smithsonian Tropical Research Institute tiene sede en Panamá desde 1923. Es uno de los institutos de investigación biológica tropical más importantes del mundo, con estaciones en Barro Colorado y Bocas del Toro.</p>
+                </div>
+                <div class="org-card">
+                    <div class="org-type">ONG panameña</div>
+                    <h4 class="org-name">ANCON</h4>
+                    <p class="org-desc">Asociación Nacional para la Conservación de la Naturaleza. La ONG ambiental más grande de Panamá, con décadas de trabajo en conservación de bosques, áreas protegidas y educación ambiental.</p>
+                </div>
+                <div class="org-card">
+                    <div class="org-type">Investigación anfibios</div>
+                    <h4 class="org-name">El Valle Amphibian Conservation Center</h4>
+                    <p class="org-desc">Centro dedicado a la conservación ex-situ de anfibios panameños amenazados por el hongo quitridio. Mantiene colonias de cría de seguridad de la rana dorada y otras especies en peligro crítico.</p>
+                </div>
+                <div class="org-card">
+                    <div class="org-type">ONG internacional</div>
+                    <h4 class="org-name">UICN – Lista Roja</h4>
+                    <p class="org-desc">La Unión Internacional para la Conservación de la Naturaleza mantiene la Lista Roja, el sistema más completo de evaluación del estado de conservación de las especies del mundo. Base de datos fundamental para la ciencia.</p>
+                </div>
+                <div class="org-card">
+                    <div class="org-type">Ciencia ciudadana</div>
+                    <h4 class="org-name">iNaturalist Panamá</h4>
+                    <p class="org-desc">Plataforma de ciencia ciudadana donde cualquier persona puede registrar y compartir avistamientos de especies. Los datos generados alimentan bases científicas utilizadas por investigadores y gestores de áreas protegidas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN PARTICIPA -->
+    <section class="participate-section" id="participa">
+        <div class="container">
+            <span class="section-tag">Tu momento de actuar</span>
+            <h2>Tres formas de empezar hoy</h2>
+            <p>No necesitas ser científico ni vivir cerca de un parque nacional. La conservación comienza con decisiones cotidianas y crece con cada persona que se suma.</p>
+            <div class="participate-grid">
+                <div class="participate-option">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h4>Descarga iNaturalist</h4>
+                    <p>Empieza a registrar especies en tu entorno. Cada observación contribuye al inventario de biodiversidad de Panamá en tiempo real.</p>
+                </div>
+                <div class="participate-option">
+                    <i class="fas fa-calculator"></i>
+                    <h4>Calcula tu huella</h4>
+                    <p>Entiende tu impacto personal en la biodiversidad y descubre qué cambios concretos puedes hacer en tu vida diaria.</p>
+                </div>
+                <div class="participate-option">
+                    <i class="fas fa-share-alt"></i>
+                    <h4>Comparte y educa</h4>
+                    <p>Hablar sobre biodiversidad con tu familia y comunidad multiplica el impacto. El conocimiento es el primer paso de la acción.</p>
+                </div>
+            </div>
+            <div class="final-cta-row">
+                <a href="huella.html" class="btn btn-primary" style="background: white; color: var(--phthalo-green); font-weight: 700;">Calcular mi huella <i class="fas fa-calculator"></i></a>
+                <a href="juego.html" class="btn btn-primary" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.5);">Aprender jugando <i class="fas fa-gamepad"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: #1a2e1a; color: #f0f0f0; padding: 60px 0 30px; position: relative; overflow: hidden;">
+    <div style="position: absolute; top: 20px; right: 20px; opacity: 0.1; font-size: 4rem; pointer-events: none;">
+        <i class="fas fa-paw"></i><i class="fas fa-leaf"></i><i class="fas fa-tree"></i><i class="fas fa-dove"></i>
+    </div>
+    <div style="position: absolute; bottom: 20px; left: 20px; opacity: 0.1; font-size: 4rem; pointer-events: none;">
+        <i class="fas fa-fish"></i><i class="fas fa-feather-alt"></i><i class="fas fa-seedling"></i>
+    </div>
+
+    <div class="container" style="position: relative; z-index: 2;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 40px;">
+            
+            <div>
+                <h3 style="color: var(--mustard-green); font-size: 2rem; margin-bottom: 10px; font-family: var(--font-serif);">
+                    <i class="fas fa-leaf" style="margin-right: 10px;"></i>Bio Istmo
+                </h3>
+                <p style="line-height: 1.6; margin-bottom: 25px; max-width: 400px; font-style: italic;">
+                    “Conectando continentes, protegiendo la vida”
+                </p>
+
+                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; margin-bottom: 25px;">
+                    <h4 style="color: var(--mustard-green); margin-bottom: 15px; font-size: 1.2rem;">Equipo de investigación</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div>
+                            <p style="margin: 0;"><strong>Hernández, Ceilyn</strong></p>
+                            <p style="margin: 0; font-size: 0.9rem; opacity: 0.8;">Diseño e investigación</p>
+                        </div>
+                        <div>
+                            <p style="margin: 0;"><strong>Martínez, Yomayri</strong></p>
+                            <p style="margin: 0; font-size: 0.9rem; opacity: 0.8;">Diseño e investigación</p>
+                        </div>
+                        <div>
+                            <p style="margin: 0;"><strong>Pimentel, Naim</strong></p>
+                            <p style="margin: 0; font-size: 0.9rem; opacity: 0.8;">Diseño e investigación</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 15px; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 15px;">
+                        <i class="fas fa-university"></i> Facultad de Sistemas · UTP · 2026
+                    </p>
+                </div>
+
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 30px;">
+                    <a href="index.html" style="color: white; text-decoration: none;">Inicio</a>
+                    <a href="biodiversidad.html" style="color: white; text-decoration: none;">¿Qué es?</a>
+                    <a href="especies.html" style="color: white; text-decoration: none;">Especies</a>
+                    <a href="panama.html" style="color: white; text-decoration: none;">Panamá</a>
+                    <a href="juego.html" style="color: white; text-decoration: none;">Juego</a>
+                    <a href="huella.html" style="color: white; text-decoration: none;">Huella</a>
+                    <a href="importancia.html" style="color: white; text-decoration: none;">Importancia</a>
+                    <a href="amenazas.html" style="color: white; text-decoration: none;">Amenazas</a>
+                    <a href="conservacion.html" style="color: white; text-decoration: none;">Conservación</a>
+                    <a href="conservacion.html" style="background: var(--mustard-green); color: white; padding: 5px 15px; border-radius: 50px; text-decoration: none; font-weight: bold;">Participa</a>
+                </div>
+
+                <p style="font-size: 0.88rem; color: rgba(255,255,255,0.5); margin-top: 5px;">Proyecto académico · UTP 2026</p>
+            </div>
+
+            
+            <div>
+                <h3 style="color: var(--mustard-green); font-size: 1.5rem; margin-bottom: 20px;">
+                    <i class="fas fa-pagelines" style="margin-right: 10px;"></i>Conéctate con la naturaleza
+                </h3>
+                <p style="margin-bottom: 20px;">Recibe nuestras guías de campo y novedades.</p>
+
+                <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 12px; backdrop-filter: blur(5px);">
+                    <div style="margin-bottom: 20px;">
+                        <input type="email" placeholder="Tu email" style="width: 100%; padding: 12px; background: transparent; border: 1px solid rgba(255,255,255,0.3); border-radius: 6px; color: white; margin-bottom: 15px;">
+                        <input type="text" placeholder="Tu nombre" style="width: 100%; padding: 12px; background: transparent; border: 1px solid rgba(255,255,255,0.3); border-radius: 6px; color: white;">
+                    </div>
+                    <button style="background: var(--mustard-green); color: white; border: none; padding: 12px 25px; border-radius: 6px; font-weight: bold; cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                        <i class="fas fa-feather-alt"></i> SUSCRIBIRME
+                    </button>
+                    <p style="font-size: 0.8rem; margin-top: 15px; opacity: 0.6;">Sin spam, solo naturaleza.</p>
+                </div>
+
+                <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 10px;">
+                    <p><i class="fas fa-university" style="color: var(--mustard-green); width: 25px;"></i> Universidad Tecnológica de Panamá</p>
+                    <p><i class="fas fa-map-pin" style="color: var(--mustard-green); width: 25px;"></i> Panamá Oeste · 2026</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2);">
+            <div style="color: rgba(255,255,255,0.4); font-size: 0.9rem;">
+                Fuentes: MiAmbiente · STRI · UICN · UNESCO
+            </div>
+            <div style="color: rgba(255,255,255,0.5); font-size: 0.9rem;">
+                <i class="fas fa-copyright"></i> 2026 Bio Istmo · CC BY-NC
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 25px; font-size: 0.8rem; color: rgba(255,255,255,0.3); display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+            <span><i class="fas fa-paw"></i> Ilustraciones: FontAwesome</span>
+            <span><i class="fas fa-leaf"></i> Contenido: investigación original</span>
+            <span><i class="fas fa-tree"></i> Diseño: Grupo de Ecología UTP</span>
+        </div>
+    </div>
+</footer>
+    <script src="js.js"></script>
+</body>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bio Istmo | Amenazas a la Biodiversidad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css.css">
+    <style>
+    
+         .alert-banner {
+            background: linear-gradient(90deg, #7a1a1a, #b03030);
+            color: white;
+            padding: 20px 40px;
+            text-align: center;
+            font-size: 1rem;
+        }
+        .alert-banner strong { color: #ffd4b8; }
+
+         .impact-section { background: #fff8f5; padding: 80px 0; }
+        .impact-numbers {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+        .impact-number-card {
+            text-align: center;
+            background: white;
+            border-radius: 18px;
+            padding: 35px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            border-bottom: 4px solid #b03030;
+        }
+        .impact-number-card .big-num {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            color: #b03030;
+            display: block;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+        .impact-number-card span:last-child { font-size: 0.9rem; color: var(--space-sparkle); line-height: 1.4; }
+
+         .threats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 35px;
+        }
+        .threat-card-new {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+            border-top: 5px solid #b03030;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .threat-card-new:hover { transform: translateY(-6px); box-shadow: 0 12px 35px rgba(0,0,0,0.13); }
+        .threat-card-inner { padding: 35px; }
+        .threat-header { display: flex; align-items: center; gap: 18px; margin-bottom: 20px; }
+        .threat-icon-new {
+            width: 56px; height: 56px;
+            background: linear-gradient(135deg, #b03030, #7a1a1a);
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .threat-icon-new i { color: white; font-size: 1.4rem; }
+        .threat-title-new { font-family: var(--font-serif); font-size: 1.5rem; color: var(--phthalo-green); margin: 0; }
+        .threat-severity {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 50px;
+            margin-top: 4px;
+        }
+        .severity-critical { background: #fdecea; color: #b03030; }
+        .severity-high { background: #fff3e0; color: #e65100; }
+        .threat-description { color: var(--space-sparkle); line-height: 1.8; margin-bottom: 18px; font-size: 0.98rem; }
+        .threat-list { list-style: none; padding: 0; margin: 0 0 18px; display: flex; flex-direction: column; gap: 8px; }
+        .threat-list li { display: flex; gap: 10px; align-items: flex-start; font-size: 0.92rem; color: var(--phthalo-green); }
+        .threat-list li::before { content: '▸'; color: #b03030; flex-shrink: 0; margin-top: 2px; }
+        .threat-stat {
+            background: #fdecea;
+            border-radius: 12px;
+            padding: 12px 18px;
+            font-size: 0.88rem;
+            color: #7a1a1a;
+            border-left: 3px solid #b03030;
+        }
+        .threat-stat strong { display: block; font-size: 1.4rem; color: #b03030; }
+        .threat-source {
+            margin-top: 18px;
+            font-size: 0.78rem;
+            color: #999;
+            border-top: 1px dashed #eee;
+            padding-top: 12px;
+        }
+        .threat-source i { color: var(--mustard-green); margin-right: 5px; }
+
+        .mining-section { background: var(--phthalo-green); color: white; padding: 80px 0; }
+        .mining-section .section-tag { color: #e9a87c; }
+        .mining-section .section-title { color: white; }
+        .mining-section .section-subtitle { color: rgba(255,255,255,0.8); }
+        .mining-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 50px; }
+        .mining-fact { background: rgba(255,255,255,0.08); border-radius: 18px; padding: 30px; border-left: 4px solid #e9a87c; }
+        .mining-fact h4 { color: #e9a87c; margin-bottom: 12px; font-size: 1.1rem; }
+        .mining-fact p { color: rgba(255,255,255,0.85); line-height: 1.7; font-size: 0.95rem; }
+
+        
+        @media (max-width: 1024px) {
+            .impact-numbers { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .threats-grid { grid-template-columns: 1fr; }
+            .impact-numbers { grid-template-columns: repeat(2, 1fr); }
+            .mining-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-leaf"></i></div>
+                <span class="logo-text">Bio Istmo</span>
+            </a>
+            <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú de navegación" title="Abrir menú de navegación"><i class="fas fa-bars"></i></button>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="biodiversidad.html" class="nav-link">¿Qué es?</a>
+                <a href="especies.html" class="nav-link">Especies</a>
+                <a href="panama.html" class="nav-link">Panamá</a>
+                <a href="juego.html" class="nav-link">Juego</a>
+                <a href="huella.html" class="nav-link">Huella</a>
+                <a href="importancia.html" class="nav-link">Importancia</a>
+                <a href="amenazas.html" class="nav-link active">Amenazas</a>
+                <a href="conservacion.html" class="nav-link">Conservación</a>
+                <a href="conservacion.html" class="nav-cta">Participa</a>
+            </div>
+        </div>
+    </nav>
+
+        <section class="page-hero" style="background: linear-gradient(135deg, rgba(122,26,26,0.95) 0%, rgba(61,10,10,0.9) 60%, rgba(26,26,10,0.88) 100%), url('https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=80&w=1600&auto=format&fit=crop') center/cover;">
+        <div class="page-hero-content">
+            <span class="page-hero-tag" style="color: #e9a87c;">07 · Desafíos Actuales</span>
+            <h1>Las amenazas a nuestra<br><em>biodiversidad</em></h1>
+            <p>Panamá posee una riqueza natural extraordinaria — pero está bajo presión. Conoce los factores que más la amenazan y qué datos respaldan la urgencia de actuar.</p>
+        </div>
+        <div class="hero-scroll"><i class="fas fa-chevron-down"></i></div>
+    </section>
+
+        <div class="alert-banner">
+        Según el <strong>IPBES (2019)</strong>, alrededor de <strong>1 millón de especies</strong> en el mundo están amenazadas de extinción — muchas en cuestión de décadas. Panamá no es la excepción.
+    </div>
+
+        <section class="impact-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">La magnitud del problema</span>
+                <h2 class="section-title">El impacto en números</h2>
+                <p class="section-subtitle">Los datos confirman lo que los ecosistemas ya muestran: la pérdida de biodiversidad en Panamá es real y acelerada.</p>
+            </div>
+            <div class="impact-numbers">
+                <div class="impact-number-card">
+                    <span class="big-num">50%</span>
+                    <span>de la cobertura forestal original de Panamá se ha perdido desde la colonización europea</span>
+                </div>
+                <div class="impact-number-card">
+                    <span class="big-num">20K</span>
+                    <span>hectáreas de bosque se pierden cada año por deforestación (MiAmbiente, 2022)</span>
+                </div>
+                <div class="impact-number-card">
+                    <span class="big-num">60+</span>
+                    <span>especies de anfibios han desaparecido de Panamá desde los años 80 por el hongo quitridio</span>
+                </div>
+                <div class="impact-number-card">
+                    <span class="big-num">3°C</span>
+                    <span>de aumento de temperatura proyectado para Panamá en escenario sin acción climática (CEPAL, 2024)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <section class="section" style="background: var(--cream);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Las 5 grandes amenazas</span>
+                <h2 class="section-title">¿Qué está destruyendo nuestra biodiversidad?</h2>
+                <p class="section-subtitle">Los científicos identifican cinco presiones principales que actúan, muchas veces, en simultáneo y se refuerzan entre sí.</p>
+            </div>
+            <div class="threats-grid">
+
+                <div class="threat-card-new">
+                    <div class="threat-card-inner">
+                        <div class="threat-header">
+                            <div class="threat-icon-new"><i class="fas fa-tree"></i></div>
+                            <div>
+                                <h3 class="threat-title-new">Deforestación</h3>
+                                <span class="threat-severity severity-critical">Crítica</span>
+                            </div>
+                        </div>
+                        <p class="threat-description">La expansión agrícola, ganadera y el desarrollo urbano son las causas principales. La ganadería extensiva ocupa el 30% del territorio nacional, frecuentemente en tierras que antes eran bosque primario.</p>
+                        <ul class="threat-list">
+                            <li>Fragmentación de hábitats que aísla poblaciones de fauna</li>
+                            <li>Pérdida de corredores biológicos entre el Darién y La Amistad</li>
+                            <li>Erosión del suelo y sedimentación que daña ríos y la cuenca del Canal</li>
+                            <li>Reducción de la captura de carbono y mayor vulnerabilidad climática</li>
+                        </ul>
+                        <div class="threat-stat">
+                            <strong>~20,000 ha/año</strong>
+                            pérdida neta de bosque en Panamá
+                        </div>
+                        <p class="threat-source"><i class="fas fa-book-open"></i> FAO Global Forest Resources Assessment 2020; MiAmbiente, Informe de Cobertura Forestal 2022</p>
+                    </div>
+                </div>
+
+                <div class="threat-card-new">
+                    <div class="threat-card-inner">
+                        <div class="threat-header">
+                            <div class="threat-icon-new"><i class="fas fa-temperature-high"></i></div>
+                            <div>
+                                <h3 class="threat-title-new">Cambio Climático</h3>
+                                <span class="threat-severity severity-critical">Crítica</span>
+                            </div>
+                        </div>
+                        <p class="threat-description">El aumento de temperatura y la alteración de los patrones de lluvia afectan ecosistemas que evolucionaron bajo condiciones estables durante millones de años. El Caribe panameño ya experimenta blanqueamiento masivo de corales.</p>
+                        <ul class="threat-list">
+                            <li>Blanqueamiento de corales en Bocas del Toro y archipiélago de San Blas</li>
+                            <li>Alteración del ciclo hidrológico que afecta al Canal de Panamá</li>
+                            <li>Cambios en los patrones de migración de aves y mariposas</li>
+                            <li>Desplazamiento altitudinal de especies en el Volcán Barú</li>
+                        </ul>
+                        <div class="threat-stat">
+                            <strong>+1.2°C</strong>
+                            temperatura media ya registrada sobre el nivel preindustrial en la región
+                        </div>
+                        <p class="threat-source"><i class="fas fa-book-open"></i> IPCC AR6 2023; CEPAL, Cambio Climático en Centroamérica 2024; STRI Coral Reef Reports</p>
+                    </div>
+                </div>
+
+                <div class="threat-card-new">
+                    <div class="threat-card-inner">
+                        <div class="threat-header">
+                            <div class="threat-icon-new"><i class="fas fa-industry"></i></div>
+                            <div>
+                                <h3 class="threat-title-new">Contaminación</h3>
+                                <span class="threat-severity severity-high">Alta</span>
+                            </div>
+                        </div>
+                        <p class="threat-description">Los vertidos industriales, el uso intensivo de agroquímicos y la basura plástica degradan ríos, costas y suelos. En Panamá, la falta de tratamiento adecuado de aguas residuales impacta ecosistemas acuáticos clave.</p>
+                        <ul class="threat-list">
+                            <li>Solo el 35% de las aguas residuales urbanas reciben tratamiento (BID, 2023)</li>
+                            <li>Acumulación de plástico en playas del Pacífico y el Caribe</li>
+                            <li>Agroquímicos en cuencas agrícolas afectan anfibios y peces</li>
+                            <li>Bioacumulación de metales pesados por minería informal en ríos</li>
+                        </ul>
+                        <div class="threat-stat">
+                            <strong>65%</strong>
+                            de aguas residuales sin tratamiento adecuado en Panamá
+                        </div>
+                        <p class="threat-source"><i class="fas fa-book-open"></i> BID, Diagnóstico de Agua y Saneamiento en Panamá 2023; ANAM, Informe Ambiental Nacional</p>
+                    </div>
+                </div>
+
+                <div class="threat-card-new">
+                    <div class="threat-card-inner">
+                        <div class="threat-header">
+                            <div class="threat-icon-new"><i class="fas fa-paw"></i></div>
+                            <div>
+                                <h3 class="threat-title-new">Tráfico Ilegal de Especies</h3>
+                                <span class="threat-severity severity-high">Alta</span>
+                            </div>
+                        </div>
+                        <p class="threat-description">Panamá, por su posición como puente continental, es ruta de tránsito y punto de origen del tráfico ilegal de fauna y flora silvestres — el cuarto negocio ilícito más lucrativo del mundo.</p>
+                        <ul class="threat-list">
+                            <li>Loros, monos, tortugas y jaguares son las especies más traficadas</li>
+                            <li>Orquídeas y palmas endémicas extraídas de bosques protegidos</li>
+                            <li>Alta mortalidad durante captura y transporte (hasta 80% de los animales)</li>
+                            <li>Introducción de enfermedades en poblaciones silvestres</li>
+                        </ul>
+                        <div class="threat-stat">
+                            <strong>4°</strong>
+                            negocio ilícito más lucrativo en el mundo (UNODC, 2023)
+                        </div>
+                        <p class="threat-source"><i class="fas fa-book-open"></i> UNODC, World Wildlife Crime Report 2023; MiAmbiente, Decomisos de Fauna 2022</p>
+                    </div>
+                </div>
+
+                <div class="threat-card-new">
+                    <div class="threat-card-inner">
+                        <div class="threat-header">
+                            <div class="threat-icon-new"><i class="fas fa-biohazard"></i></div>
+                            <div>
+                                <h3 class="threat-title-new">Especies Invasoras y Enfermedades</h3>
+                                <span class="threat-severity severity-critical">Crítica</span>
+                            </div>
+                        </div>
+                        <p class="threat-description">Las especies introducidas desplazan a las nativas al competir por recursos o depredándolas. En Panamá, el hongo quitridio (<em>Batrachochytrium dendrobatidis</em>) ha devastado poblaciones de anfibios de forma irreversible.</p>
+                        <ul class="threat-list">
+                            <li>Hongo quitridio: causa de extinción de más de 60 especies de anfibios en Panamá</li>
+                            <li>Pez diablo (<em>Pterois volitans</em>) invasor en el Caribe panameño</li>
+                            <li>Ranas y tortugas exóticas liberadas compiten con nativas</li>
+                            <li>Plantas invasoras (pasto jaragua) reemplazan cobertura boscosa nativa</li>
+                        </ul>
+                        <div class="threat-stat">
+                            <strong>60+</strong>
+                            especies de anfibios perdidas en Panamá desde los años 80 por el hongo quitridio
+                        </div>
+                        <p class="threat-source"><i class="fas fa-book-open"></i> Lips et al. (2006), PNAS; STRI Chytrid Monitoring Program; UICN Lista Roja 2024</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+        <section class="mining-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Caso de estudio · Panamá</span>
+                <h2 class="section-title">La controversia minera en Cobre Panamá</h2>
+                <p class="section-subtitle">El conflicto más reciente y visible sobre la disyuntiva entre desarrollo económico y conservación de biodiversidad.</p>
+            </div>
+            <div class="mining-grid">
+                <div class="mining-fact">
+                    <h4><i class="fas fa-map-marked-alt"></i> El proyecto</h4>
+                    <p>La mina de Cobre Panamá, ubicada en Donoso, Colón, fue la mayor inversión privada en la historia del país (~$10,000 millones). Operó en zona de bosque húmedo tropical de alta biodiversidad, en la cuenca del río Caimito.</p>
+                </div>
+                <div class="mining-fact">
+                    <h4><i class="fas fa-exclamation-triangle"></i> El impacto ambiental</h4>
+                    <p>El proyecto implicó la remoción de miles de hectáreas de bosque primario, riesgo de contaminación de acuíferos con metales pesados, y afectación a comunidades indígenas Ngäbe-Buglé dependientes de los ecosistemas locales.</p>
+                </div>
+                <div class="mining-fact">
+                    <h4><i class="fas fa-gavel"></i> La decisión ciudadana</h4>
+                    <p>En noviembre de 2023, protestas masivas llevaron a la Corte Suprema a declarar inconstitucional el contrato de concesión minera. La mina fue cerrada. El hecho demostró que la ciudadanía puede influir en decisiones sobre biodiversidad.</p>
+                </div>
+                <div class="mining-fact">
+                    <h4><i class="fas fa-question-circle"></i> El debate que continúa</h4>
+                    <p>El cierre dejó cuestiones abiertas: ¿Cómo recuperar el bosque perturbado? ¿Qué hacer con los residuos y pasivos ambientales? El caso es ahora referencia internacional sobre gobernanza ambiental y participación ciudadana.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <section class="cta-section">
+        <div class="container">
+            <span class="section-tag">¿Y ahora qué?</span>
+            <h2 class="section-title">Conocer las amenazas es el primer paso</h2>
+            <p>Las soluciones existen: áreas protegidas, legislación, ciencia ciudadana y cambios en el consumo. Descubre qué se está haciendo y cómo puedes sumarte.</p>
+            <div class="cta-buttons">
+                <a href="conservacion.html" class="btn btn-primary">Ver acciones de conservación <i class="fas fa-shield-alt"></i></a>
+                <a href="huella.html" class="btn btn-secondary">Calcular mi huella <i class="fas fa-calculator"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: #1a2e1a; color: #f0f0f0; padding: 60px 0 30px; position: relative; overflow: hidden;">
+    <div style="position: absolute; top: 20px; right: 20px; opacity: 0.1; font-size: 4rem; pointer-events: none;">
+        <i class="fas fa-paw"></i><i class="fas fa-leaf"></i><i class="fas fa-tree"></i><i class="fas fa-dove"></i>
+    </div>
+    <div style="position: absolute; bottom: 20px; left: 20px; opacity: 0.1; font-size: 4rem; pointer-events: none;">
+        <i class="fas fa-fish"></i><i class="fas fa-feather-alt"></i><i class="fas fa-seedling"></i>
+    </div>
+
+    <div class="container" style="position: relative; z-index: 2;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 40px;">
+            
+            <div>
+                <h3 style="color: var(--mustard-green); font-size: 2rem; margin-bottom: 10px; font-family: var(--font-serif);">
+                    <i class="fas fa-leaf" style="margin-right: 10px;"></i>Bio Istmo
+                </h3>
+                <p style="line-height: 1.6; margin-bottom: 25px; max-width: 400px; font-style: italic;">
+                    “Conectando continentes, protegiendo la vida”
+                </p>
+
+                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; margin-bottom: 25px;">
+                    <h4 style="color: var(--mustard-green); margin-bottom: 15px; font-size: 1.2rem;">Equipo de investigación</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div>
+                            <p style="margin: 0;"><strong>Hernández, Ceilyn</strong></p>
+                            <p style="margin: 0; font-size: 0.9rem; opacity: 0.8;">Diseño e investigación</p>
+                        </div>
+                        <div>
+                            <p style="margin: 0;"><strong>Martínez, Yomayri</strong></p>
+                            <p style="margin: 0; font-size: 0.9rem; opacity: 0.8;">Diseño e investigación</p>
+                        </div>
+                        <div>
+                            <p style="margin: 0;"><strong>Pimentel, Naim</strong></p>
+                            <p style="margin: 0; font-size: 0.9rem; opacity: 0.8;">Diseño e investigación</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 15px; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 15px;">
+                        <i class="fas fa-university"></i> Facultad de Sistemas · UTP · 2026
+                    </p>
+                </div>
+
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 30px;">
+                    <a href="index.html" style="color: white; text-decoration: none;">Inicio</a>
+                    <a href="biodiversidad.html" style="color: white; text-decoration: none;">¿Qué es?</a>
+                    <a href="especies.html" style="color: white; text-decoration: none;">Especies</a>
+                    <a href="panama.html" style="color: white; text-decoration: none;">Panamá</a>
+                    <a href="juego.html" style="color: white; text-decoration: none;">Juego</a>
+                    <a href="huella.html" style="color: white; text-decoration: none;">Huella</a>
+                    <a href="importancia.html" style="color: white; text-decoration: none;">Importancia</a>
+                    <a href="amenazas.html" style="color: white; text-decoration: none;">Amenazas</a>
+                    <a href="conservacion.html" style="color: white; text-decoration: none;">Conservación</a>
+                    <a href="conservacion.html" style="background: var(--mustard-green); color: white; padding: 5px 15px; border-radius: 50px; text-decoration: none; font-weight: bold;">Participa</a>
+                </div>
+
+                <p style="font-size: 0.88rem; color: rgba(255,255,255,0.5); margin-top: 5px;">Proyecto académico · UTP 2026</p>
+            </div>
+
+            
+            <div>
+                <h3 style="color: var(--mustard-green); font-size: 1.5rem; margin-bottom: 20px;">
+                    <i class="fas fa-pagelines" style="margin-right: 10px;"></i>Conéctate con la naturaleza
+                </h3>
+                <p style="margin-bottom: 20px;">Recibe nuestras guías de campo y novedades.</p>
+
+                <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 12px; backdrop-filter: blur(5px);">
+                    <div style="margin-bottom: 20px;">
+                        <input type="email" placeholder="Tu email" style="width: 100%; padding: 12px; background: transparent; border: 1px solid rgba(255,255,255,0.3); border-radius: 6px; color: white; margin-bottom: 15px;">
+                        <input type="text" placeholder="Tu nombre" style="width: 100%; padding: 12px; background: transparent; border: 1px solid rgba(255,255,255,0.3); border-radius: 6px; color: white;">
+                    </div>
+                    <button style="background: var(--mustard-green); color: white; border: none; padding: 12px 25px; border-radius: 6px; font-weight: bold; cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                        <i class="fas fa-feather-alt"></i> SUSCRIBIRME
+                    </button>
+                    <p style="font-size: 0.8rem; margin-top: 15px; opacity: 0.6;">Sin spam, solo naturaleza.</p>
+                </div>
+
+                <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 10px;">
+                    <p><i class="fas fa-university" style="color: var(--mustard-green); width: 25px;"></i> Universidad Tecnológica de Panamá</p>
+                    <p><i class="fas fa-map-pin" style="color: var(--mustard-green); width: 25px;"></i> Panamá Oeste · 2026</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2);">
+            <div style="color: rgba(255,255,255,0.4); font-size: 0.9rem;">
+                Fuentes: MiAmbiente · STRI · UICN · UNESCO
+            </div>
+            <div style="color: rgba(255,255,255,0.5); font-size: 0.9rem;">
+                <i class="fas fa-copyright"></i> 2026 Bio Istmo · CC BY-NC
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 25px; font-size: 0.8rem; color: rgba(255,255,255,0.3); display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+            <span><i class="fas fa-paw"></i> Ilustraciones: FontAwesome</span>
+            <span><i class="fas fa-leaf"></i> Contenido: investigación original</span>
+            <span><i class="fas fa-tree"></i> Diseño: Grupo de Ecología UTP</span>
+        </div>
+    </div>
+</footer>
+    <script src="js.js"></script>
+</body>
+</html>

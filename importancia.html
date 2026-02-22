@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bio Istmo | Importancia de la Biodiversidad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css.css">
+    <style>
+        
+        .intro-quote {
+            max-width: 850px;
+            margin: 0 auto 70px;
+            text-align: center;
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.6rem;
+            line-height: 1.6;
+            color: var(--phthalo-green);
+            font-style: italic;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            border-left: 6px solid var(--mustard-green);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .intro-quote cite { display: block; font-size: 0.9rem; font-style: normal; color: var(--space-sparkle); margin-top: 15px; }
+
+         .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 5px solid var(--mustard-green);
+        }
+        .service-card:hover { transform: translateY(-6px); box-shadow: 0 14px 35px rgba(0,0,0,0.12); }
+        .service-icon {
+            width: 60px; height: 60px;
+            background: linear-gradient(135deg, var(--mustard-green), var(--phthalo-green));
+            border-radius: 18px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 22px;
+        }
+        .service-icon i { color: white; font-size: 1.5rem; }
+        .service-type {
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--mustard-green);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .service-title { font-family: 'Libre Baskerville', serif; font-size: 1.35rem; color: var(--phthalo-green); margin-bottom: 14px; }
+        .service-description { color: var(--space-sparkle); line-height: 1.8; font-size: 0.95rem; margin-bottom: 16px; }
+        .service-panama {
+            background: #f0f4e8;
+            border-radius: 10px;
+            padding: 12px 15px;
+            font-size: 0.88rem;
+            color: var(--phthalo-green);
+            border-left: 3px solid var(--mustard-green);
+        }
+        .service-panama strong { color: var(--mustard-green); }
+        .service-source { margin-top: 14px; font-size: 0.76rem; color: #aaa; }
+        .service-source i { color: var(--mustard-green); margin-right: 4px; }
+
+          .canal-section {
+            background: linear-gradient(135deg, var(--phthalo-green), var(--space-sparkle));
+            color: white;
+            padding: 90px 0;
+        }
+        .canal-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .canal-text h2 { font-family: 'Libre Baskerville', serif; font-size: 2.5rem; color: white; margin-bottom: 20px; line-height: 1.3; }
+        .canal-text h2 em { font-style: italic; color: var(--mustard-green); }
+        .canal-text p { color: rgba(255,255,255,0.85); line-height: 1.8; margin-bottom: 15px; font-size: 0.98rem; }
+        .canal-stats { display: flex; flex-direction: column; gap: 20px; }
+        .canal-stat-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 14px;
+            padding: 22px 25px;
+            border-left: 4px solid var(--mustard-green);
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+        }
+        .canal-stat-item .num { font-family: 'Libre Baskerville', serif; font-size: 2rem; color: var(--mustard-green); display: block; }
+        .canal-stat-item span:last-child { font-size: 0.9rem; color: rgba(255,255,255,0.8); }
+
+          .medicine-section { background: var(--cream); padding: 90px 0; }
+        .medicine-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; margin-top: 50px; }
+        .medicine-text p { color: var(--space-sparkle); line-height: 1.9; margin-bottom: 15px; }
+        .medicine-text h3 { font-family: 'Libre Baskerville', serif; font-size: 1.8rem; color: var(--phthalo-green); margin-bottom: 20px; }
+        .medicine-examples { display: flex; flex-direction: column; gap: 18px; }
+        .medicine-example {
+            background: white;
+            border-radius: 14px;
+            padding: 22px 25px;
+            border-left: 4px solid var(--space-sparkle);
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+        }
+        .medicine-example h4 { font-size: 1rem; color: var(--phthalo-green); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+        .medicine-example h4 i { color: var(--mustard-green); }
+        .medicine-example p { font-size: 0.88rem; color: var(--space-sparkle); line-height: 1.6; margin: 0; }
+
+         .economy-numbers {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+        .economy-card {
+            text-align: center;
+            background: white;
+            border-radius: 18px;
+            padding: 35px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            border-bottom: 4px solid var(--mustard-green);
+        }
+        .economy-card .big { font-family: 'Libre Baskerville', serif; font-size: 2.8rem; color: var(--mustard-green); display: block; line-height: 1; margin-bottom: 10px; }
+        .economy-card span:last-child { font-size: 0.88rem; color: var(--space-sparkle); line-height: 1.4; }
+
+        
+        .cta-section {
+            background: linear-gradient(135deg, var(--space-sparkle) 0%, var(--phthalo-green) 100%);
+            padding: 80px 0; text-align: center; color: white;
+        }
+        .cta-section .section-tag { color: var(--mustard-green); }
+        .cta-section h2 { color: white; font-family: 'Libre Baskerville', serif; font-size: 2.8rem; margin-bottom: 20px; }
+        .cta-section p { color: rgba(255,255,255,0.85); font-size: 1.1rem; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .cta-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+
+        @media (max-width: 768px) {
+            .services-grid { grid-template-columns: 1fr; }
+            .canal-content { grid-template-columns: 1fr; }
+            .medicine-grid { grid-template-columns: 1fr; }
+            .economy-numbers { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-leaf"></i></div>
+                <span class="logo-text">Bio Istmo</span>
+            </a>
+            <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú de navegación" title="Abrir menú de navegación"><i class="fas fa-bars"></i></button>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="biodiversidad.html" class="nav-link">¿Qué es?</a>
+                <a href="especies.html" class="nav-link">Especies</a>
+                <a href="panama.html" class="nav-link">Panamá</a>
+                <a href="juego.html" class="nav-link">Juego</a>
+                <a href="huella.html" class="nav-link">Huella</a>
+                <a href="importancia.html" class="nav-link active">Importancia</a>
+                <a href="amenazas.html" class="nav-link">Amenazas</a>
+                <a href="conservacion.html" class="nav-link">Conservación</a>
+                <a href="conservacion.html" class="nav-cta">Participa</a>
+            </div>
+        </div>
+    </nav>
+
+        <section class="page-hero" style="background: linear-gradient(135deg, rgba(25,53,12,0.88) 0%, rgba(64,103,104,0.82) 100%), url('https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?q=80&w=1600&auto=format&fit=crop') center/cover;">
+        <div class="page-hero-content">
+            <span class="page-hero-tag">06 · Valor Vital</span>
+            <h1>¿Por qué nos importa la<br><em>biodiversidad</em>?</h1>
+            <p>La biodiversidad no es solo un tema de naturaleza: sostiene nuestra economía, garantiza nuestra salud y define nuestra identidad. En Panamá, esta conexión es más evidente que en casi ningún otro lugar.</p>
+        </div>
+        <div class="hero-scroll"><i class="fas fa-chevron-down"></i></div>
+    </section>
+
+        <section class="section" style="background: white;">
+        <div class="container">
+            <div class="intro-quote">
+                "Nosotros dependemos completamente de los servicios que nos proveen los ecosistemas. La biodiversidad no es un lujo estético — es la infraestructura invisible que sostiene toda la actividad humana."
+                <cite>— Dr. Robert Costanza, líder en economía ecológica. Nature, 1997 (revisado 2014)</cite>
+            </div>
+
+                        <div class="section-header">
+                <span class="section-tag">01 / Servicios ecosistémicos</span>
+                <h2 class="section-title">Lo que la naturaleza hace por nosotros</h2>
+                <p class="section-subtitle">Los ecosistemas proveen servicios gratuitos e insustituibles. En Panamá, el valor de estos servicios va mucho más allá de lo que cualquier industria podría reemplazar.</p>
+            </div>
+
+            <div class="services-grid">
+                                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-tint"></i></div>
+                    <div class="service-type">Servicio de regulación</div>
+                    <h3 class="service-title">Ciclo del agua</h3>
+                    <p class="service-description">Los bosques actúan como esponjas gigantes: absorben lluvia, regulan su liberación y mantienen ríos activos todo el año. Sin ellos, las cuencas se secan en verano y se inundan en invierno.</p>
+                    <div class="service-panama">
+                        <strong>En Panamá:</strong> el bosque tropical de la Cuenca del Canal regula el 80% del agua que mueve los barcos a través del Canal. La ACP invierte millones en conservar estos bosques precisamente porque sustituir este servicio sería imposible.
+                    </div>
+                    <p class="service-source"><i class="fas fa-book-open"></i> Autoridad del Canal de Panamá, Informe Ambiental 2023</p>
+                </div>
+
+                                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-cloud"></i></div>
+                    <div class="service-type">Servicio de regulación</div>
+                    <h3 class="service-title">Estabilidad climática</h3>
+                    <p class="service-description">Los bosques tropicales capturan carbono y regulan el clima local al generar lluvia y moderar temperaturas. Cada hectárea de bosque húmedo tropical almacena entre 150 y 200 toneladas de carbono.</p>
+                    <div class="service-panama">
+                        <strong>En Panamá:</strong> los bosques del Darién y La Amistad almacenan cientos de millones de toneladas de CO₂. Su pérdida no solo afecta al país — contribuye al calentamiento global.
+                    </div>
+                    <p class="service-source"><i class="fas fa-book-open"></i> IPCC AR6 (2023); STRI Tropical Forest Carbon Stocks</p>
+                </div>
+
+                                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-seedling"></i></div>
+                    <div class="service-type">Servicio de aprovisionamiento</div>
+                    <h3 class="service-title">Seguridad alimentaria</h3>
+                    <p class="service-description">La diversidad genética de plantas silvestres es el banco de genes del que depende la agricultura para adaptarse a plagas, sequías y nuevas condiciones climáticas. Sin esa diversidad, los cultivos son vulnerables.</p>
+                    <div class="service-panama">
+                        <strong>En Panamá:</strong> comunidades Ngäbe-Buglé y Guna mantienen variedades nativas de maíz, yuca y ñame con resistencias únicas que ningún laboratorio ha logrado replicar.
+                    </div>
+                    <p class="service-source"><i class="fas fa-book-open"></i> FAO, State of the World's Biodiversity for Food and Agriculture 2019</p>
+                </div>
+
+                                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-bug"></i></div>
+                    <div class="service-type">Servicio de apoyo</div>
+                    <h3 class="service-title">Polinización</h3>
+                    <p class="service-description">El 75% de los cultivos alimentarios del mundo dependen de la polinización por animales — principalmente abejas, mariposas, aves y murciélagos. La pérdida de polinizadores amenaza directamente la producción de alimentos.</p>
+                    <div class="service-panama">
+                        <strong>En Panamá:</strong> cultivos de plátano, mango, melón y cacao dependen de polinizadores nativos. La pérdida de hábitat para abejas nativas ya impacta rendimientos agrícolas en zonas rurales.
+                    </div>
+                    <p class="service-source"><i class="fas fa-book-open"></i> IPBES, Informe de Evaluación sobre Polinizadores 2016</p>
+                </div>
+
+                                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-pills"></i></div>
+                    <div class="service-type">Servicio de aprovisionamiento</div>
+                    <h3 class="service-title">Medicina y salud</h3>
+                    <p class="service-description">El 50% de los medicamentos aprobados en los últimos 30 años derivan directa o indirectamente de compuestos naturales. Los bosques tropicales, con su altísima biodiversidad, son la mayor farmacia sin explorar del planeta.</p>
+                    <div class="service-panama">
+                        <strong>En Panamá:</strong> el STRI y la Universidad de Panamá investigan activamente compuestos de plantas y ranas con potencial anticancerígeno, antibiótico y analgésico. La rana dorada produce toxinas con propiedades analgésicas únicas.
+                    </div>
+                    <p class="service-source"><i class="fas fa-book-open"></i> Newman & Cragg (2020), Journal of Natural Products; STRI Research Programs</p>
+                </div>
+
+                                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-binoculars"></i></div>
+                    <div class="service-type">Servicio cultural</div>
+                    <h3 class="service-title">Turismo y economía</h3>
+                    <p class="service-description">El turismo de naturaleza es la categoría de más rápido crecimiento en el turismo mundial. Los países con alta biodiversidad tienen una ventaja competitiva única e insustituible para atraer visitantes de alto gasto.</p>
+                    <div class="service-panama">
+                        <strong>En Panamá:</strong> el aviturismo (turismo para observar aves) genera millones de dólares anuales. Panamá figura entre los 10 destinos de aviturismo más importantes del mundo, gracias a sus 978 especies de aves.
+                    </div>
+                    <p class="service-source"><i class="fas fa-book-open"></i> ATP Panamá, Informe de Turismo 2023; Cornell Lab of Ornithology, Birding Economy Report</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <section class="canal-section">
+        <div class="container">
+            <div class="canal-content">
+                <div class="canal-text">
+                    <span class="section-tag" style="color: var(--mustard-green);">02 / El caso más concreto</span>
+                    <h2>La biodiversidad que<br>mueve el <em>comercio mundial</em></h2>
+                    <p>El Canal de Panamá mueve el 5% del comercio marítimo global. Lo que pocos saben es que su funcionamiento depende directamente de la biodiversidad de los bosques que lo rodean.</p>
+                    <p>Sin los bosques de la Cuenca Hidrográfica del Canal, no hay agua suficiente para operar las esclusas. La ACP es hoy uno de los mayores inversores en conservación de bosques del hemisferio — no por ecología, sino por pura necesidad económica.</p>
+                    <p>Este es el argumento más poderoso: <strong>la biodiversidad es infraestructura económica</strong>, no solo belleza natural.</p>
+                </div>
+                <div class="canal-stats">
+                    <div class="canal-stat-item">
+                        <span class="num">5%</span>
+                        <span>del comercio marítimo mundial pasa por el Canal de Panamá cada año</span>
+                    </div>
+                    <div class="canal-stat-item">
+                        <span class="num">350K ha</span>
+                        <span>de cuenca hidrográfica protegida para garantizar el agua del Canal</span>
+                    </div>
+                    <div class="canal-stat-item">
+                        <span class="num">$4.9B</span>
+                        <span>en ingresos que el Canal aporta a Panamá anualmente (ACP, 2023)</span>
+                    </div>
+                    <div class="canal-stat-item">
+                        <span class="num">100%</span>
+                        <span>de ese ingreso depende de bosques tropicales saludables</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <section class="medicine-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">03 / La farmacia tropical</span>
+                <h2 class="section-title">Biodiversidad y medicina</h2>
+                <p class="section-subtitle">Panamá alberga miles de especies cuyas propiedades químicas aún no conocemos completamente. Cada especie extinta es un medicamento potencial que perdemos para siempre.</p>
+            </div>
+            <div class="medicine-grid">
+                <div class="medicine-text">
+                    <h3>Una farmacia que aún estamos descubriendo</h3>
+                    <p>El Smithsonian Tropical Research Institute (STRI), con sede en Panamá desde 1923, es uno de los centros de investigación biológica más importantes del mundo. Sus científicos han documentado miles de compuestos con potencial médico en especies panameñas.</p>
+                    <p>Las ranas del género <em>Dendrobates</em> — las ranas venenosas — producen alcaloides que tienen usos en analgesia. La bacteria marina <em>Salinispora</em>, encontrada en sedimentos del Caribe panameño, ha dado origen a compuestos anticancerígenos en investigación clínica.</p>
+                    <p>El problema es la carrera contra el tiempo: si las especies desaparecen antes de ser estudiadas, perdemos para siempre lo que podrían haber aportado a la medicina humana.</p>
+                    <p style="font-size: 0.85rem; color: #aaa; margin-top: 20px;"><i class="fas fa-book-open" style="color: var(--mustard-green);"></i> STRI Research Programs; Mayer & Heitman (2017), Nature Chemical Biology</p>
+                </div>
+                <div class="medicine-examples">
+                    <div class="medicine-example">
+                        <h4><i class="fas fa-frog"></i> Ranas <em>Dendrobates</em> (Ranas venenosas)</h4>
+                        <p>Sus alcaloides cutáneos inspiraron el desarrollo de analgésicos no opioides. La epibatidina, derivada de una rana ecuatoriana del mismo género, es 200 veces más potente que la morfina sin crear adicción.</p>
+                    </div>
+                    <div class="medicine-example">
+                        <h4><i class="fas fa-leaf"></i> Plantas de la familia Annonaceae</h4>
+                        <p>Investigadas por el STRI, contienen acetogeninas con propiedades citotóxicas. Varias especies del Darién han mostrado actividad anticancerígena en modelos de laboratorio.</p>
+                    </div>
+                    <div class="medicine-example">
+                        <h4><i class="fas fa-fish"></i> Organismos marinos (Coiba)</h4>
+                        <p>Los arrecifes de Coiba albergan esponjas y corales que producen compuestos antivirales y antibacterianos únicos, investigados como alternativa a antibióticos convencionales.</p>
+                    </div>
+                    <div class="medicine-example">
+                        <h4><i class="fas fa-tree"></i> Plantas medicinales indígenas</h4>
+                        <p>Comunidades Guna y Emberá usan más de 400 plantas medicinales documentadas. Muchas aún no han sido analizadas farmacológicamente. Su conocimiento tradicional es una guía invaluable para la bioprospección.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <section class="section" style="background: white;">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">04 / El valor económico</span>
+                <h2 class="section-title">La biodiversidad en números</h2>
+                <p class="section-subtitle">El economista Robert Costanza estimó en 1997 que los servicios de los ecosistemas valen más que el PIB mundial. Las cifras actualizadas confirman la magnitud de lo que está en juego.</p>
+            </div>
+            <div class="economy-numbers">
+                <div class="economy-card">
+                    <span class="big">$44 T</span>
+                    <span>valor anual estimado de todos los servicios ecosistémicos del planeta (Constanza et al., 2014)</span>
+                </div>
+                <div class="economy-card">
+                    <span class="big">$300M+</span>
+                    <span>ingresos del aviturismo en Panamá en los últimos años (ATP, 2022)</span>
+                </div>
+                <div class="economy-card">
+                    <span class="big">40%</span>
+                    <span>de la economía mundial depende directamente de la biodiversidad y los servicios ecosistémicos (WEF, 2020)</span>
+                </div>
+                <div class="economy-card">
+                    <span class="big">$0</span>
+                    <span>costo para Panamá de los servicios de regulación hídrica del bosque — pero insustituibles si desaparecen</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <section class="cta-section">
+        <div class="container">
+            <span class="section-tag">¿Qué hacemos con esto?</span>
+            <h2>Saber es el primer paso. Actuar es el siguiente.</h2>
+            <p>Conocer el valor de la biodiversidad nos da argumentos para protegerla. Descubre cómo Panamá actúa y cómo puedes sumarte tú.</p>
+            <div class="cta-buttons">
+                <a href="amenazas.html" class="btn btn-primary" style="background: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.4);">Ver las amenazas <i class="fas fa-exclamation-triangle"></i></a>
+                <a href="conservacion.html" class="btn btn-primary">Acciones de conservación <i class="fas fa-shield-alt"></i></a>
+            </div>
+        </div>
+    </section>
+    
+   
+
+    <footer style="background: #1a2e1a; color: #f0f0f0; padding: 60px 0 30px; position: relative; overflow: hidden;">
+    <div style="position: absolute; top: 20px; right: 20px; opacity: 0.1; font-size: 4rem; pointer-events: none;">
+        <i class="fas fa-paw"></i><i class="fas fa-leaf"></i><i class="fas fa-tree"></i><i class="fas fa-dove"></i>
+    </div>
+    <div style="position: absolute; bottom: 20px; left: 20px; opacity: 0.1; font-size: 4rem; pointer-events: none;">
+        <i class="fas fa-fish"></i><i class="fas fa-feather-alt"></i><i class="fas fa-seedling"></i>
+    </div>
+
+    <div class="container" style="position: relative; z-index: 2;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 40px;">
+                        <div>
+                <h3 style="color: var(--mustard-green); font-size: 2rem; margin-bottom: 10px; font-family: var(--font-serif);">
+                    <i class="fas fa-leaf" style="margin-right: 10px;"></i>Bio Istmo
+                </h3>
+                <p style="line-height: 1.6; margin-bottom: 25px; max-width: 400px; font-style: italic;">
+                    “Conectando continentes, protegiendo la vida”
+                </p>
+
+                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; margin-bottom: 25px;">
+                    <h4 style="color: var(--mustard-green); margin-bottom: 15px; font-size: 1.2rem;">Equipo de investigación</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div>
+                            <p style="margin: 0;"><strong>Hernández, Ceilyn</strong></p>
+                            <p style="margin: 0; font-size: 0.9rem; opacity: 0.8;">Diseño e investigación</p>
+                        </div>
+                        <div>
+                            <p style="margin: 0;"><strong>Martínez, Yomayri</strong></p>
+                            <p style="margin: 0; font-size: 0.9rem; opacity: 0.8;">Diseño e investigación</p>
+                        </div>
+                        <div>
+                            <p style="margin: 0;"><strong>Pimentel, Naim</strong></p>
+                            <p style="margin: 0; font-size: 0.9rem; opacity: 0.8;">Diseño e investigación</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 15px; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 15px;">
+                        <i class="fas fa-university"></i> Facultad de Sistemas · UTP · 2026
+                    </p>
+                </div>
+
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 30px;">
+                    <a href="index.html" style="color: white; text-decoration: none;">Inicio</a>
+                    <a href="biodiversidad.html" style="color: white; text-decoration: none;">¿Qué es?</a>
+                    <a href="especies.html" style="color: white; text-decoration: none;">Especies</a>
+                    <a href="panama.html" style="color: white; text-decoration: none;">Panamá</a>
+                    <a href="juego.html" style="color: white; text-decoration: none;">Juego</a>
+                    <a href="huella.html" style="color: white; text-decoration: none;">Huella</a>
+                    <a href="importancia.html" style="color: white; text-decoration: none;">Importancia</a>
+                    <a href="amenazas.html" style="color: white; text-decoration: none;">Amenazas</a>
+                    <a href="conservacion.html" style="color: white; text-decoration: none;">Conservación</a>
+                    <a href="conservacion.html" style="background: var(--mustard-green); color: white; padding: 5px 15px; border-radius: 50px; text-decoration: none; font-weight: bold;">Participa</a>
+                </div>
+
+                <p style="font-size: 0.88rem; color: rgba(255,255,255,0.5); margin-top: 5px;">Proyecto académico · UTP 2026</p>
+            </div>
+
+                        <div>
+                <h3 style="color: var(--mustard-green); font-size: 1.5rem; margin-bottom: 20px;">
+                    <i class="fas fa-pagelines" style="margin-right: 10px;"></i>Conéctate con la naturaleza
+                </h3>
+                <p style="margin-bottom: 20px;">Recibe nuestras guías de campo y novedades.</p>
+
+                <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 12px; -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px);">
+                    <div style="margin-bottom: 20px;">
+                        <input type="email" placeholder="Tu email" style="width: 100%; padding: 12px; background: transparent; border: 1px solid rgba(255,255,255,0.3); border-radius: 6px; color: white; margin-bottom: 15px;">
+                        <input type="text" placeholder="Tu nombre" style="width: 100%; padding: 12px; background: transparent; border: 1px solid rgba(255,255,255,0.3); border-radius: 6px; color: white;">
+                    </div>
+                    <button style="background: var(--mustard-green); color: white; border: none; padding: 12px 25px; border-radius: 6px; font-weight: bold; cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                        <i class="fas fa-feather-alt"></i> SUSCRIBIRME
+                    </button>
+                    <p style="font-size: 0.8rem; margin-top: 15px; opacity: 0.6;">Sin spam, solo naturaleza.</p>
+                </div>
+
+                <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 10px;">
+                    <p><i class="fas fa-university" style="color: var(--mustard-green); width: 25px;"></i> Universidad Tecnológica de Panamá</p>
+                    <p><i class="fas fa-map-pin" style="color: var(--mustard-green); width: 25px;"></i> Panamá Oeste · 2026</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2);">
+            <div style="color: rgba(255,255,255,0.4); font-size: 0.9rem;">
+                Fuentes: MiAmbiente · STRI · UICN · UNESCO
+            </div>
+            <div style="color: rgba(255,255,255,0.5); font-size: 0.9rem;">
+                <i class="fas fa-copyright"></i> 2026 Bio Istmo · CC BY-NC
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 25px; font-size: 0.8rem; color: rgba(255,255,255,0.3); display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+            <span><i class="fas fa-paw"></i> Ilustraciones: FontAwesome</span>
+            <span><i class="fas fa-leaf"></i> Contenido: investigación original</span>
+            <span><i class="fas fa-tree"></i> Diseño: Grupo de Ecología UTP</span>
+        </div>
+    </div>
+</footer>
+    <script src="js.js"></script>
+</body>
+</html>
