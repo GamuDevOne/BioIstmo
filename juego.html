@@ -221,7 +221,7 @@
     <script src="js.js"></script>
     <script>
     // ============================================================
-    //  BANCO DE PREGUNTAS — 15 en total, se eligen 10 al azar
+    //  BANCO DE PREGUNTAS — 30 en total, se eligen 10 al azar
     // ============================================================
     const ALL_QUESTIONS = [
         {
@@ -329,6 +329,112 @@
             correct: 1,
             explanation: "El <strong>Programa de Pago por Servicios Ambientales (PSA)</strong> compensa económicamente a propietarios privados que mantienen bosques en sus tierras o reforestan áreas degradadas. Reconoce que los bosques proveen servicios (agua limpia, carbono capturado, biodiversidad) que benefician a toda la sociedad, no solo al dueño del terreno. Es una herramienta clave de conservación en Panamá."
         }
+,
+        {
+            category: "Flora panameña",
+            question: "¿Cuál es la flor nacional de Panamá?",
+            options: ["Orquídea Espíritu Santo", "Heliconia de Wagner", "Rosa de Monte", "Flor de Canela"],
+            correct: 0,
+            explanation: "La <strong>Orquídea Espíritu Santo</strong> (<em>Peristeria elata</em>) es la flor nacional de Panamá. Su nombre viene de la figura que forma su interior, que asemeja una paloma. Está en peligro de extinción por la sobrecolecta y la pérdida de hábitat."
+        },
+        {
+            category: "Ecosistemas marinos",
+            question: "¿Cuántas especies de tortugas marinas visitan las costas de Panamá?",
+            options: ["2 especies", "4 especies", "5 especies", "7 especies"],
+            correct: 2,
+            explanation: "Las costas panameñas son visitadas por <strong>5 de las 7 especies de tortugas marinas</strong> del planeta: la baula, la carey, la verde, la caguama y la lora. Bocas del Toro y las playas del Caribe son sitios de anidación críticos, especialmente para la tortuga baula, la más grande del mundo."
+        },
+        {
+            category: "Geografía y biodiversidad",
+            question: "¿Qué hace única a la región del Darién en términos de conectividad terrestre?",
+            options: ["Es la única selva de América Central", "Es el único punto de la carretera Panamericana sin conexión terrestre", "Tiene la mayor altitud de Panamá", "Es la única zona sin carreteras de toda América"],
+            correct: 1,
+            explanation: "El <strong>Tapón del Darién</strong> es el único tramo interrumpido de la Carretera Panamericana, que va desde Alaska hasta Argentina. Esta discontinuidad ha preservado uno de los ecosistemas más ricos del mundo y actúa como barrera natural contra enfermedades del ganado. Mide aproximadamente 160 km de selva casi intransitable."
+        },
+        {
+            category: "Cifras de biodiversidad",
+            question: "¿Cuántas especies de mamíferos se han registrado en Panamá?",
+            options: ["Más de 50", "Más de 100", "Más de 220", "Más de 400"],
+            correct: 2,
+            explanation: "Panamá alberga <strong>más de 220 especies de mamíferos</strong>, incluyendo grandes felinos como el jaguar y el puma, 5 especies de felinos en total, tapires, manatíes, delfines, ballenas y una enorme diversidad de murciélagos. Los murciélagos solos representan más de 100 de esas especies."
+        },
+        {
+            category: "Ecosistemas",
+            question: "¿Cuál es el ecosistema de manglar más grande de Panamá?",
+            options: ["Golfo de Chiriquí", "Golfo de Montijo", "Bahía de Panamá", "Bocas del Toro"],
+            correct: 1,
+            explanation: "El <strong>Golfo de Montijo</strong>, en la provincia de Veraguas, alberga el mayor sistema de manglares de Panamá y es un Sitio RAMSAR (humedal de importancia internacional). Sus manglares son criadero de peces y camarones, protegen la costa de tormentas y capturan grandes cantidades de carbono."
+        },
+        {
+            category: "Conservación",
+            question: "El Corredor Biológico Mesoamericano conecta áreas protegidas desde México hasta Panamá. ¿Cuál es su función principal?",
+            options: ["Permitir el turismo ecológico continuo", "Facilitar el movimiento de fauna entre fragmentos de bosque", "Establecer una zona libre de actividad humana", "Conectar aeropuertos internacionales"],
+            correct: 1,
+            explanation: "El <strong>Corredor Biológico Mesoamericano</strong> facilita el movimiento de fauna silvestre entre fragmentos de bosque aislados, evitando la endogamia y permitiendo la recolonización de hábitats recuperados. Panamá juega un rol crucial como eslabón final del corredor, conectando Centroamérica con Sudamérica."
+        },
+        {
+            category: "Anfibios",
+            question: "¿Cuántas especies de anfibios existen en Panamá?",
+            options: ["Alrededor de 50", "Alrededor de 100", "Más de 185", "Más de 300"],
+            correct: 2,
+            explanation: "Panamá tiene registradas <strong>más de 185 especies de anfibios</strong>, la mayoría ranas. Es uno de los países con mayor densidad de anfibios por área en el mundo. Sin embargo, también ha sufrido una de las mayores pérdidas: más de 60 especies han desaparecido o colapsado desde los años 80 debido al hongo quitridio."
+        },
+        {
+            category: "Pueblos indígenas",
+            question: "¿Qué pueblo indígena panameño habita en archipiélagos del Caribe y es conocido por su intrincada medicina tradicional basada en plantas?",
+            options: ["Emberá", "Naso", "Guna", "Bri-Bri"],
+            correct: 2,
+            explanation: "El pueblo <strong>Guna (Kuna)</strong>, que habita el archipiélago de Guna Yala, posee un profundo conocimiento etnobotánico de las plantas medicinales del Caribe panameño. Sus <em>neles</em> (curanderos espirituales) mantienen una tradición de uso medicinal de más de 600 plantas documentadas. La comarca de Guna Yala es también modelo de autonomía indígena."
+        },
+        {
+            category: "Amenazas",
+            question: "¿Qué porcentaje de los arrecifes de coral del Caribe panameño han sido afectados por el blanqueamiento debido al cambio climático?",
+            options: ["Menos del 10%", "Alrededor del 25%", "Más del 50%", "Casi el 90%"],
+            correct: 2,
+            explanation: "Estudios del STRI indican que <strong>más del 50% de los arrecifes</strong> del Caribe panameño han experimentado blanqueamiento significativo. El aumento de la temperatura del mar, la acidificación oceánica y la contaminación costera son los principales factores. Los arrecifes de Bocas del Toro han sido especialmente afectados, aunque también muestran signos de recuperación en zonas protegidas."
+        },
+        {
+            category: "Servicios ecosistémicos",
+            question: "¿Cuánta agua dulce genera la Cuenca Hidrográfica del Canal de Panamá anualmente para abastecer a la población?",
+            options: ["Abastece solo al Canal, no a ciudades", "Abastece a cerca de 2 millones de personas", "Abastece solo al interior del país", "Genera agua pero se exporta"],
+            correct: 1,
+            explanation: "La Cuenca Hidrográfica del Canal no solo mueve las esclusas: también abastece de agua potable a <strong>cerca de 2 millones de personas</strong>, principalmente en la Ciudad de Panamá y Colón. Esto hace que la conservación de sus bosques sea literalmente vital para la población urbana más grande del país."
+        },
+        {
+            category: "Mamíferos",
+            question: "¿Cuántas especies de felinos habitan en Panamá?",
+            options: ["2 especies", "3 especies", "5 especies", "7 especies"],
+            correct: 2,
+            explanation: "Panamá alberga las <strong>5 especies de felinos</strong> que existen en Centroamérica: jaguar, puma, ocelote, margay y tigrillo. Esta riqueza de carnívoros de tope indica ecosistemas saludables. El jaguar, el mayor de todos, necesita grandes extensiones de bosque continuo y es considerado especie paraguas en la conservación."
+        },
+        {
+            category: "Áreas protegidas",
+            question: "¿Cuál es el área marina protegida más grande de Panamá?",
+            options: ["Parque Nacional Coiba", "Área Marina Protegida Coiba", "Reserva Marina de Hannibal", "Parque Internacional La Amistad"],
+            correct: 1,
+            explanation: "El <strong>Área Marina Protegida de Coiba</strong> es la mayor AMP de Panamá y una de las más importantes del Pacífico oriental tropical. Con más de 430,000 hectáreas, protege arrecifes de coral, tiburones ballena, mantarrayas, delfines y ballenas jorobadas. Fue declarada Patrimonio Mundial UNESCO en 2005."
+        },
+        {
+            category: "Ecosistemas",
+            question: "¿Qué característica diferencia al bosque nuboso de Boquete de otros tipos de bosque panameño?",
+            options: ["Es el único bosque seco del país", "Está permanentemente cubierto de niebla por encima de los 1,500 metros", "Solo existe en zonas costeras", "Es el bosque con mayor número de mamíferos"],
+            correct: 1,
+            explanation: "Los <strong>bosques nubosos de Boquete</strong> (provincia de Chiriquí) se caracterizan por estar permanentemente envueltos en niebla y nubes a partir de los 1,500 metros de altitud. Esta humedad constante favorece una extraordinaria diversidad de epífitas, bromelias, orquídeas y musgos. Es también el hábitat del Quetzal Resplandeciente, uno de los pájaros más buscados por avituristas."
+        },
+        {
+            category: "Instituciones",
+            question: "¿Qué organismo gubernamental panameño es el responsable principal de gestionar y proteger las áreas silvestres protegidas?",
+            options: ["Autoridad del Canal de Panamá (ACP)", "Ministerio de Ambiente (MiAmbiente)", "Smithsonian Tropical Research Institute (STRI)", "Instituto Nacional de Recursos Naturales Renovables (INRENARE)"],
+            correct: 1,
+            explanation: "El <strong>Ministerio de Ambiente (MiAmbiente)</strong>, creado en 2015, es la entidad estatal encargada de formular y ejecutar la política ambiental en Panamá, incluyendo la administración del Sistema Nacional de Áreas Protegidas (SINAP). Antes existía como ANAM (Autoridad Nacional del Ambiente). El INRENARE fue su predecesor histórico."
+        },
+        {
+            category: "Cifras de biodiversidad",
+            question: "¿Cuántas especies de plantas vasculares se estima que existen en Panamá?",
+            options: ["Alrededor de 3,000", "Alrededor de 6,000", "Más de 10,000", "Más de 20,000"],
+            correct: 2,
+            explanation: "Panamá alberga <strong>más de 10,000 especies de plantas vasculares</strong>, cifra que supera a la de toda Europa. Muchas de estas especies son endémicas o raras. Esta diversidad botánica se debe a la posición del istmo como zona de encuentro entre las floras del norte y del sur, combinada con la variedad de ecosistemas y altitudes presentes en el país."
+        }
     ];
 
     const QUESTIONS_PER_GAME = 10;
@@ -369,6 +475,10 @@
         progressEl.style.display = 'block';
         cardEl.classList.add('active');
         loadQuestion();
+        // Scroll suave al inicio del área de juego
+        setTimeout(() => {
+            progressEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50);
     }
 
     function loadQuestion() {
@@ -431,6 +541,9 @@
             showResult();
         } else {
             loadQuestion();
+            setTimeout(() => {
+                progressEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 50);
         }
     }
 

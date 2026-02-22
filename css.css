@@ -88,6 +88,7 @@ h1, h2, h3, h4, h5 {
     left: 0;
     width: 100%;
     background: rgba(245, 243, 237, 0.98);
+    -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
     border-bottom: 1px solid rgba(25, 53, 12, 0.1);
     z-index: 1000;
@@ -499,6 +500,7 @@ h1, h2, h3, h4, h5 {
     padding: 40px 30px;
     border-radius: 20px;
     text-align: center;
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.15);
     transition: all 0.3s;
@@ -872,6 +874,7 @@ h1, h2, h3, h4, h5 {
     background: rgba(255, 255, 255, 0.1);
     border-radius: var(--border-radius);
     padding: 60px;
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.15);
     max-width: 800px;
@@ -2085,6 +2088,7 @@ h1, h2, h3, h4, h5 {
     background: rgba(255,255,255,0.08);
     padding: 28px;
     border-radius: 12px;
+    -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     margin-bottom: 28px;
 }
@@ -2638,8 +2642,8 @@ body { background: var(--cream); }
             line-height: 1.6;
         }
         .feedback-box.show { display: flex; animation: fadeIn 0.3s ease; }
-        .feedback-box.correct-fb { background: #e8f5e9; border-left: 4px solid #4caf50; color: #1b5e20; }
-        .feedback-box.incorrect-fb { background: #ffebee; border-left: 4px solid #ef5350; color: #7f0000; }
+        .feedback-box.correct-fb { background: #e8f5e9; color: #1b5e20; }
+        .feedback-box.incorrect-fb { background: #ffebee; color: #7f0000; }
         .feedback-box i { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
         .feedback-box p { margin: 0; }
         .feedback-box strong { display: block; margin-bottom: 4px; }
