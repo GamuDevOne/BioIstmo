@@ -18,6 +18,7 @@ if (mobileMenuBtn && navMenu) {
 }
 
 
+// ANIMACIÓN DE ENTRADA PARA TARJETAS
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -37,98 +38,67 @@ document.querySelectorAll('.level-card, .importance-card, .threat-card, .area-it
     observer.observe(el);
 });
 
-const statNumbers = document.querySelectorAll('.stat-number');
-const isInViewport = (el) => {
-    const rect = el.getBoundingClientRect();
-    return rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8;
-};
 
-const animateStats = () => {
+// ANIMACIÓN DE ESTADÍSTICAS — solo se activa cuando el usuario las ve
+const animateStats = (statNumbers) => {
     statNumbers.forEach(stat => {
-        if (isInViewport(stat) && !stat.classList.contains('animated')) {
-            const originalText = stat.textContent;
-            const target = parseInt(originalText.replace('+', '').replace('%', ''));
-            
-            if (target > 5) {
-                let current = 0;
-                const increment = target / 50;
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        stat.textContent = originalText;
-                        clearInterval(timer);
-                        stat.classList.add('animated');
-                    } else {
-                        stat.textContent = Math.floor(current);
-                    }
-                }, 30);
-            } else {
-                stat.classList.add('animated');
-            }
+        if (stat.classList.contains('animated')) return;
+        stat.classList.add('animated'); // marcar antes para evitar doble ejecución
+
+        const originalText = stat.textContent;
+        const target = parseInt(originalText.replace(/[^0-9]/g, ''));
+
+        if (target > 5) {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    stat.textContent = originalText;
+                    clearInterval(timer);
+                } else {
+                    stat.textContent = Math.floor(current);
+                }
+            }, 30);
         }
     });
 };
 
-window.addEventListener('scroll', animateStats);
-animateStats();
-
-
-
-// FILTROS DE ESPECIES 
-const speciesFilters = document.querySelectorAll('.species-filter');
-const speciesCards = document.querySelectorAll('.species-card');
-
-if (speciesFilters.length && speciesCards.length) {
-    speciesFilters.forEach(filter => {
-        filter.addEventListener('click', () => {
-            speciesFilters.forEach(f => f.classList.remove('active'));
-            filter.classList.add('active');
-            
-            const filterValue = filter.getAttribute('data-filter');
-            
-            speciesCards.forEach(card => {
-                if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
-                    card.style.display = 'block';
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, 10);
-                } else {
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(20px)';
-                    setTimeout(() => {
-                        card.style.display = 'none';
-                    }, 300);
-                }
-            });
-        });
+// Usar IntersectionObserver para disparar la animación solo cuando sea visible
+const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const stats = entry.target.querySelectorAll('.stat-number');
+            animateStats(stats);
+        }
     });
-}
+}, { threshold: 0.3 });
 
-// DETALLES DE ESPECIES 
+document.querySelectorAll('.stats-grid, .mega-stats').forEach(el => {
+    statsObserver.observe(el);
+});
+
+
+// DETALLES DE ESPECIES
 const detailsToggles = document.querySelectorAll('.details-toggle');
 
 detailsToggles.forEach(toggle => {
     toggle.addEventListener('click', () => {
         const targetId = toggle.getAttribute('data-target');
         const targetElement = document.getElementById(targetId);
-        const icon = toggle.querySelector('i');
-        
+
         if (targetElement) {
             targetElement.classList.toggle('active');
-            
+
             if (targetElement.classList.contains('active')) {
-                icon.classList.remove('fa-chevron-down');
-                icon.classList.add('fa-chevron-up');
                 toggle.innerHTML = '<i class="fas fa-chevron-up"></i> Ocultar detalles';
             } else {
-                icon.classList.remove('fa-chevron-up');
-                icon.classList.add('fa-chevron-down');
                 toggle.innerHTML = '<i class="fas fa-chevron-down"></i> Cómo protegerla';
             }
         }
     });
 });
+
 
 // FETCH DEL FOOTER (no puedo utilizarlo)
 fetch('footer.html')
